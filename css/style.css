@@ -3343,11 +3343,20 @@ body.loading section {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .chatbot-container {
-    width: calc(100% - 40px);
-    height: calc(100% - 140px);
+    position: fixed;
+    top: 70px;
     bottom: 80px;
-    right: 20px;
-    left: 20px;
+    left: 15px;
+    right: 15px;
+    width: auto;
+    height: auto;
+    background: #000000;
+    z-index: 10000;
+    border-radius: 10px;
+  }
+
+  .chatbot-container.active {
+    transform: scale(1);
   }
 
   .chatbot-toggle {
@@ -3355,20 +3364,33 @@ body.loading section {
     height: 50px;
     bottom: 20px;
     right: 20px;
+    z-index: 10001;
   }
 
   .chatbot-toggle i {
     font-size: 20px;
   }
+
+  .chatbot-messages {
+    background: #000000;
+  }
+
+  .chatbot-header {
+    background: #000000;
+  }
+
+  .chatbot-input {
+    background: #000000;
+    padding: 15px;
+  }
 }
 
 @media (max-width: 480px) {
   .chatbot-container {
-    width: calc(100% - 30px);
-    height: calc(100% - 120px);
-    bottom: 75px;
-    right: 15px;
-    left: 15px;
+    top: 65px;
+    bottom: 70px;
+    left: 10px;
+    right: 10px;
   }
 
   .chatbot-toggle {
@@ -3383,10 +3405,22 @@ body.loading section {
   }
 
   .chatbot-header {
-    padding: 15px;
+    padding: 12px;
   }
 
   .chatbot-input {
-    padding: 15px;
+    padding: 12px;
   }
 }
+
+/* iOS keyboard handling - prevents content showing behind chatbot */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    .chatbot-container {
+      /* Use dvh for iOS dynamic viewport */
+      max-height: 100dvh;
+      max-height: -webkit-fill-available;
+    }
+  }
+}
+
