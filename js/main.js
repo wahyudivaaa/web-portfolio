@@ -245,50 +245,89 @@ const initMobileMenu = () => {
     });
 };
 
-// Project Image Carousel with Glitch Effect
+// Project Image Carousel with Glitch Effect and Manual Controls
 function initProjectCarousels() {
     const carousels = document.querySelectorAll('.project-carousel');
     
     carousels.forEach(carousel => {
         const items = carousel.querySelectorAll('.carousel-item');
+        const prevBtn = carousel.querySelector('.carousel-nav.prev');
+        const nextBtn = carousel.querySelector('.carousel-nav.next');
+        const dots = carousel.querySelectorAll('.carousel-dot');
         let currentIndex = 0;
         let isTransitioning = false;
         let intervalId = null;
         
-        function switchImage() {
-            if (isTransitioning) return;
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+        
+        function goToSlide(index) {
+            if (isTransitioning || index === currentIndex) return;
             isTransitioning = true;
 
             const currentImage = items[currentIndex];
-            const nextIndex = (currentIndex + 1) % items.length;
-            const nextImage = items[nextIndex];
+            const nextImage = items[index];
 
-            // Reset interval untuk memastikan timing yang konsisten
+            // Reset interval
             if (intervalId) {
                 clearInterval(intervalId);
             }
 
-            // Mulai transisi glitch
+            // Glitch transition
             currentImage.classList.add('glitch-transition');
             
-            // Ketika animasi glitch selesai
             currentImage.addEventListener('animationend', function onEnd() {
                 currentImage.removeEventListener('animationend', onEnd);
                 currentImage.classList.remove('glitch-transition', 'active');
                 nextImage.classList.add('active');
-                currentIndex = nextIndex;
+                currentIndex = index;
+                updateDots();
                 isTransitioning = false;
 
-                // Mulai interval baru tepat setelah transisi selesai
-                intervalId = setInterval(switchImage, 2500); // 2.5 detik total (1.7s tampil + 0.8s transisi)
+                // Restart auto-slide
+                intervalId = setInterval(() => goToSlide((currentIndex + 1) % items.length), 3500);
             }, { once: true });
         }
         
-        // Tampilkan gambar pertama
-        items[0].classList.add('active');
+        function switchImage() {
+            goToSlide((currentIndex + 1) % items.length);
+        }
         
-        // Mulai interval pertama
-        intervalId = setInterval(switchImage, 2500);
+        // Manual navigation - Previous
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const prevIndex = (currentIndex - 1 + items.length) % items.length;
+                goToSlide(prevIndex);
+            });
+        }
+        
+        // Manual navigation - Next
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const nextIndex = (currentIndex + 1) % items.length;
+                goToSlide(nextIndex);
+            });
+        }
+        
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation();
+                goToSlide(index);
+            });
+        });
+        
+        // Initialize first slide and dots
+        items[0].classList.add('active');
+        updateDots();
+        
+        // Start auto-slide
+        intervalId = setInterval(switchImage, 3500);
     });
 }
 

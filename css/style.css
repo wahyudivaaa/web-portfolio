@@ -276,6 +276,15 @@ body.loading section {
   letter-spacing: 1px;
 }
 
+.skill-percentage {
+  color: var(--neon-blue);
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 255, 249, 0.5);
+  margin-left: auto;
+}
+
 .skill-bar {
   height: 6px;
   background: rgba(255, 255, 255, 0.1);
@@ -3443,3 +3452,137 @@ body.loading section {
   }
 }
 
+/* ==========================================
+   PROJECT CAROUSEL CONTROLS
+   ========================================== */
+.project-carousel {
+  position: relative;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 35px;
+  height: 35px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--neon-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  color: var(--neon-blue);
+  font-size: 14px;
+}
+
+.carousel-nav:hover {
+  background: var(--neon-blue);
+  color: #000;
+  box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.carousel-nav.prev {
+  left: 10px;
+}
+
+.carousel-nav.next {
+  right: 10px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.carousel-dot.active,
+.carousel-dot:hover {
+  background: var(--neon-blue);
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+
+/* ==========================================
+   GITHUB SOURCE BUTTON
+   ========================================== */
+.cyber-button-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--neon-pink);
+  color: var(--neon-pink);
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cyber-button-github:hover {
+  background: var(--neon-pink);
+  color: #000;
+  box-shadow: 0 0 15px var(--neon-pink);
+  text-decoration: none;
+}
+
+.cyber-button-github i {
+  font-size: 1rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 576px) {
+  .carousel-nav {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .carousel-nav.prev {
+    left: 5px;
+  }
+
+  .carousel-nav.next {
+    right: 5px;
+  }
+
+  .carousel-dots {
+    bottom: 5px;
+  }
+
+  .carousel-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .cyber-button-github {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}
