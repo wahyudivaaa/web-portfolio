@@ -9,11 +9,11 @@ class Chatbot {
 
     this.initEventListeners();
     this.apiEndpoint =
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
     this.apiKey = "";
     this.initApiKey();
 
-    this.systemPrompt = `Kamu adalah AI Assistant Cerdas yang menggunakan Gemini 2.5 Flash Preview dengan kemampuan adaptive thinking. Kamu memiliki dua mode operasi:
+    this.systemPrompt = `Kamu adalah AI Assistant Cerdas yang menggunakan Gemini AI dengan kemampuan adaptive thinking. Kamu memiliki dua mode operasi:
 
         🎯 MODE 1 - PORTFOLIO SPECIALIST (Prioritas Utama):
         Ketika ditanya tentang Wahyu Diva, portfolio, proyek, atau hal terkait web development:
