@@ -3411,6 +3411,25 @@ body.loading section {
   .chatbot-input {
     padding: 12px;
   }
+
+  /* Reduce hero title size for very small screens */
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .highlight {
+    font-size: 1.8rem;
+  }
+
+  .cyber-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+/* Hide chatbot toggle when chat is open */
+.chatbot-container.active ~ .chatbot-toggle {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* iOS keyboard handling - prevents content showing behind chatbot */
