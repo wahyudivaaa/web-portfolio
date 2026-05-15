@@ -20,8 +20,8 @@ const initNavbarAnimation = () => {
         const collapse = document.querySelector('.navbar-collapse');
         if (collapse && collapse.classList.contains('show')) return;
 
-        // Skip animation for mobile devices
-        if (window.innerWidth <= 768) return;
+        // Match Bootstrap's navbar-expand-lg breakpoint.
+        if (window.innerWidth <= 991.98) return;
 
         if (!ticking) {
             window.requestAnimationFrame(() => {

@@ -159,18 +159,21 @@ class Chatbot {
   async initApiKey() {
     try {
       const response = await fetch("/api/config");
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      const contentType = response.headers.get("content-type") || "";
+
+      if (!response.ok || !contentType.includes("application/json")) {
+        return;
       }
+
       const data = await response.json();
       this.apiKey = data.GEMINI_API_KEY;
       if (!this.apiKey) {
-        console.warn("API key is empty");
+        return;
       } else {
         console.log("API key loaded successfully");
       }
     } catch (error) {
-      console.error("Failed to load API key:", error);
+      this.apiKey = "";
     }
   }
 

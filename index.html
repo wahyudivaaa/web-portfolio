@@ -60,9 +60,16 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.css?v=responsive-20260515" />
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script defer src="https://va.vercel-scripts.com/v1/script.js"></script>
+    <script>
+      if (!["localhost", "127.0.0.1"].includes(window.location.hostname)) {
+        const analyticsScript = document.createElement("script");
+        analyticsScript.defer = true;
+        analyticsScript.src = "https://va.vercel-scripts.com/v1/script.js";
+        document.head.appendChild(analyticsScript);
+      }
+    </script>
   </head>
   <body>
     <div class="cyber-loader">
@@ -541,8 +548,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/chatbot.js"></script>
+    <script src="js/main.js?v=responsive-20260515"></script>
+    <script src="js/chatbot.js?v=responsive-20260515"></script>
   </body>
 </html>
 
