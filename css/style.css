@@ -611,13 +611,17 @@ button {
 /* --------------------------------------------------------------------------
    6. Section Header
    -------------------------------------------------------------------------- */
+section[id] {
+  scroll-margin-top: 100px;
+}
+
 .section-wrapper {
-  padding: 70px 0;
+  padding: 85px 0;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 36px;
+  margin-bottom: 44px;
 }
 
 .section-title {
@@ -627,18 +631,16 @@ button {
   color: var(--text-primary);
 }
 
-/* --------------------------------------------------------------------------
-   7. About Section
-   -------------------------------------------------------------------------- */
+/* 7. About Section */
 .about-grid {
   display: grid;
   grid-template-columns: 1.35fr 1fr;
-  gap: 22px;
+  gap: 28px;
   align-items: stretch;
 }
 
 .about-bio-card {
-  padding: 38px 34px;
+  padding: 42px 36px;
   display: flex;
   flex-direction: column;
 }
@@ -647,27 +649,32 @@ button {
   font-size: 1.35rem;
   font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .about-bio-card p {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.02rem;
   margin-bottom: 16px;
-  line-height: 1.65;
+  line-height: 1.7;
+}
+
+.about-bio-card p:last-of-type {
+  margin-bottom: 0;
 }
 
 .stats-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: auto;
-  padding-top: 20px;
+  gap: 14px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--glass-panel-border);
 }
 
 .stat-bubble-card,
 .stat-item {
-  padding: 18px 12px;
+  padding: 20px 14px;
   border-radius: var(--radius-inner);
   background-color: var(--glass-chip);
   border: 1px solid var(--glass-panel-border);
@@ -700,41 +707,42 @@ button {
 .about-cards-column {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-
-.about-subcard {
-  padding: 24px 26px;
-  border-radius: var(--radius-inner);
-  display: flex;
-  align-items: center;
   gap: 18px;
 }
 
+.about-subcard {
+  padding: 26px 28px;
+  border-radius: var(--radius-inner);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 110px;
+}
+
 .subcard-icon {
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background-color: var(--accent-subtle);
   color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   flex-shrink: 0;
 }
 
 .subcard-content h3 {
-  font-size: 1.18rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .subcard-content p {
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 /* --------------------------------------------------------------------------
@@ -1341,14 +1349,30 @@ button {
 @media (max-width: 992px) {
   .about-grid {
     grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-cards-column {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .about-subcard {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 18px;
+    gap: 12px;
   }
 
   .skills-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
 }
 
@@ -1384,17 +1408,24 @@ button {
     font-size: 2.1rem;
   }
 
+  .about-grid {
+    gap: 24px;
+  }
+
   .about-bio-card {
-    padding: 26px 20px;
+    padding: 28px 20px;
   }
 
   .stats-row {
     grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 18px;
   }
 
   .stat-bubble-card,
   .stat-item {
-    padding: 14px 16px;
+    padding: 14px 18px;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -1403,8 +1434,16 @@ button {
     font-size: 1.6rem;
   }
 
+  .about-cards-column {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
   .about-subcard {
+    flex-direction: row;
+    text-align: left;
     padding: 18px 20px;
+    gap: 16px;
   }
 
   .skill-group-card {
