@@ -1,59 +1,71 @@
 /* ==========================================================================
-   Apple VisionOS / iOS Liquid Glass Design System
-   Designed for Wahyu Diva Portfolio
-   Features: 5-Layer Optical Refraction, Specular Bevel Highlights,
-   Continuous Squircles, Dynamic Island, and Dual-Theme Ambient Caustics.
+   Apple VisionOS & iOS 28 Liquid Glass Design System (v5 Master Edition)
+   Crafted for Wahyu Diva Portfolio
+   Features:
+   - 5-Layer Optical Refraction with Specular Bevel Highlights
+   - Living Ambient Caustic Waves (Sapphire, Violet, Cyan Refraction)
+   - Continuous Squircle Geometry & High-Contrast Typography
+   - Luminescent Liquid Vial Progress Bars & Real-Time Animated Counters
+   - Dynamic Island Header & Floating Control Center Chatbot
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    1. Design Tokens: Liquid Glass & Optical Materials
    -------------------------------------------------------------------------- */
 :root {
-  /* Light Theme (Liquid Prism Crystal & Pearl Canvas) */
-  --bg-canvas: #f2f5fa;
-  --caustic-color-1: rgba(0, 113, 227, 0.14);
-  --caustic-color-2: rgba(99, 102, 241, 0.12);
-  --caustic-color-3: rgba(56, 189, 248, 0.12);
+  /* Light Theme (Liquid Prism Crystal & Ceramic Canvas) */
+  --bg-canvas: #f2f5fb;
+  --caustic-1: rgba(0, 113, 227, 0.16);
+  --caustic-2: rgba(139, 92, 246, 0.13);
+  --caustic-3: rgba(6, 182, 212, 0.13);
+  --caustic-4: rgba(244, 63, 94, 0.08);
 
-  --liquid-glass-surface: rgba(255, 255, 255, 0.68);
-  --liquid-glass-hover: rgba(255, 255, 255, 0.84);
-  --liquid-glass-active: rgba(255, 255, 255, 0.94);
-  --liquid-glass-subtle: rgba(255, 255, 255, 0.45);
-  --liquid-glass-control: rgba(255, 255, 255, 0.7);
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.65) 50%, rgba(236, 243, 255, 0.75) 100%);
+  --glass-bg-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.78) 50%, rgba(242, 247, 255, 0.88) 100%);
+  --glass-subtle: rgba(255, 255, 255, 0.6);
+  --glass-control: rgba(255, 255, 255, 0.75);
+  --glass-chip: rgba(255, 255, 255, 0.72);
+  --glass-chip-hover: rgba(255, 255, 255, 0.95);
 
-  --liquid-border-specular: rgba(255, 255, 255, 0.95);
-  --liquid-border-rim: rgba(255, 255, 255, 0.6);
-  --liquid-border-subtle: rgba(18, 28, 48, 0.07);
+  --glass-border-top: #ffffff;
+  --glass-border-rim: rgba(255, 255, 255, 0.85);
+  --glass-border-subtle: rgba(18, 28, 52, 0.07);
 
-  --liquid-bevel-inner: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95),
-                        inset 0 -1px 2px 0 rgba(18, 28, 48, 0.04),
-                        inset 0 0 16px 0 rgba(255, 255, 255, 0.35);
+  --glass-bevel-inner: inset 0 1.5px 1.5px 0 #ffffff,
+                        inset 0 0 20px 0 rgba(255, 255, 255, 0.6),
+                        inset 0 -1.5px 2px 0 rgba(18, 28, 52, 0.04);
 
-  --liquid-shadow-card: 0 16px 36px -6px rgba(18, 30, 58, 0.08),
-                       0 4px 12px -2px rgba(18, 30, 58, 0.03);
+  --glass-shadow: 0 18px 44px -8px rgba(18, 30, 58, 0.09),
+                  0 4px 14px -2px rgba(18, 30, 58, 0.03);
 
-  --liquid-shadow-hover: 0 24px 52px -8px rgba(18, 30, 58, 0.14),
-                        0 6px 18px -2px rgba(18, 30, 58, 0.05);
+  --glass-shadow-hover: 0 26px 58px -10px rgba(18, 30, 58, 0.15),
+                        0 8px 22px -3px rgba(0, 113, 227, 0.12);
 
-  --liquid-shadow-island: 0 14px 40px -4px rgba(18, 30, 58, 0.12),
+  --glass-shadow-island: 0 16px 44px -4px rgba(18, 30, 58, 0.12),
                          0 2px 8px rgba(0, 0, 0, 0.04);
 
-  --text-primary: #111522;
-  --text-secondary: #485268;
-  --text-tertiary: #7c889e;
+  --text-primary: #101524;
+  --text-secondary: #45506a;
+  --text-tertiary: #75839e;
 
   --accent: #0071e3;
   --accent-hover: #0077ed;
-  --accent-subtle: rgba(0, 113, 227, 0.09);
+  --accent-cyan: #0284c7;
+  --accent-purple: #7c3aed;
+  --accent-subtle: rgba(0, 113, 227, 0.1);
   --accent-emerald: #10b981;
+
+  --meter-track: rgba(18, 28, 52, 0.07);
+  --meter-glow: rgba(0, 113, 227, 0.35);
 
   --chat-user-bg: #0071e3;
   --chat-user-text: #ffffff;
-  --chat-bot-bg: rgba(255, 255, 255, 0.85);
-  --chat-bot-text: #111522;
+  --chat-bot-bg: rgba(255, 255, 255, 0.9);
+  --chat-bot-text: #101524;
 
   --radius-card: 28px;
   --radius-inner: 20px;
+  --radius-chip: 16px;
   --radius-pill: 9999px;
 
   --font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "SF Pro Display", "Inter", sans-serif;
@@ -62,52 +74,59 @@
 }
 
 [data-theme="dark"] {
-  /* Dark Theme (Liquid Obsidian & Deep Refractive Glass) */
-  --bg-canvas: #06080d;
-  --caustic-color-1: rgba(0, 113, 227, 0.22);
-  --caustic-color-2: rgba(99, 102, 241, 0.18);
-  --caustic-color-3: rgba(56, 189, 248, 0.15);
+  /* Dark Theme (Liquid Obsidian & Refractive Sapphire Glass) */
+  --bg-canvas: #05070d;
+  --caustic-1: rgba(0, 113, 227, 0.3);
+  --caustic-2: rgba(139, 92, 246, 0.25);
+  --caustic-3: rgba(6, 182, 212, 0.2);
+  --caustic-4: rgba(236, 72, 153, 0.12);
 
-  --liquid-glass-surface: rgba(18, 23, 36, 0.62);
-  --liquid-glass-hover: rgba(25, 32, 50, 0.76);
-  --liquid-glass-active: rgba(32, 42, 66, 0.88);
-  --liquid-glass-subtle: rgba(255, 255, 255, 0.05);
-  --liquid-glass-control: rgba(26, 33, 50, 0.7);
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(12, 18, 32, 0.68) 100%);
+  --glass-bg-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.04) 40%, rgba(16, 25, 44, 0.78) 100%);
+  --glass-subtle: rgba(255, 255, 255, 0.05);
+  --glass-control: rgba(22, 30, 48, 0.72);
+  --glass-chip: rgba(255, 255, 255, 0.045);
+  --glass-chip-hover: rgba(255, 255, 255, 0.09);
 
-  --liquid-border-specular: rgba(255, 255, 255, 0.24);
-  --liquid-border-rim: rgba(255, 255, 255, 0.1);
-  --liquid-border-subtle: rgba(255, 255, 255, 0.06);
+  --glass-border-top: rgba(255, 255, 255, 0.4);
+  --glass-border-rim: rgba(255, 255, 255, 0.12);
+  --glass-border-subtle: rgba(255, 255, 255, 0.06);
 
-  --liquid-bevel-inner: inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
-                        inset 0 -1px 2px 0 rgba(0, 0, 0, 0.4),
-                        inset 0 0 18px 0 rgba(255, 255, 255, 0.03);
+  --glass-bevel-inner: inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.45),
+                        inset 0 0 24px 0 rgba(255, 255, 255, 0.03),
+                        inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.45);
 
-  --liquid-shadow-card: 0 20px 48px -8px rgba(0, 0, 0, 0.7),
-                       0 4px 16px -2px rgba(0, 0, 0, 0.4);
+  --glass-shadow: 0 22px 52px -10px rgba(0, 0, 0, 0.75),
+                  0 4px 16px -2px rgba(0, 0, 0, 0.45);
 
-  --liquid-shadow-hover: 0 28px 60px -10px rgba(0, 0, 0, 0.85),
-                        0 8px 24px -2px rgba(0, 0, 0, 0.5);
+  --glass-shadow-hover: 0 30px 68px -12px rgba(0, 0, 0, 0.9),
+                        0 8px 24px -2px rgba(41, 151, 255, 0.2);
 
-  --liquid-shadow-island: 0 18px 46px -6px rgba(0, 0, 0, 0.8),
-                         0 0 1px rgba(255, 255, 255, 0.2);
+  --glass-shadow-island: 0 18px 46px -6px rgba(0, 0, 0, 0.82),
+                         0 0 1px rgba(255, 255, 255, 0.25);
 
-  --text-primary: #f5f7fb;
-  --text-secondary: #9aa7c0;
-  --text-tertiary: #616e87;
+  --text-primary: #ffffff;
+  --text-secondary: #9cb0cf;
+  --text-tertiary: #627290;
 
   --accent: #2997ff;
-  --accent-hover: #4ea8ff;
-  --accent-subtle: rgba(41, 151, 255, 0.15);
+  --accent-hover: #52aaff;
+  --accent-cyan: #38bdf8;
+  --accent-purple: #a78bfa;
+  --accent-subtle: rgba(41, 151, 255, 0.16);
   --accent-emerald: #34d399;
+
+  --meter-track: rgba(0, 0, 0, 0.35);
+  --meter-glow: rgba(56, 189, 248, 0.55);
 
   --chat-user-bg: #2997ff;
   --chat-user-text: #ffffff;
-  --chat-bot-bg: rgba(26, 33, 52, 0.85);
-  --chat-bot-text: #f5f7fb;
+  --chat-bot-bg: rgba(22, 30, 48, 0.88);
+  --chat-bot-text: #ffffff;
 }
 
 /* --------------------------------------------------------------------------
-   2. Reset & Document Setup
+   2. Global Reset & Base Typography
    -------------------------------------------------------------------------- */
 *,
 *::before,
@@ -163,7 +182,7 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   3. Liquid Caustic Ambient Canvas (Refraction Environment)
+   3. Dynamic Living Caustic Backdrop (Optical Refraction Engine)
    -------------------------------------------------------------------------- */
 .liquid-caustic-canvas {
   position: fixed;
@@ -176,76 +195,75 @@ button {
 .caustic-pool {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.9;
+  filter: blur(85px);
+  opacity: 0.95;
   will-change: transform;
   transform: translate3d(0, 0, 0);
-  animation: causticMotion 24s ease-in-out infinite alternate;
+  animation: liquidCaustic 25s ease-in-out infinite alternate;
 }
 
 .pool-primary {
-  width: 540px;
-  height: 540px;
-  background: radial-gradient(circle, var(--caustic-color-1) 0%, transparent 70%);
-  top: -100px;
-  left: 15%;
+  width: 580px;
+  height: 580px;
+  background: radial-gradient(circle, var(--caustic-1) 0%, transparent 70%);
+  top: -120px;
+  left: 20%;
   animation-duration: 22s;
 }
 
 .pool-secondary {
-  width: 580px;
-  height: 580px;
-  background: radial-gradient(circle, var(--caustic-color-2) 0%, transparent 70%);
-  top: 35%;
-  right: -80px;
-  animation-duration: 26s;
-  animation-delay: -6s;
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, var(--caustic-2) 0%, transparent 70%);
+  top: 32%;
+  right: -100px;
+  animation-duration: 27s;
+  animation-delay: -5s;
 }
 
 .pool-tertiary {
-  width: 480px;
-  height: 480px;
-  background: radial-gradient(circle, var(--caustic-color-3) 0%, transparent 70%);
-  bottom: 5%;
-  left: -60px;
-  animation-duration: 20s;
-  animation-delay: -12s;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, var(--caustic-3) 0%, transparent 70%);
+  bottom: 8%;
+  left: -80px;
+  animation-duration: 21s;
+  animation-delay: -11s;
 }
 
-@keyframes causticMotion {
+@keyframes liquidCaustic {
   0% {
     transform: translate(0, 0) scale(1);
   }
   50% {
-    transform: translate(40px, -35px) scale(1.06);
+    transform: translate(45px, -40px) scale(1.08);
   }
   100% {
-    transform: translate(-30px, 35px) scale(0.95);
+    transform: translate(-35px, 40px) scale(0.94);
   }
 }
 
 /* --------------------------------------------------------------------------
-   4. Liquid Glass Container & Continuous Squircles
+   4. App Container & Core Liquid Glass Card
    -------------------------------------------------------------------------- */
 .app-container {
   width: 100%;
-  max-width: 1080px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
   position: relative;
   z-index: 1;
 }
 
-/* The Core 5-Layer Liquid Glass Card */
 .squircle-card {
   position: relative;
-  background: var(--liquid-glass-surface);
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
+  background: var(--glass-bg);
+  backdrop-filter: blur(32px) saturate(210%);
+  -webkit-backdrop-filter: blur(32px) saturate(210%);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
   border-radius: var(--radius-card);
-  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-card);
+  box-shadow: var(--glass-bevel-inner), var(--glass-shadow);
   transition: transform 0.4s var(--ease-spring),
               box-shadow 0.4s var(--ease-smooth),
               border-color 0.4s var(--ease-smooth),
@@ -253,14 +271,14 @@ button {
 }
 
 .squircle-card:hover {
-  background: var(--liquid-glass-hover);
-  border-top-color: var(--liquid-border-specular);
-  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-hover);
-  transform: translateY(-2px);
+  background: var(--glass-bg-hover);
+  border-top-color: var(--glass-border-top);
+  box-shadow: var(--glass-bevel-inner), var(--glass-shadow-hover);
+  transform: translateY(-3px) scale(1.004);
 }
 
 /* --------------------------------------------------------------------------
-   5. Liquid Dynamic Island Header Navigation
+   5. Dynamic Island Header Navigation (VisionOS Capsule)
    -------------------------------------------------------------------------- */
 .dynamic-island-wrapper {
   position: fixed;
@@ -279,13 +297,13 @@ button {
   display: flex;
   align-items: center;
   gap: 16px;
-  background: var(--liquid-glass-surface);
-  backdrop-filter: blur(32px) saturate(200%);
-  -webkit-backdrop-filter: blur(32px) saturate(200%);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
+  background: var(--glass-bg);
+  backdrop-filter: blur(36px) saturate(220%);
+  -webkit-backdrop-filter: blur(36px) saturate(220%);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
   border-radius: var(--radius-pill);
-  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-island);
+  box-shadow: var(--glass-bevel-inner), var(--glass-shadow-island);
   padding: 8px 12px 8px 16px;
   transition: all 0.35s var(--ease-spring);
 }
@@ -302,9 +320,9 @@ button {
   height: 32px;
   border-radius: 50%;
   overflow: hidden;
-  background: var(--liquid-glass-control);
-  border: 1px solid var(--liquid-border-rim);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  background: var(--glass-control);
+  border: 1px solid var(--glass-border-rim);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -318,8 +336,8 @@ button {
 
 .brand-name {
   font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
+  font-weight: 800;
+  letter-spacing: 0.02em;
   color: var(--text-primary);
 }
 
@@ -327,15 +345,16 @@ button {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: var(--liquid-glass-subtle);
+  background: var(--glass-subtle);
   padding: 4px;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--liquid-border-subtle);
+  border: 1px solid var(--glass-border-subtle);
 }
 
 .island-link {
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--text-secondary);
   padding: 6px 14px;
   border-radius: var(--radius-pill);
@@ -350,7 +369,7 @@ button {
 .island-link.active {
   color: #ffffff;
   background: var(--accent);
-  box-shadow: 0 4px 14px -2px rgba(0, 113, 227, 0.35);
+  box-shadow: 0 4px 14px -2px rgba(0, 113, 227, 0.45);
 }
 
 .island-actions {
@@ -366,26 +385,25 @@ button {
   height: 38px;
   border-radius: var(--radius-pill);
   font-size: 0.88rem;
-  font-weight: 600;
-  background: var(--liquid-glass-control);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  font-weight: 700;
+  background: var(--glass-control);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
   color: var(--text-primary);
   padding: 0 12px;
   transition: all 0.25s var(--ease-spring);
 }
 
 .island-btn:hover {
-  background: var(--liquid-glass-hover);
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .island-btn:active {
   transform: scale(0.96);
 }
 
-/* Theme Toggle Button */
+/* Theme Toggle */
 .theme-toggle-btn {
   width: 38px;
   padding: 0;
@@ -416,7 +434,7 @@ button {
   color: #6366f1;
 }
 
-/* AI Chat Pill */
+/* AI Assistant Header Button */
 .chat-trigger-btn {
   gap: 6px;
   background: var(--accent-subtle);
@@ -453,13 +471,13 @@ button {
   top: 76px;
   left: 16px;
   right: 16px;
-  background: var(--liquid-glass-surface);
-  backdrop-filter: blur(32px) saturate(200%);
-  -webkit-backdrop-filter: blur(32px) saturate(200%);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
+  background: var(--glass-bg);
+  backdrop-filter: blur(36px) saturate(220%);
+  -webkit-backdrop-filter: blur(36px) saturate(220%);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
   border-radius: var(--radius-inner);
-  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-card);
+  box-shadow: var(--glass-bevel-inner), var(--glass-shadow);
   padding: 10px;
   opacity: 0;
   visibility: hidden;
@@ -488,7 +506,7 @@ button {
   padding: 12px 16px;
   border-radius: 14px;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
   transition: background 0.2s var(--ease-smooth);
 }
@@ -500,11 +518,11 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   6. Hero Section (Liquid Glass Showcase)
+   6. Hero Section (Liquid Glass Headline & Visual)
    -------------------------------------------------------------------------- */
 .hero-section {
-  padding-top: 130px;
-  padding-bottom: 70px;
+  padding-top: 135px;
+  padding-bottom: 75px;
   min-height: 92vh;
   display: flex;
   align-items: center;
@@ -524,36 +542,21 @@ button {
   align-items: flex-start;
 }
 
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: var(--radius-pill);
-  background: var(--liquid-glass-subtle);
-  border: 1px solid var(--liquid-border-subtle);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-bottom: 24px;
-}
-
-.status-indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent-emerald);
-  box-shadow: 0 0 10px var(--accent-emerald);
-}
-
 .hero-headline {
-  font-size: clamp(2.3rem, 4.8vw, 3.5rem);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
   font-weight: 800;
   line-height: 1.14;
   letter-spacing: -0.035em;
   color: var(--text-primary);
   margin-bottom: 18px;
+}
+
+.highlight {
+  color: var(--accent);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cyan) 60%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
 .hero-role-row {
@@ -562,7 +565,7 @@ button {
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 20px;
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -572,12 +575,13 @@ button {
   background: var(--accent-subtle);
   padding: 4px 14px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(0, 113, 227, 0.2);
+  border: 1px solid rgba(0, 113, 227, 0.25);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
   font-weight: 700;
 }
 
 .hero-lead {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: var(--text-secondary);
   line-height: 1.65;
   max-width: 540px;
@@ -591,16 +595,16 @@ button {
   gap: 12px;
 }
 
-/* Tactile Liquid Pill Buttons */
+/* Tactile Liquid Pill Button */
 .pill-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 13px 26px;
+  padding: 14px 28px;
   border-radius: var(--radius-pill);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   min-height: 48px;
   transition: all 0.25s var(--ease-spring);
   user-select: none;
@@ -617,26 +621,27 @@ button {
 .pill-btn-primary {
   background: var(--accent);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 24px -4px rgba(0, 113, 227, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 10px 26px -4px rgba(0, 113, 227, 0.45),
+              inset 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 .pill-btn-primary:hover {
   background: var(--accent-hover);
-  box-shadow: 0 12px 28px -4px rgba(0, 113, 227, 0.5);
+  box-shadow: 0 14px 32px -4px rgba(0, 113, 227, 0.55);
   color: #ffffff;
 }
 
 .pill-btn-secondary {
-  background: var(--liquid-glass-control);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  background: var(--glass-control);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
   color: var(--text-primary);
 }
 
 .pill-btn-secondary:hover {
-  background: var(--liquid-glass-hover);
+  background: var(--glass-bg-hover);
 }
 
 /* Hero Profile Frame */
@@ -653,10 +658,11 @@ button {
   height: 250px;
   border-radius: var(--radius-inner);
   overflow: hidden;
-  background: var(--liquid-glass-subtle);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
-  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-card);
+  background: var(--glass-subtle);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
+  box-shadow: var(--glass-bevel-inner), var(--glass-shadow);
+  position: relative;
 }
 
 .profile-photo {
@@ -717,13 +723,13 @@ button {
 
 .scroll-hint-text {
   font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 /* --------------------------------------------------------------------------
-   7. Section Header
+   7. Section Headers
    -------------------------------------------------------------------------- */
 .section-wrapper {
   padding: 85px 0;
@@ -736,55 +742,40 @@ button {
   margin: 0 auto 46px;
 }
 
-.section-tag-pill {
-  display: inline-block;
-  padding: 5px 16px;
-  border-radius: var(--radius-pill);
-  background: var(--accent-subtle);
-  border: 1px solid rgba(0, 113, 227, 0.2);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 12px;
-}
-
 .section-title {
-  font-size: clamp(2rem, 3.6vw, 2.7rem);
+  font-size: clamp(2.1rem, 3.8vw, 2.8rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--text-primary);
-  margin-bottom: 10px;
-}
-
-.section-desc {
-  font-size: 1.02rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
 }
 
 /* --------------------------------------------------------------------------
-   8. About Section (WidgetKit Liquid Cards)
+   8. About Section (Original Content in Liquid Glass)
    -------------------------------------------------------------------------- */
 .about-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1.35fr 1fr;
   gap: 24px;
   align-items: stretch;
 }
 
 .about-bio-card {
-  padding: 40px;
+  padding: 42px;
   display: flex;
   flex-direction: column;
 }
 
 .about-bio-card p {
   color: var(--text-secondary);
-  font-size: 0.98rem;
+  font-size: 1.02rem;
   margin-bottom: 16px;
   line-height: 1.7;
+}
+
+.about-bio-card p:first-child {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 .stats-row {
@@ -792,17 +783,17 @@ button {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-top: auto;
-  padding-top: 20px;
+  padding-top: 24px;
 }
 
 .stat-bubble-card,
 .stat-item {
-  padding: 18px 14px;
+  padding: 20px 14px;
   border-radius: var(--radius-inner);
-  background: var(--liquid-glass-subtle);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  background: var(--glass-chip);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -815,7 +806,7 @@ button {
 }
 
 .stat-number {
-  font-size: 1.85rem;
+  font-size: 2rem;
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.1;
@@ -836,7 +827,7 @@ button {
 }
 
 .about-subcard {
-  padding: 26px 28px;
+  padding: 28px 30px;
   border-radius: var(--radius-inner);
   display: flex;
   flex-direction: column;
@@ -852,12 +843,14 @@ button {
 }
 
 .about-subcard p {
-  font-size: 0.94rem;
+  font-size: 0.96rem;
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
-/* Skills Section (Liquid Glass Meter Bars & Live Counters) */
+/* --------------------------------------------------------------------------
+   9. Skills Section (Luminescent Liquid Glass Meters)
+   -------------------------------------------------------------------------- */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -865,31 +858,43 @@ button {
 }
 
 .skill-group-card {
-  padding: 32px 24px;
+  padding: 34px 26px;
   display: flex;
   flex-direction: column;
 }
 
 .group-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
-  margin-bottom: 22px;
+  margin-bottom: 24px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--liquid-border-subtle);
+  border-bottom: 1px solid var(--glass-border-subtle);
 }
 
 .skill-items-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .skill-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: var(--radius-chip);
+  background: var(--glass-chip);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  transition: all 0.25s var(--ease-spring);
+}
+
+.skill-item:hover {
+  background: var(--glass-chip-hover);
+  transform: translateY(-2px);
 }
 
 .skill-info {
@@ -901,19 +906,19 @@ button {
 .skill-icon-name {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.92rem;
-  font-weight: 600;
+  gap: 10px;
+  font-size: 0.94rem;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
 .skill-brand-icon {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
 }
 
 .skill-img-brand {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
 }
 
@@ -927,38 +932,59 @@ button {
 .color-git { color: #f05032; }
 
 .skill-name {
-  font-size: 0.92rem;
-  font-weight: 600;
+  font-size: 0.94rem;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
 .skill-percentage {
-  font-size: 0.88rem;
-  font-weight: 700;
+  font-size: 0.92rem;
+  font-weight: 800;
   color: var(--accent);
   font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 10px var(--meter-glow);
 }
 
 .skill-bar {
   width: 100%;
-  height: 8px;
-  background: var(--liquid-glass-subtle);
+  height: 9px;
+  background: var(--meter-track);
   border-radius: var(--radius-pill);
   overflow: hidden;
   position: relative;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--liquid-border-subtle);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--glass-border-subtle);
 }
 
 .skill-progress {
   height: 100%;
   border-radius: var(--radius-pill);
-  background: linear-gradient(90deg, var(--accent), #6366f1);
-  box-shadow: 0 0 10px rgba(41, 151, 255, 0.35);
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-cyan) 60%, var(--accent-purple) 100%);
+  box-shadow: 0 0 14px var(--meter-glow),
+              inset 0 1px 1px rgba(255, 255, 255, 0.6);
   transition: width 1.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
 }
+
+/* Liquid Shimmer on Progress Bar */
+.skill-progress::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.45) 50%, transparent 100%);
+  animation: liquidShimmer 2.5s infinite linear;
+}
+
+@keyframes liquidShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
 /* --------------------------------------------------------------------------
-   10. Projects Section (Showcase & Carousel)
+   10. Projects Section (Showcase Windows & Carousel)
    -------------------------------------------------------------------------- */
 .projects-grid {
   display: grid;
@@ -967,7 +993,7 @@ button {
 }
 
 .project-card {
-  padding: 24px;
+  padding: 26px;
   display: flex;
   flex-direction: column;
 }
@@ -978,9 +1004,9 @@ button {
   border-radius: var(--radius-inner);
   overflow: hidden;
   background: var(--bg-canvas);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
   margin-bottom: 24px;
 }
 
@@ -1022,16 +1048,16 @@ button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: var(--liquid-glass-control);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--glass-control);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   color: var(--text-primary);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
-  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-card);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
+  box-shadow: var(--glass-bevel-inner), var(--glass-shadow);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1041,7 +1067,7 @@ button {
 
 .carousel-nav:hover {
   transform: translateY(-50%) scale(1.1);
-  background: var(--liquid-glass-hover);
+  background: var(--glass-bg-hover);
 }
 
 .carousel-nav.prev { left: 10px; }
@@ -1055,10 +1081,10 @@ button {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 4px 10px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 5px 12px;
   border-radius: var(--radius-pill);
   z-index: 10;
 }
@@ -1085,33 +1111,18 @@ button {
   flex-grow: 1;
 }
 
-.project-tag-pill {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  background: var(--accent-subtle);
-  border: 1px solid rgba(0, 113, 227, 0.2);
-  color: var(--accent);
-  font-size: 0.74rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 10px;
-  width: fit-content;
-}
-
 .project-title {
-  font-size: 1.5rem;
+  font-size: 1.55rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-primary);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .project-text {
-  font-size: 0.95rem;
+  font-size: 0.96rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: 20px;
   flex-grow: 1;
 }
@@ -1119,27 +1130,29 @@ button {
 .project-stack-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 22px;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 
 .stack-tag {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: var(--radius-pill);
-  background: var(--liquid-glass-subtle);
-  border: 1px solid var(--liquid-border-rim);
-  font-size: 0.78rem;
-  font-weight: 600;
+  background: var(--glass-chip);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  font-size: 0.8rem;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
 .project-buttons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin-top: auto;
 }
 
@@ -1167,7 +1180,7 @@ button {
 }
 
 .footer-brand-text {
-  font-size: 0.96rem;
+  font-size: 0.98rem;
   font-weight: 600;
   color: var(--text-primary);
 }
@@ -1175,11 +1188,6 @@ button {
 .footer-copy-text {
   font-size: 0.85rem;
   color: var(--text-tertiary);
-}
-
-.highlight {
-  color: var(--accent);
-  font-weight: 700;
 }
 
 .text-danger {
@@ -1199,8 +1207,9 @@ button {
   border-radius: 50%;
   background: var(--accent);
   color: #ffffff;
-  border: 1.5px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 10px 28px rgba(0, 113, 227, 0.45);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 10px 28px rgba(0, 113, 227, 0.5),
+              inset 0 1px 1px rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1210,7 +1219,7 @@ button {
 
 .chatbot-toggle:hover {
   transform: scale(1.08) translateY(-2px);
-  box-shadow: 0 14px 34px rgba(0, 113, 227, 0.55);
+  box-shadow: 0 14px 34px rgba(0, 113, 227, 0.6);
 }
 
 .chatbot-toggle:active {
@@ -1234,19 +1243,30 @@ button {
   display: inline-block;
 }
 
+.notification-dot {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  box-shadow: 0 0 8px var(--accent-emerald);
+}
+
 .chatbot-container {
   position: fixed;
   bottom: 94px;
   right: 24px;
   width: min(390px, calc(100vw - 32px));
   height: min(580px, calc(100vh - 120px));
-  background: var(--liquid-glass-surface);
-  backdrop-filter: blur(36px) saturate(200%);
-  -webkit-backdrop-filter: blur(36px) saturate(200%);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
+  background: var(--glass-bg);
+  backdrop-filter: blur(36px) saturate(220%);
+  -webkit-backdrop-filter: blur(36px) saturate(220%);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
   border-radius: var(--radius-card);
-  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-hover);
+  box-shadow: var(--glass-bevel-inner), var(--glass-shadow-hover);
   display: flex;
   flex-direction: column;
   z-index: 1040;
@@ -1269,8 +1289,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--liquid-border-subtle);
-  background: var(--liquid-glass-subtle);
+  border-bottom: 1px solid var(--glass-border-subtle);
+  background: var(--glass-subtle);
 }
 
 .bot-profile {
@@ -1289,7 +1309,7 @@ button {
   align-items: center;
   justify-content: center;
   font-size: 1rem;
-  box-shadow: 0 4px 12px -2px rgba(0, 113, 227, 0.4);
+  box-shadow: 0 4px 12px -2px rgba(0, 113, 227, 0.45);
 }
 
 .bot-details {
@@ -1298,15 +1318,9 @@ button {
 }
 
 .bot-name {
-  font-size: 0.94rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-primary);
-}
-
-.bot-status {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--accent);
 }
 
 .close-chat {
@@ -1316,8 +1330,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--liquid-glass-control);
-  border: 1px solid var(--liquid-border-subtle);
+  background: var(--glass-control);
+  border: 1px solid var(--glass-border-subtle);
   color: var(--text-secondary);
   font-size: 0.95rem;
   transition: all 0.2s ease;
@@ -1325,7 +1339,7 @@ button {
 
 .close-chat:hover {
   color: var(--text-primary);
-  background: var(--liquid-glass-hover);
+  background: var(--glass-bg-hover);
 }
 
 /* Quick Suggestion Chips */
@@ -1335,7 +1349,7 @@ button {
   padding: 8px 16px;
   overflow-x: auto;
   scrollbar-width: none;
-  border-bottom: 1px solid var(--liquid-border-subtle);
+  border-bottom: 1px solid var(--glass-border-subtle);
   flex-shrink: 0;
 }
 
@@ -1346,11 +1360,11 @@ button {
 .suggestion-chip {
   padding: 6px 14px;
   border-radius: var(--radius-pill);
-  background: var(--liquid-glass-subtle);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
+  background: var(--glass-chip);
+  border: 1px solid var(--glass-border-rim);
+  border-top-color: var(--glass-border-top);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
   white-space: nowrap;
   transition: all 0.2s ease;
@@ -1369,7 +1383,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   line-height: 1.5;
 }
 
@@ -1385,14 +1399,14 @@ button {
   background: var(--chat-user-bg);
   color: var(--chat-user-text);
   border-bottom-right-radius: 4px;
-  box-shadow: 0 4px 14px -2px rgba(0, 113, 227, 0.35);
+  box-shadow: 0 4px 14px -2px rgba(0, 113, 227, 0.4);
 }
 
 .bot-message {
   align-self: flex-start;
   background: var(--chat-bot-bg);
   color: var(--chat-bot-text);
-  border: 1px solid var(--liquid-border-subtle);
+  border: 1px solid var(--glass-border-subtle);
   border-bottom-left-radius: 4px;
 }
 
@@ -1405,7 +1419,7 @@ button {
   border-radius: 20px;
   border-bottom-left-radius: 4px;
   background: var(--chat-bot-bg);
-  border: 1px solid var(--liquid-border-subtle);
+  border: 1px solid var(--glass-border-subtle);
   width: fit-content;
 }
 
@@ -1437,16 +1451,16 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
-  border-top: 1px solid var(--liquid-border-subtle);
-  background: var(--liquid-glass-subtle);
+  border-top: 1px solid var(--glass-border-subtle);
+  background: var(--glass-subtle);
 }
 
 .chatbot-input input {
   flex-grow: 1;
   padding: 10px 16px;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--liquid-border-rim);
-  background: var(--liquid-glass-control);
+  border: 1px solid var(--glass-border-rim);
+  background: var(--glass-control);
   color: var(--text-primary);
   font-family: inherit;
   font-size: 0.9rem;
