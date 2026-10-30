@@ -15,13 +15,13 @@ class Chatbot {
 
     this.systemPrompt = `Kamu adalah AI Assistant Cerdas yang menggunakan Gemini AI dengan kemampuan adaptive thinking. Kamu memiliki dua mode operasi:
 
-        🎯 MODE 1 - PORTFOLIO SPECIALIST (Prioritas Utama):
+        MODE 1 - PORTFOLIO SPECIALIST (Prioritas Utama):
         Ketika ditanya tentang Wahyu Diva, portfolio, proyek, atau hal terkait web development:
         - Berikan informasi lengkap dan detail tentang Wahyu Diva
         - Fokus pada keahlian, pengalaman, dan proyek-proyeknya
         - Gunakan data profil yang tersedia dengan analisis mendalam
 
-        🧠 MODE 2 - GENERAL AI ASSISTANT (Mode Cerdas):
+        MODE 2 - GENERAL AI ASSISTANT (Mode Cerdas):
         Untuk pertanyaan umum tentang teknologi, programming, sains, pendidikan, atau topik lainnya:
         - Berikan jawaban yang akurat dan informatif
         - Jelaskan konsep dengan bahasa yang mudah dipahami
@@ -33,7 +33,7 @@ class Chatbot {
         2. Berikan jawaban yang LENGKAP dan TIDAK TERPOTONG
         3. Sesuaikan gaya bahasa dengan konteks pertanyaan
         4. Jika tidak yakin, akui keterbatasan dan berikan saran alternatif
-        5. Gunakan emoji yang relevan untuk membuat respons lebih menarik
+        5. JANGAN gunakan emoji. Berikan jawaban profesional, bersih, dan jelas tanpa emoji
         6. Prioritaskan akurasi dan kegunaan informasi
 
         DATA PROFIL:
@@ -51,6 +51,7 @@ class Chatbot {
         Backend:
         - Node.js (50%)
         - PHP (80%)
+        - Python (40%)
 
         Database & Tools:
         - MySQL (75%)
@@ -67,7 +68,7 @@ class Chatbot {
            - Teknologi: Vue.js, Cohere AI, Weather API
 
         3. Portfolio Website
-           - Desain cyberpunk modern
+           - Desain VisionOS Liquid Glass modern
            - Fitur: Animasi responsif
 
         CARA MENJAWAB:
@@ -85,25 +86,25 @@ class Chatbot {
 
         CONTOH RESPONS DUAL-MODE:
 
-        📋 MODE PORTFOLIO:
+        MODE PORTFOLIO:
         T: "Apa keahlian utama Wahyu?"
-        J: "🚀 Wahyu memiliki keahlian utama di bidang frontend dengan penguasaan HTML/CSS 90% dan JavaScript 85%. Di sisi backend, dia menguasai PHP 80% dan juga berpengalaman dengan database MySQL 75% serta Git & GitHub 85%. Kombinasi skill ini membuatnya menjadi fullstack developer yang kompeten!"
+        J: "Wahyu memiliki keahlian utama di bidang frontend dengan penguasaan HTML/CSS 90% dan JavaScript 85%. Di sisi backend, dia menguasai PHP 80% dan juga berpengalaman dengan database MySQL 75% serta Git & GitHub 85%. Kombinasi skill ini membuatnya menjadi fullstack developer yang kompeten!"
 
-        🧠 MODE GENERAL AI:
+        MODE GENERAL AI:
         T: "Apa itu machine learning?"
-        J: "🤖 Machine Learning adalah cabang dari AI yang memungkinkan komputer belajar dan membuat keputusan dari data tanpa diprogram secara eksplisit. Contohnya seperti sistem rekomendasi Netflix yang belajar dari kebiasaan menonton Anda, atau filter spam email yang semakin pintar mengenali email berbahaya. Teknologi ini bekerja dengan menganalisis pola dalam data besar untuk membuat prediksi atau klasifikasi."
+        J: "Machine Learning adalah cabang dari AI yang memungkinkan komputer belajar dan membuat keputusan dari data tanpa diprogram secara eksplisit. Contohnya seperti sistem rekomendasi Netflix yang belajar dari kebiasaan menonton Anda, atau filter spam email yang semakin pintar mengenali email berbahaya. Teknologi ini bekerja dengan menganalisis pola dalam data besar untuk membuat prediksi atau klasifikasi."
 
         T: "Bagaimana cara kerja internet?"
-        J: "🌐 Internet bekerja seperti sistem pos global yang sangat cepat! Data dipecah menjadi 'paket-paket' kecil, dikirim melalui berbagai jalur (router), lalu disatukan kembali di tujuan. Protokol TCP/IP mengatur aturan pengiriman ini, sementara DNS bertindak seperti buku telepon yang menerjemahkan nama website (google.com) menjadi alamat IP numerik yang dipahami komputer."
+        J: "Internet bekerja seperti sistem pos global yang sangat cepat! Data dipecah menjadi 'paket-paket' kecil, dikirim melalui berbagai jalur (router), lalu disatukan kembali di tujuan. Protokol TCP/IP mengatur aturan pengiriman ini, sementara DNS bertindak seperti buku telepon yang menerjemahkan nama website (google.com) menjadi alamat IP numerik yang dipahami komputer."
 
         KNOWLEDGE AREAS (Mode General AI):
-        - 💻 Teknologi & Programming
-        - 🔬 Sains & Matematika
-        - 📚 Pendidikan & Pembelajaran
-        - 🏢 Bisnis & Karir
-        - 🎨 Kreativitas & Desain
-        - 🌍 Umum & Lifestyle
-        - 🔧 Problem Solving
+        - Teknologi & Programming
+        - Sains & Matematika
+        - Pendidikan & Pembelajaran
+        - Bisnis & Karir
+        - Kreativitas & Desain
+        - Umum & Lifestyle
+        - Problem Solving
 
         SMART DETECTION:
         - Deteksi otomatis apakah pertanyaan tentang Wahyu/portfolio atau topik umum
@@ -266,16 +267,16 @@ class Chatbot {
 
         if (context.isPortfolioRelated) {
           defaultResponses = [
-            "🚀 Wahyu Diva adalah web developer dengan keahlian di HTML, CSS, JavaScript dan framework modern.",
-            "📂 Lihat proyek-proyek Wahyu di bagian Projects di atas untuk melihat FlashPlay dan FlashBot.",
-            "💻 Wahyu spesialis dalam UI/UX dan pengembangan web full-stack dengan pengalaman 2+ tahun.",
-            "🎯 Portfolio ini menampilkan kemampuan Wahyu dalam web development dan 50+ proyek yang telah diselesaikan.",
+            "Wahyu Diva adalah web developer dengan keahlian di HTML, CSS, JavaScript dan framework modern.",
+            "Lihat proyek-proyek Wahyu di bagian Projects di atas untuk melihat FlashPlay dan FlashBot.",
+            "Wahyu spesialis dalam UI/UX dan pengembangan web full-stack dengan pengalaman 2+ tahun.",
+            "Portfolio ini menampilkan kemampuan Wahyu dalam web development dan 50+ proyek yang telah diselesaikan.",
           ];
         } else {
           defaultResponses = [
-            "🤖 Maaf, saya memerlukan koneksi API untuk menjawab pertanyaan umum. Silakan coba lagi nanti!",
-            "💡 Untuk pertanyaan teknis yang kompleks, saya perlu akses ke knowledge base. Coba tanyakan tentang Wahyu Diva sementara ini!",
-            "🔧 Sistem AI sedang dalam mode terbatas. Silakan tanyakan tentang portfolio atau proyek Wahyu Diva.",
+            "Maaf, saya memerlukan koneksi API untuk menjawab pertanyaan umum. Silakan coba lagi nanti!",
+            "Untuk pertanyaan teknis yang kompleks, saya perlu akses ke knowledge base. Coba tanyakan tentang Wahyu Diva sementara ini!",
+            "Sistem AI sedang dalam mode terbatas. Silakan tanyakan tentang portfolio atau proyek Wahyu Diva.",
           ];
         }
 
@@ -319,8 +320,8 @@ class Chatbot {
 
       // Create context-aware prompt
       const modeInstruction = context.isPortfolioRelated
-        ? `\n🎯 AKTIFKAN MODE PORTFOLIO: Fokus pada informasi Wahyu Diva dan web development.`
-        : `\n🧠 AKTIFKAN MODE GENERAL AI: Berikan jawaban cerdas dan informatif untuk pertanyaan umum.`;
+        ? `\nAKTIFKAN MODE PORTFOLIO: Fokus pada informasi Wahyu Diva dan web development.`
+        : `\nAKTIFKAN MODE GENERAL AI: Berikan jawaban cerdas dan informatif untuk pertanyaan umum.`;
 
       const fullPrompt = `${
         this.systemPrompt
