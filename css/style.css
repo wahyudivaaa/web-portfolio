@@ -1,85 +1,109 @@
 /* ==========================================================================
-   Apple / iOS Minimalist Bubble Design System
+   Apple VisionOS / iOS Liquid Glass Design System
    Designed for Wahyu Diva Portfolio
-   Aesthetic: Authentic Apple minimalism, clean squircle cards, crisp typography,
-   tactile pill controls, and zero AI-slop decoration.
+   Features: 5-Layer Optical Refraction, Specular Bevel Highlights,
+   Continuous Squircles, Dynamic Island, and Dual-Theme Ambient Caustics.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Design Tokens & Color Systems
+   1. Design Tokens: Liquid Glass & Optical Materials
    -------------------------------------------------------------------------- */
 :root {
-  /* Light Theme (Apple Ceramic Light) */
-  --bg-canvas: #fbfbfd;
-  --bg-card: #ffffff;
-  --bg-card-secondary: #f5f5f7;
-  --bg-card-hover: #ffffff;
-  
-  --glass-nav: rgba(255, 255, 255, 0.82);
-  --glass-nav-border: rgba(0, 0, 0, 0.08);
-  --border-subtle: rgba(0, 0, 0, 0.07);
-  --border-card: rgba(0, 0, 0, 0.06);
-  --border-hover: rgba(0, 0, 0, 0.12);
-  
-  --text-primary: #1d1d1f;
-  --text-secondary: #515154;
-  --text-tertiary: #86868b;
-  
+  /* Light Theme (Liquid Prism Crystal & Pearl Canvas) */
+  --bg-canvas: #f2f5fa;
+  --caustic-color-1: rgba(0, 113, 227, 0.14);
+  --caustic-color-2: rgba(99, 102, 241, 0.12);
+  --caustic-color-3: rgba(56, 189, 248, 0.12);
+
+  --liquid-glass-surface: rgba(255, 255, 255, 0.68);
+  --liquid-glass-hover: rgba(255, 255, 255, 0.84);
+  --liquid-glass-active: rgba(255, 255, 255, 0.94);
+  --liquid-glass-subtle: rgba(255, 255, 255, 0.45);
+  --liquid-glass-control: rgba(255, 255, 255, 0.7);
+
+  --liquid-border-specular: rgba(255, 255, 255, 0.95);
+  --liquid-border-rim: rgba(255, 255, 255, 0.6);
+  --liquid-border-subtle: rgba(18, 28, 48, 0.07);
+
+  --liquid-bevel-inner: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95),
+                        inset 0 -1px 2px 0 rgba(18, 28, 48, 0.04),
+                        inset 0 0 16px 0 rgba(255, 255, 255, 0.35);
+
+  --liquid-shadow-card: 0 16px 36px -6px rgba(18, 30, 58, 0.08),
+                       0 4px 12px -2px rgba(18, 30, 58, 0.03);
+
+  --liquid-shadow-hover: 0 24px 52px -8px rgba(18, 30, 58, 0.14),
+                        0 6px 18px -2px rgba(18, 30, 58, 0.05);
+
+  --liquid-shadow-island: 0 14px 40px -4px rgba(18, 30, 58, 0.12),
+                         0 2px 8px rgba(0, 0, 0, 0.04);
+
+  --text-primary: #111522;
+  --text-secondary: #485268;
+  --text-tertiary: #7c889e;
+
   --accent: #0071e3;
   --accent-hover: #0077ed;
-  --accent-subtle: rgba(0, 113, 227, 0.08);
-  --accent-emerald: #34c759;
-  
-  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
-  --shadow-card-hover: 0 12px 32px -4px rgba(0, 0, 0, 0.09), 0 2px 6px rgba(0, 0, 0, 0.03);
-  --shadow-island: 0 10px 32px -4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-btn: 0 2px 8px rgba(0, 113, 227, 0.25);
-  
+  --accent-subtle: rgba(0, 113, 227, 0.09);
+  --accent-emerald: #10b981;
+
   --chat-user-bg: #0071e3;
   --chat-user-text: #ffffff;
-  --chat-bot-bg: #f2f2f7;
-  --chat-bot-text: #1d1d1f;
-  
-  --radius-card: 26px;
+  --chat-bot-bg: rgba(255, 255, 255, 0.85);
+  --chat-bot-text: #111522;
+
+  --radius-card: 28px;
   --radius-inner: 20px;
   --radius-pill: 9999px;
-  
+
   --font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "SF Pro Display", "Inter", sans-serif;
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] {
-  /* Dark Theme (Apple OLED Obsidian) */
-  --bg-canvas: #000000;
-  --bg-card: #161618;
-  --bg-card-secondary: #1e1e21;
-  --bg-card-hover: #1c1c1f;
-  
-  --glass-nav: rgba(22, 22, 24, 0.85);
-  --glass-nav-border: rgba(255, 255, 255, 0.12);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-card: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.16);
-  
-  --text-primary: #f5f5f7;
-  --text-secondary: #a1a1a6;
-  --text-tertiary: #6e6e73;
-  
+  /* Dark Theme (Liquid Obsidian & Deep Refractive Glass) */
+  --bg-canvas: #06080d;
+  --caustic-color-1: rgba(0, 113, 227, 0.22);
+  --caustic-color-2: rgba(99, 102, 241, 0.18);
+  --caustic-color-3: rgba(56, 189, 248, 0.15);
+
+  --liquid-glass-surface: rgba(18, 23, 36, 0.62);
+  --liquid-glass-hover: rgba(25, 32, 50, 0.76);
+  --liquid-glass-active: rgba(32, 42, 66, 0.88);
+  --liquid-glass-subtle: rgba(255, 255, 255, 0.05);
+  --liquid-glass-control: rgba(26, 33, 50, 0.7);
+
+  --liquid-border-specular: rgba(255, 255, 255, 0.24);
+  --liquid-border-rim: rgba(255, 255, 255, 0.1);
+  --liquid-border-subtle: rgba(255, 255, 255, 0.06);
+
+  --liquid-bevel-inner: inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
+                        inset 0 -1px 2px 0 rgba(0, 0, 0, 0.4),
+                        inset 0 0 18px 0 rgba(255, 255, 255, 0.03);
+
+  --liquid-shadow-card: 0 20px 48px -8px rgba(0, 0, 0, 0.7),
+                       0 4px 16px -2px rgba(0, 0, 0, 0.4);
+
+  --liquid-shadow-hover: 0 28px 60px -10px rgba(0, 0, 0, 0.85),
+                        0 8px 24px -2px rgba(0, 0, 0, 0.5);
+
+  --liquid-shadow-island: 0 18px 46px -6px rgba(0, 0, 0, 0.8),
+                         0 0 1px rgba(255, 255, 255, 0.2);
+
+  --text-primary: #f5f7fb;
+  --text-secondary: #9aa7c0;
+  --text-tertiary: #616e87;
+
   --accent: #2997ff;
-  --accent-hover: #47a3ff;
-  --accent-subtle: rgba(41, 151, 255, 0.14);
-  --accent-emerald: #30d158;
-  
-  --shadow-card: 0 6px 24px -4px rgba(0, 0, 0, 0.6);
-  --shadow-card-hover: 0 16px 40px -6px rgba(0, 0, 0, 0.75);
-  --shadow-island: 0 16px 44px -6px rgba(0, 0, 0, 0.7), 0 0 1px rgba(255, 255, 255, 0.15);
-  --shadow-btn: 0 2px 12px rgba(41, 151, 255, 0.3);
-  
+  --accent-hover: #4ea8ff;
+  --accent-subtle: rgba(41, 151, 255, 0.15);
+  --accent-emerald: #34d399;
+
   --chat-user-bg: #2997ff;
   --chat-user-text: #ffffff;
-  --chat-bot-bg: #242426;
-  --chat-bot-text: #f5f5f7;
+  --chat-bot-bg: rgba(26, 33, 52, 0.85);
+  --chat-bot-text: #f5f7fb;
 }
 
 /* --------------------------------------------------------------------------
@@ -107,7 +131,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
-  transition: background-color 0.3s var(--ease-smooth), color 0.3s var(--ease-smooth);
+  transition: background-color 0.4s var(--ease-smooth), color 0.4s var(--ease-smooth);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -139,29 +163,104 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   3. Base Container & Squircle Card System
+   3. Liquid Caustic Ambient Canvas (Refraction Environment)
+   -------------------------------------------------------------------------- */
+.liquid-caustic-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.caustic-pool {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.9;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  animation: causticMotion 24s ease-in-out infinite alternate;
+}
+
+.pool-primary {
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle, var(--caustic-color-1) 0%, transparent 70%);
+  top: -100px;
+  left: 15%;
+  animation-duration: 22s;
+}
+
+.pool-secondary {
+  width: 580px;
+  height: 580px;
+  background: radial-gradient(circle, var(--caustic-color-2) 0%, transparent 70%);
+  top: 35%;
+  right: -80px;
+  animation-duration: 26s;
+  animation-delay: -6s;
+}
+
+.pool-tertiary {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, var(--caustic-color-3) 0%, transparent 70%);
+  bottom: 5%;
+  left: -60px;
+  animation-duration: 20s;
+  animation-delay: -12s;
+}
+
+@keyframes causticMotion {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -35px) scale(1.06);
+  }
+  100% {
+    transform: translate(-30px, 35px) scale(0.95);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Liquid Glass Container & Continuous Squircles
    -------------------------------------------------------------------------- */
 .app-container {
   width: 100%;
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
+  z-index: 1;
 }
 
+/* The Core 5-Layer Liquid Glass Card */
 .squircle-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-card);
+  position: relative;
+  background: var(--liquid-glass-surface);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth), background-color 0.3s var(--ease-smooth);
+  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-card);
+  transition: transform 0.4s var(--ease-spring),
+              box-shadow 0.4s var(--ease-smooth),
+              border-color 0.4s var(--ease-smooth),
+              background 0.4s var(--ease-smooth);
 }
 
 .squircle-card:hover {
-  border-color: var(--border-hover);
+  background: var(--liquid-glass-hover);
+  border-top-color: var(--liquid-border-specular);
+  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-hover);
+  transform: translateY(-2px);
 }
 
 /* --------------------------------------------------------------------------
-   4. Dynamic Island Header Navigation
+   5. Liquid Dynamic Island Header Navigation
    -------------------------------------------------------------------------- */
 .dynamic-island-wrapper {
   position: fixed;
@@ -180,14 +279,15 @@ button {
   display: flex;
   align-items: center;
   gap: 16px;
-  background: var(--glass-nav);
-  backdrop-filter: saturate(180%) blur(24px);
-  -webkit-backdrop-filter: saturate(180%) blur(24px);
-  border: 1px solid var(--glass-nav-border);
+  background: var(--liquid-glass-surface);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
   border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-island);
+  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-island);
   padding: 8px 12px 8px 16px;
-  transition: all 0.3s var(--ease-smooth);
+  transition: all 0.35s var(--ease-spring);
 }
 
 .island-brand {
@@ -198,12 +298,13 @@ button {
 }
 
 .brand-avatar-bubble {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: var(--bg-card-secondary);
-  border: 1px solid var(--border-subtle);
+  background: var(--liquid-glass-control);
+  border: 1px solid var(--liquid-border-rim);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,9 +327,10 @@ button {
   display: flex;
   align-items: center;
   gap: 4px;
-  background-color: var(--bg-card-secondary);
+  background: var(--liquid-glass-subtle);
   padding: 4px;
   border-radius: var(--radius-pill);
+  border: 1px solid var(--liquid-border-subtle);
 }
 
 .island-link {
@@ -242,11 +344,13 @@ button {
 
 .island-link:hover {
   color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .island-link.active {
   color: #ffffff;
-  background-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 4px 14px -2px rgba(0, 113, 227, 0.35);
 }
 
 .island-actions {
@@ -259,43 +363,44 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 36px;
+  height: 38px;
   border-radius: var(--radius-pill);
   font-size: 0.88rem;
   font-weight: 600;
-  background-color: var(--bg-card-secondary);
-  border: 1px solid var(--border-subtle);
+  background: var(--liquid-glass-control);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35);
   color: var(--text-primary);
   padding: 0 12px;
   transition: all 0.25s var(--ease-spring);
 }
 
 .island-btn:hover {
-  background-color: var(--bg-card-hover);
-  border-color: var(--border-hover);
-  transform: scale(1.03);
+  background: var(--liquid-glass-hover);
+  transform: scale(1.04);
 }
 
 .island-btn:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 
 /* Theme Toggle Button */
 .theme-toggle-btn {
-  width: 36px;
+  width: 38px;
   padding: 0;
   position: relative;
 }
 
 .theme-icon-sun,
 .theme-icon-moon {
-  font-size: 0.95rem;
-  transition: transform 0.3s var(--ease-spring), opacity 0.2s ease;
+  font-size: 0.98rem;
+  transition: transform 0.35s var(--ease-spring);
 }
 
 [data-theme="dark"] .theme-icon-sun {
   display: inline-block;
-  color: #ffb703;
+  color: #fbbf24;
 }
 
 [data-theme="dark"] .theme-icon-moon {
@@ -311,22 +416,22 @@ button {
   color: #6366f1;
 }
 
-/* AI Chat Pill in Island */
+/* AI Chat Pill */
 .chat-trigger-btn {
   gap: 6px;
-  background-color: var(--accent-subtle);
-  border-color: rgba(0, 113, 227, 0.2);
+  background: var(--accent-subtle);
+  border-color: rgba(0, 113, 227, 0.3);
   color: var(--accent);
 }
 
 .chat-trigger-btn:hover {
-  background-color: var(--accent);
+  background: var(--accent);
   color: #ffffff;
 }
 
 .mobile-menu-btn {
   display: none;
-  width: 36px;
+  width: 38px;
   padding: 0;
 }
 
@@ -345,15 +450,16 @@ button {
 /* Mobile Dropdown Sheet */
 .mobile-bubble-sheet {
   position: fixed;
-  top: 74px;
+  top: 76px;
   left: 16px;
   right: 16px;
-  background: var(--glass-nav);
-  backdrop-filter: saturate(180%) blur(24px);
-  -webkit-backdrop-filter: saturate(180%) blur(24px);
-  border: 1px solid var(--glass-nav-border);
+  background: var(--liquid-glass-surface);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
   border-radius: var(--radius-inner);
-  box-shadow: var(--shadow-island);
+  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-card);
   padding: 10px;
   opacity: 0;
   visibility: hidden;
@@ -384,30 +490,30 @@ button {
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-primary);
-  transition: background-color 0.2s var(--ease-smooth);
+  transition: background 0.2s var(--ease-smooth);
 }
 
 .sheet-link:hover,
 .sheet-link.active {
-  background-color: var(--accent-subtle);
+  background: var(--accent-subtle);
   color: var(--accent);
 }
 
 /* --------------------------------------------------------------------------
-   5. Hero Section
+   6. Hero Section (Liquid Glass Showcase)
    -------------------------------------------------------------------------- */
 .hero-section {
   padding-top: 130px;
   padding-bottom: 70px;
-  min-height: 90vh;
+  min-height: 92vh;
   display: flex;
   align-items: center;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.3fr 0.8fr;
-  gap: 24px;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 28px;
   align-items: center;
 }
 
@@ -424,8 +530,9 @@ button {
   gap: 8px;
   padding: 6px 14px;
   border-radius: var(--radius-pill);
-  background-color: var(--bg-card-secondary);
-  border: 1px solid var(--border-subtle);
+  background: var(--liquid-glass-subtle);
+  border: 1px solid var(--liquid-border-subtle);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-secondary);
@@ -436,16 +543,17 @@ button {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--accent-emerald);
+  background: var(--accent-emerald);
+  box-shadow: 0 0 10px var(--accent-emerald);
 }
 
 .hero-headline {
-  font-size: clamp(2.3rem, 4.5vw, 3.4rem);
+  font-size: clamp(2.3rem, 4.8vw, 3.5rem);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  line-height: 1.14;
+  letter-spacing: -0.035em;
   color: var(--text-primary);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .hero-role-row {
@@ -461,9 +569,10 @@ button {
 
 .typed-role-badge {
   color: var(--accent);
-  background-color: var(--accent-subtle);
-  padding: 3px 12px;
+  background: var(--accent-subtle);
+  padding: 4px 14px;
   border-radius: var(--radius-pill);
+  border: 1px solid rgba(0, 113, 227, 0.2);
   font-weight: 700;
 }
 
@@ -482,17 +591,17 @@ button {
   gap: 12px;
 }
 
-/* Tactile Pill Buttons */
+/* Tactile Liquid Pill Buttons */
 .pill-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 24px;
+  padding: 13px 26px;
   border-radius: var(--radius-pill);
   font-size: 0.95rem;
   font-weight: 600;
-  min-height: 46px;
+  min-height: 48px;
   transition: all 0.25s var(--ease-spring);
   user-select: none;
 }
@@ -506,25 +615,28 @@ button {
 }
 
 .pill-btn-primary {
-  background-color: var(--accent);
+  background: var(--accent);
   color: #ffffff;
-  box-shadow: var(--shadow-btn);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px -4px rgba(0, 113, 227, 0.4);
 }
 
 .pill-btn-primary:hover {
-  background-color: var(--accent-hover);
+  background: var(--accent-hover);
+  box-shadow: 0 12px 28px -4px rgba(0, 113, 227, 0.5);
   color: #ffffff;
 }
 
 .pill-btn-secondary {
-  background-color: var(--bg-card-secondary);
-  border: 1px solid var(--border-subtle);
+  background: var(--liquid-glass-control);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35);
   color: var(--text-primary);
 }
 
 .pill-btn-secondary:hover {
-  background-color: var(--bg-card-hover);
-  border-color: var(--border-hover);
+  background: var(--liquid-glass-hover);
 }
 
 /* Hero Profile Frame */
@@ -533,17 +645,18 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 380px;
+  min-height: 400px;
 }
 
 .profile-squircle-frame {
-  width: 240px;
-  height: 240px;
+  width: 250px;
+  height: 250px;
   border-radius: var(--radius-inner);
   overflow: hidden;
-  background-color: var(--bg-card-secondary);
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-card);
+  background: var(--liquid-glass-subtle);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
+  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-card);
 }
 
 .profile-photo {
@@ -554,7 +667,7 @@ button {
 }
 
 .hero-visual-card:hover .profile-photo {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 /* Scroll Hint */
@@ -610,23 +723,25 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   6. Section Header
+   7. Section Header
    -------------------------------------------------------------------------- */
 .section-wrapper {
-  padding: 80px 0;
+  padding: 85px 0;
+  position: relative;
 }
 
 .section-header {
   text-align: center;
-  max-width: 620px;
-  margin: 0 auto 44px;
+  max-width: 640px;
+  margin: 0 auto 46px;
 }
 
 .section-tag-pill {
   display: inline-block;
-  padding: 4px 14px;
+  padding: 5px 16px;
   border-radius: var(--radius-pill);
-  background-color: var(--accent-subtle);
+  background: var(--accent-subtle);
+  border: 1px solid rgba(0, 113, 227, 0.2);
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--accent);
@@ -636,7 +751,7 @@ button {
 }
 
 .section-title {
-  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-size: clamp(2rem, 3.6vw, 2.7rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--text-primary);
@@ -650,23 +765,23 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   7. About Section (Widget System)
+   8. About Section (WidgetKit Liquid Cards)
    -------------------------------------------------------------------------- */
 .about-grid {
   display: grid;
   grid-template-columns: 1.35fr 1fr;
-  gap: 20px;
+  gap: 22px;
   align-items: stretch;
 }
 
 .about-bio-card {
-  padding: 38px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
 }
 
 .card-heading {
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
@@ -692,10 +807,12 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 14px;
+  padding: 8px 16px;
   border-radius: var(--radius-pill);
-  background-color: var(--bg-card-secondary);
-  border: 1px solid var(--border-subtle);
+  background: var(--liquid-glass-subtle);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -716,28 +833,29 @@ button {
 }
 
 .stat-icon-bubble {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   flex-shrink: 0;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
 .icon-blue {
-  background-color: var(--accent-subtle);
+  background: var(--accent-subtle);
   color: var(--accent);
 }
 
 .icon-purple {
-  background-color: rgba(99, 102, 241, 0.12);
+  background: rgba(99, 102, 241, 0.15);
   color: #6366f1;
 }
 
 .icon-emerald {
-  background-color: rgba(52, 199, 89, 0.12);
+  background: rgba(16, 185, 129, 0.15);
   color: var(--accent-emerald);
 }
 
@@ -747,7 +865,7 @@ button {
 }
 
 .stat-number {
-  font-size: 1.9rem;
+  font-size: 2rem;
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.1;
@@ -761,16 +879,16 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   8. Skills Section (Tactile Bubble Tokens)
+   9. Skills Section (Liquid Capability Chips)
    -------------------------------------------------------------------------- */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 22px;
 }
 
 .skill-group-card {
-  padding: 30px 24px;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
 }
@@ -781,22 +899,23 @@ button {
   gap: 12px;
   margin-bottom: 24px;
   padding-bottom: 14px;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--liquid-border-subtle);
 }
 
 .group-icon {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   flex-shrink: 0;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35);
 }
 
 .group-title {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--text-primary);
@@ -817,16 +936,17 @@ button {
   display: flex;
   align-items: center;
   padding: 10px 14px;
-  border-radius: 14px;
-  background-color: var(--bg-card-secondary);
-  border: 1px solid var(--border-subtle);
-  transition: all 0.2s var(--ease-smooth);
+  border-radius: 16px;
+  background: var(--liquid-glass-subtle);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.25s var(--ease-spring);
 }
 
 .skill-bubble-chip:hover {
-  background-color: var(--bg-card-hover);
-  border-color: var(--border-hover);
-  transform: translateX(3px);
+  background: var(--liquid-glass-hover);
+  transform: translateX(3px) scale(1.01);
 }
 
 .skill-icon {
@@ -850,7 +970,7 @@ button {
 .color-purple { color: #6366f1; }
 
 .skill-label {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-primary);
   flex-grow: 1;
@@ -865,16 +985,16 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   9. Projects Section (Showcase Cards & Carousel)
+   10. Projects Section (Showcase & Carousel)
    -------------------------------------------------------------------------- */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 26px;
 }
 
 .project-card {
-  padding: 22px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
 }
@@ -884,9 +1004,11 @@ button {
   position: relative;
   border-radius: var(--radius-inner);
   overflow: hidden;
-  background-color: var(--bg-card-secondary);
-  border: 1px solid var(--border-subtle);
-  margin-bottom: 22px;
+  background: var(--bg-canvas);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  margin-bottom: 24px;
 }
 
 .project-carousel {
@@ -927,13 +1049,16 @@ button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background-color: var(--bg-card);
+  background: var(--liquid-glass-control);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   color: var(--text-primary);
-  box-shadow: var(--shadow-card);
-  border: 1px solid var(--border-card);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
+  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-card);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -942,7 +1067,8 @@ button {
 }
 
 .carousel-nav:hover {
-  transform: translateY(-50%) scale(1.08);
+  transform: translateY(-50%) scale(1.1);
+  background: var(--liquid-glass-hover);
 }
 
 .carousel-nav.prev { left: 10px; }
@@ -950,13 +1076,13 @@ button {
 
 .carousel-dots {
   position: absolute;
-  bottom: 10px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 6px;
-  background-color: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding: 4px 10px;
@@ -968,16 +1094,16 @@ button {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.4);
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .carousel-dot.active {
-  width: 16px;
+  width: 18px;
   border-radius: var(--radius-pill);
-  background-color: #ffffff;
+  background: #ffffff;
 }
 
 .project-body {
@@ -988,9 +1114,10 @@ button {
 
 .project-tag-pill {
   display: inline-block;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: var(--radius-pill);
-  background-color: var(--accent-subtle);
+  background: var(--accent-subtle);
+  border: 1px solid rgba(0, 113, 227, 0.2);
   color: var(--accent);
   font-size: 0.74rem;
   font-weight: 700;
@@ -1001,7 +1128,7 @@ button {
 }
 
 .project-title {
-  font-size: 1.45rem;
+  font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-primary);
@@ -1009,10 +1136,10 @@ button {
 }
 
 .project-text {
-  font-size: 0.94rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.6;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   flex-grow: 1;
 }
 
@@ -1026,10 +1153,11 @@ button {
 .stack-tag {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
+  gap: 6px;
+  padding: 6px 12px;
   border-radius: var(--radius-pill);
-  background-color: var(--bg-card-secondary);
+  background: var(--liquid-glass-subtle);
+  border: 1px solid var(--liquid-border-rim);
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -1043,14 +1171,14 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   10. Footer Dock
+   11. Footer Liquid Dock
    -------------------------------------------------------------------------- */
 .footer-dock-wrapper {
   padding: 30px 0 60px;
 }
 
 .footer-dock {
-  padding: 20px 28px;
+  padding: 22px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1064,16 +1192,17 @@ button {
 }
 
 .dock-avatar {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background-color: var(--accent);
+  background: var(--accent);
   color: #ffffff;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 12px -2px rgba(0, 113, 227, 0.4);
 }
 
 .dock-author-info {
@@ -1082,7 +1211,7 @@ button {
 }
 
 .dock-name {
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -1099,43 +1228,47 @@ button {
 }
 
 .dock-circle-btn {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-card-secondary);
+  background: var(--liquid-glass-control);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35);
   color: var(--text-primary);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   transition: all 0.25s var(--ease-spring);
 }
 
 .dock-circle-btn:hover {
-  background-color: var(--accent);
+  background: var(--accent);
   color: #ffffff;
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.08);
 }
 
 .dock-copyright {
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   color: var(--text-tertiary);
 }
 
 /* --------------------------------------------------------------------------
-   11. iOS Messages Style AI Chatbot
+   12. iOS Messages Style Liquid AI Chatbot
    -------------------------------------------------------------------------- */
 .chatbot-toggle {
   position: fixed;
   bottom: 24px;
   right: 24px;
   z-index: 1050;
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background-color: var(--accent);
+  background: var(--accent);
   color: #ffffff;
-  box-shadow: 0 8px 24px rgba(0, 113, 227, 0.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 28px rgba(0, 113, 227, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1145,6 +1278,7 @@ button {
 
 .chatbot-toggle:hover {
   transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 113, 227, 0.55);
 }
 
 .chatbot-toggle:active {
@@ -1152,11 +1286,11 @@ button {
 }
 
 .chatbot-toggle .launcher-icon {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
 }
 
 .chatbot-toggle .launcher-close-icon {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   display: none;
 }
 
@@ -1170,22 +1304,25 @@ button {
 
 .chatbot-container {
   position: fixed;
-  bottom: 92px;
+  bottom: 94px;
   right: 24px;
-  width: min(380px, calc(100vw - 32px));
-  height: min(560px, calc(100vh - 120px));
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-card);
+  width: min(390px, calc(100vw - 32px));
+  height: min(580px, calc(100vh - 120px));
+  background: var(--liquid-glass-surface);
+  backdrop-filter: blur(36px) saturate(200%);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: var(--liquid-bevel-inner), var(--liquid-shadow-hover);
   display: flex;
   flex-direction: column;
   z-index: 1040;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(16px) scale(0.97);
+  transform: translateY(18px) scale(0.96);
   transform-origin: bottom right;
-  transition: all 0.3s var(--ease-spring);
+  transition: all 0.35s var(--ease-spring);
   overflow: hidden;
 }
 
@@ -1196,30 +1333,31 @@ button {
 }
 
 .chatbot-header {
-  padding: 14px 18px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--border-subtle);
-  background-color: var(--bg-card-secondary);
+  border-bottom: 1px solid var(--liquid-border-subtle);
+  background: var(--liquid-glass-subtle);
 }
 
 .bot-profile {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .bot-avatar {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background-color: var(--accent);
+  background: var(--accent);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px -2px rgba(0, 113, 227, 0.4);
 }
 
 .bot-details {
@@ -1228,7 +1366,7 @@ button {
 }
 
 .bot-name {
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -1240,30 +1378,32 @@ button {
 }
 
 .close-chat {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--border-subtle);
+  background: var(--liquid-glass-control);
+  border: 1px solid var(--liquid-border-subtle);
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
 }
 
 .close-chat:hover {
   color: var(--text-primary);
+  background: var(--liquid-glass-hover);
 }
 
 /* Quick Suggestion Chips */
 .chat-quick-suggestions {
   display: flex;
   gap: 6px;
-  padding: 8px 14px;
+  padding: 8px 16px;
   overflow-x: auto;
   scrollbar-width: none;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--liquid-border-subtle);
   flex-shrink: 0;
 }
 
@@ -1272,19 +1412,20 @@ button {
 }
 
 .suggestion-chip {
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: var(--radius-pill);
-  background-color: var(--bg-card-secondary);
+  background: var(--liquid-glass-subtle);
+  border: 1px solid var(--liquid-border-rim);
+  border-top-color: var(--liquid-border-specular);
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-primary);
   white-space: nowrap;
-  border: 1px solid var(--border-subtle);
   transition: all 0.2s ease;
 }
 
 .suggestion-chip:hover {
-  background-color: var(--accent-subtle);
+  background: var(--accent-subtle);
   color: var(--accent);
 }
 
@@ -1295,29 +1436,31 @@ button {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   font-size: 0.9rem;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .message {
   max-width: 82%;
-  padding: 10px 14px;
-  border-radius: 18px;
+  padding: 12px 16px;
+  border-radius: 20px;
   word-break: break-word;
 }
 
 .user-message {
   align-self: flex-end;
-  background-color: var(--chat-user-bg);
+  background: var(--chat-user-bg);
   color: var(--chat-user-text);
   border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 14px -2px rgba(0, 113, 227, 0.35);
 }
 
 .bot-message {
   align-self: flex-start;
-  background-color: var(--chat-bot-bg);
+  background: var(--chat-bot-bg);
   color: var(--chat-bot-text);
+  border: 1px solid var(--liquid-border-subtle);
   border-bottom-left-radius: 4px;
 }
 
@@ -1326,10 +1469,11 @@ button {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 12px 16px;
-  border-radius: 18px;
+  padding: 12px 18px;
+  border-radius: 20px;
   border-bottom-left-radius: 4px;
-  background-color: var(--chat-bot-bg);
+  background: var(--chat-bot-bg);
+  border: 1px solid var(--liquid-border-subtle);
   width: fit-content;
 }
 
@@ -1337,7 +1481,7 @@ button {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--text-tertiary);
+  background: var(--text-tertiary);
   animation: typingDot 1.4s infinite ease-in-out;
 }
 
@@ -1357,20 +1501,20 @@ button {
 
 /* Chat Input Bar */
 .chatbot-input {
-  padding: 10px 14px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   gap: 8px;
-  border-top: 1px solid var(--border-subtle);
-  background-color: var(--bg-card-secondary);
+  border-top: 1px solid var(--liquid-border-subtle);
+  background: var(--liquid-glass-subtle);
 }
 
 .chatbot-input input {
   flex-grow: 1;
-  padding: 9px 14px;
+  padding: 10px 16px;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--border-subtle);
-  background-color: var(--bg-card);
+  border: 1px solid var(--liquid-border-rim);
+  background: var(--liquid-glass-control);
   color: var(--text-primary);
   font-family: inherit;
   font-size: 0.9rem;
@@ -1383,47 +1527,47 @@ button {
 }
 
 .send-message {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background-color: var(--accent);
+  background: var(--accent);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   flex-shrink: 0;
   transition: all 0.2s var(--ease-spring);
 }
 
 .send-message:hover {
-  background-color: var(--accent-hover);
-  transform: scale(1.06);
+  background: var(--accent-hover);
+  transform: scale(1.08);
 }
 
 /* --------------------------------------------------------------------------
-   12. Responsive Refinements
+   13. Responsive Refinements
    -------------------------------------------------------------------------- */
 @media (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 28px;
   }
 
   .hero-content-card {
-    padding: 34px 28px;
+    padding: 36px 30px;
     order: 1;
   }
 
   .hero-visual-card {
     order: 2;
-    min-height: 280px;
-    padding: 20px;
+    min-height: 290px;
+    padding: 24px;
   }
 
   .profile-squircle-frame {
-    width: 190px;
-    height: 190px;
+    width: 200px;
+    height: 200px;
   }
 
   .about-grid {
@@ -1460,8 +1604,8 @@ button {
   }
 
   .hero-section {
-    padding-top: 105px;
-    padding-bottom: 45px;
+    padding-top: 110px;
+    padding-bottom: 50px;
   }
 
   .hero-content-card {
@@ -1469,7 +1613,7 @@ button {
   }
 
   .hero-headline {
-    font-size: 2.1rem;
+    font-size: 2.15rem;
   }
 
   .pill-btn {
@@ -1482,7 +1626,7 @@ button {
   }
 
   .about-bio-card {
-    padding: 26px 20px;
+    padding: 28px 20px;
   }
 
   .stat-bubble-card,
@@ -1495,7 +1639,7 @@ button {
   }
 
   .project-card {
-    padding: 18px;
+    padding: 20px;
   }
 
   .project-buttons {
@@ -1508,9 +1652,9 @@ button {
 
   .chatbot-container {
     right: 16px;
-    bottom: 84px;
+    bottom: 86px;
     width: calc(100vw - 32px);
-    height: calc(100vh - 105px);
+    height: calc(100vh - 110px);
   }
 
   .chatbot-toggle {
@@ -1521,11 +1665,11 @@ button {
 
 @media (max-width: 480px) {
   .hero-headline {
-    font-size: 1.85rem;
+    font-size: 1.9rem;
   }
 
   .profile-squircle-frame {
-    width: 160px;
-    height: 160px;
+    width: 170px;
+    height: 170px;
   }
 }

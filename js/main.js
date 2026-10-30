@@ -431,9 +431,26 @@ const initAnimations = () => {
     ease: 'power3.out'
   });
 };
+// ---------------------------------------------------------------------------
+// 7. Liquid Glass Specular Mouse Tracking (Desktop Fine Pointer Only)
+// ---------------------------------------------------------------------------
+const initLiquidGlassEffects = () => {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  const cards = document.querySelectorAll('.squircle-card');
+  cards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+};
 
 // ---------------------------------------------------------------------------
-// 7. Initialize Everything on DOMContentLoaded
+// 8. Initialize Everything on DOMContentLoaded
 // ---------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
@@ -444,4 +461,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initFooterYear();
   initProjectCarousels();
   initAnimations();
+  initLiquidGlassEffects();
 });
