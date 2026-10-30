@@ -356,78 +356,78 @@ const initProjectCarousels = () => {
 const initAnimations = () => {
   if (typeof gsap === 'undefined') return;
 
-  // Hero Text Stagger
-  gsap.from('.hero-text-card > *', {
-    y: 30,
+  // Hero Content Entrance
+  gsap.from('.hero-content-card > *', {
+    y: 24,
     opacity: 0,
     duration: 0.8,
-    stagger: 0.12,
+    stagger: 0.1,
     ease: 'power3.out'
   });
 
-  // Hero Avatar
-  gsap.from('.hero-avatar-card', {
-    scale: 0.92,
+  // Hero Visual Card
+  gsap.from('.hero-visual-card', {
+    scale: 0.94,
     opacity: 0,
-    duration: 1,
-    delay: 0.2,
+    duration: 0.9,
+    delay: 0.15,
     ease: 'power3.out'
   });
 
-  // Section Headers Reveal
-  gsap.utils.toArray('.section-header-bubble').forEach((header) => {
+  // Section Headers
+  gsap.utils.toArray('.section-header').forEach((header) => {
     gsap.from(header, {
       scrollTrigger: {
         trigger: header,
         start: 'top 85%',
         toggleActions: 'play none none none'
       },
-      y: 40,
+      y: 30,
       opacity: 0,
-      duration: 0.8,
+      duration: 0.7,
       ease: 'power3.out'
     });
   });
 
-  // About Widgets
-  gsap.from('.about-widget-grid > *', {
+  // About Cards
+  gsap.from('.about-grid > *', {
     scrollTrigger: {
-      trigger: '.about-widget-grid',
+      trigger: '.about-grid',
       start: 'top 82%',
       toggleActions: 'play none none none'
     },
-    y: 40,
+    y: 30,
     opacity: 0,
-    duration: 0.8,
+    duration: 0.7,
     stagger: 0.15,
     ease: 'power3.out'
   });
 
-  // Skills Cards
-  gsap.from('.skill-pod-card', {
+  // Skills Group Cards
+  gsap.from('.skill-group-card', {
     scrollTrigger: {
-      trigger: '.skills-bubble-grid',
+      trigger: '.skills-grid',
       start: 'top 82%',
       toggleActions: 'play none none none'
     },
-    y: 40,
+    y: 30,
     opacity: 0,
-    duration: 0.8,
-    stagger: 0.15,
+    duration: 0.7,
+    stagger: 0.12,
     ease: 'power3.out'
   });
 
   // Projects Cards
-  gsap.from('.projects-bubble-grid .project-card', {
+  gsap.from('.projects-grid .project-card', {
     scrollTrigger: {
-      trigger: '.projects-bubble-grid',
+      trigger: '.projects-grid',
       start: 'top 82%',
       toggleActions: 'play none none none'
     },
-    y: 50,
+    y: 35,
     opacity: 0,
     duration: 0.8,
-    stagger: 0.2,
+    stagger: 0.18,
     ease: 'power3.out'
   });
 };
