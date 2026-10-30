@@ -150,8 +150,27 @@ class Chatbot {
       }
     });
 
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && this.container.classList.contains("active")) {
+        this.toggleChat();
+      }
+    });
+
+    // Suggestion chips handler
+    const chips = document.querySelectorAll(".suggestion-chip");
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const text = chip.textContent.trim();
+        if (text) {
+          this.input.value = text;
+          this.sendMessage();
+        }
+      });
+    });
+
     this.addMessage(
-      "🤖 Halo! Saya AI Assistant Cerdas untuk portfolio Wahyu Diva. Saya bisa membantu dengan:\n\n📋 Informasi tentang Wahyu Diva (portfolio, proyek, keahlian)\n🧠 Pertanyaan umum (teknologi, programming, sains, dll)\n💡 Problem solving dan pembelajaran\n\nSilakan tanyakan apa saja! 😊",
+      "Halo! Saya AI Assistant untuk portfolio Wahyu Diva. Saya siap membantu menjawab seputar profil, keahlian, dan proyek Wahyu, maupun topik teknologi umum. Silakan tanyakan apa saja!",
       "bot"
     );
   }
@@ -178,7 +197,16 @@ class Chatbot {
   }
 
   toggleChat() {
-    this.container.classList.toggle("active");
+    const isActive = this.container.classList.toggle("active");
+    if (this.toggle) {
+      this.toggle.classList.toggle("active", isActive);
+    }
+    this.container.setAttribute("aria-hidden", (!isActive).toString());
+    if (isActive) {
+      setTimeout(() => {
+        if (this.input) this.input.focus();
+      }, 250);
+    }
   }
 
   // Smart context detection method

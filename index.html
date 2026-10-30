@@ -1,66 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wahyu Diva - Portfolio | Junior Fullstack Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Wahyu Diva | Junior Fullstack Developer</title>
     <meta
       name="description"
       content="Portfolio website of I Putu Wahyu Diva Kumuda - Junior Fullstack Developer specializing in web development, PHP, JavaScript, React, and modern frameworks. 2+ years experience, 50+ projects completed."
     />
     <meta
       name="keywords"
-      content="Wahyu Diva, Fullstack Developer, Web Developer, PHP, JavaScript, React, Portfolio"
+      content="Wahyu Diva, Fullstack Developer, Web Developer, PHP, JavaScript, React, Portfolio, iOS Bubble UI"
     />
     <meta name="author" content="I Putu Wahyu Diva Kumuda" />
+    
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Wahyu Diva - Portfolio | Junior Fullstack Developer"
-    />
+    <meta property="og:title" content="Wahyu Diva | Junior Fullstack Developer" />
     <meta
       property="og:description"
-      content="Junior Fullstack Developer specializing in web development. 2+ years experience, 50+ projects completed."
+      content="Junior Fullstack Developer specializing in modern web development. 2+ years experience, 50+ projects completed."
     />
     <meta property="og:url" content="https://wahyu-diva.vercel.app" />
-    <meta
-      property="og:image"
-      content="https://wahyu-diva.vercel.app/images/profile.png"
-    />
+    <meta property="og:image" content="https://wahyu-diva.vercel.app/images/profile.png" />
+    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon/favicon.ico" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="favicon/favicon-16x16.png"
-    />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
     <link rel="manifest" href="favicon/site.webmanifest" />
+
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css?v=responsive-20260515" />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css?v=ios28-bubble-v1" />
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
       if (!["localhost", "127.0.0.1"].includes(window.location.hostname)) {
@@ -72,484 +58,681 @@
     </script>
   </head>
   <body>
-    <div class="cyber-loader">
-      <div class="loader-grid"></div>
-      <div class="loader-text">INITIALIZING...</div>
+    <!-- Ambient Liquid Bubble Orbs for iOS 28 Depth -->
+    <div class="ambient-canvas" aria-hidden="true">
+      <div class="liquid-bubble bubble-1"></div>
+      <div class="liquid-bubble bubble-2"></div>
+      <div class="liquid-bubble bubble-3"></div>
+      <div class="liquid-bubble bubble-4"></div>
     </div>
 
-    <!-- Cyberpunk Grid Background -->
-    <div class="cyber-grid"></div>
+    <!-- Floating Dynamic Island Header -->
+    <header class="dynamic-island-wrapper">
+      <nav class="dynamic-island" aria-label="Main Navigation">
+        <a href="#home" class="island-brand" aria-label="Wahyu Diva Home">
+          <span class="brand-avatar-bubble">
+            <img src="images/logo.png" alt="WD Logo" />
+          </span>
+          <span class="brand-name">Wahyu Diva</span>
+          <span class="status-beacon" title="Available for work"></span>
+        </a>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#home">WAHYU DIVA</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="#home">HOME</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">ABOUT</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#skills">SKILLS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">PROJECTS</a>
-            </li>
-          </ul>
+        <!-- Desktop Navigation Links -->
+        <div class="island-links">
+          <a href="#home" class="island-link active">Home</a>
+          <a href="#about" class="island-link">About</a>
+          <a href="#skills" class="island-link">Skills</a>
+          <a href="#projects" class="island-link">Projects</a>
+        </div>
+
+        <!-- Island Controls: Theme Toggle & Chat Button -->
+        <div class="island-actions">
+          <button
+            id="themeToggle"
+            class="bubble-control-btn theme-toggle-btn"
+            type="button"
+            aria-label="Toggle light and dark theme"
+            title="Switch theme"
+          >
+            <i class="fas fa-sun theme-icon-sun"></i>
+            <i class="fas fa-moon theme-icon-moon"></i>
+          </button>
+
+          <button
+            class="bubble-control-btn chat-trigger-btn"
+            type="button"
+            aria-label="Open AI Assistant"
+            title="Chat with AI"
+          >
+            <i class="fas fa-sparkles"></i>
+            <span class="btn-text-bubble">AI Chat</span>
+          </button>
+
+          <!-- Mobile Menu Trigger -->
+          <button
+            id="mobileMenuToggle"
+            class="bubble-control-btn mobile-menu-btn"
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+          >
+            <i class="fas fa-bars icon-open"></i>
+            <i class="fas fa-xmark icon-close"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Dropdown Sheet -->
+      <div id="mobileMenuSheet" class="mobile-bubble-sheet" aria-hidden="true">
+        <div class="sheet-links">
+          <a href="#home" class="sheet-link active">
+            <i class="fas fa-house"></i>
+            <span>Home</span>
+          </a>
+          <a href="#about" class="sheet-link">
+            <i class="fas fa-user"></i>
+            <span>About</span>
+          </a>
+          <a href="#skills" class="sheet-link">
+            <i class="fas fa-layer-group"></i>
+            <span>Skills</span>
+          </a>
+          <a href="#projects" class="sheet-link">
+            <i class="fas fa-cubes"></i>
+            <span>Projects</span>
+          </a>
         </div>
       </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <div class="hero-content">
-              <h1>
-                <span class="hero-title-glitch">Hi, I'm</span>
-                <span class="highlight glitch-text" data-text="Wahyu Diva"
-                  >Wahyu Diva</span
-                >
+    <main id="main-content">
+      <!-- Hero Section -->
+      <section id="home" class="hero-bubble-section">
+        <div class="bubble-container">
+          <div class="hero-grid">
+            <div class="hero-text-card bubble-glass-card">
+              <!-- Pill Badge -->
+              <div class="status-pill-badge">
+                <span class="pulsing-dot"></span>
+                <span>Available for new opportunities</span>
+              </div>
+
+              <h1 class="hero-title">
+                Hello, I'm <br />
+                <span class="hero-gradient-name">Wahyu Diva</span>
               </h1>
-              <div class="typing-wrapper">
-                <span class="cyber-subtitle">I'm a </span>
-                <span id="typing-text" class="cyber-subtitle"></span>
-              </div>
-              <p class="cyber-text">Turning ideas into reality through code</p>
-              <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary cyber-button"
-                  >View Work</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="hero-image">
-              <div class="cyber-circle"></div>
-              <img
-                src="images/profile.png"
-                alt="Profile"
-                class="img-fluid cyber-profile"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Add the scroll indicator here -->
-      <div class="scroll-indicator">
-        <div class="mouse">
-          <div class="wheel"></div>
-        </div>
-        <span class="scroll-text">SCROLL DOWN</span>
-      </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section cyber-section">
-      <div class="container">
-        <h2 class="section-title" data-text="About Me">About Me</h2>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="about-content cyber-card">
-              <p>Hello!</p>
+              <div class="hero-role-wrapper">
+                <span class="role-prefix">I am a </span>
+                <span id="typing-text" class="typed-role-pill"></span>
+              </div>
+
+              <p class="hero-description">
+                Passionate about crafting intuitive, high-performance web applications with clean code, elegant interfaces, and modern technology.
+              </p>
+
+              <div class="hero-button-group">
+                <a href="#projects" class="bubble-btn bubble-btn-primary">
+                  <span>View Projects</span>
+                  <i class="fas fa-arrow-down"></i>
+                </a>
+                <a href="#about" class="bubble-btn bubble-btn-secondary">
+                  <span>About Me</span>
+                  <i class="fas fa-chevron-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Profile Bubble Visual -->
+            <div class="hero-avatar-card bubble-glass-card">
+              <div class="avatar-bubble-frame">
+                <div class="avatar-ring-glow"></div>
+                <img
+                  src="images/profile.png"
+                  alt="I Putu Wahyu Diva Kumuda"
+                  class="avatar-image"
+                />
+              </div>
+              <div class="floating-bubble-tag tag-top">
+                <i class="fas fa-code"></i>
+                <span>Fullstack Dev</span>
+              </div>
+              <div class="floating-bubble-tag tag-bottom">
+                <i class="fas fa-wand-magic-sparkles"></i>
+                <span>iOS Bubble UI</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scroll Pill Indicator -->
+          <a href="#about" class="scroll-bubble-indicator" aria-label="Scroll to About section">
+            <div class="scroll-pill-capsule">
+              <div class="scroll-pill-dot"></div>
+            </div>
+            <span class="scroll-label">Scroll to explore</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="section-bubble-wrapper">
+        <div class="bubble-container">
+          <div class="section-header-bubble">
+            <div class="section-pill-tag">Profile Overview</div>
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">
+              A blend of technical precision, creative problem solving, and a passion for modern digital craft.
+            </p>
+          </div>
+
+          <!-- Widget Grid (iOS 28 WidgetKit Style) -->
+          <div class="about-widget-grid">
+            <!-- Main Bio Bubble Card -->
+            <div class="bubble-glass-card widget-main-bio">
+              <div class="card-icon-bubble">
+                <i class="fas fa-fingerprint"></i>
+              </div>
+              <h3 class="widget-title">Background & Journey</h3>
               <p>
-                My name is I Putu Wahyu Diva Kumuda, but you can call me Wahyu
-                or Yudip. I was born on 15 June 2004, making me
-                <span id="age"></span> today. Currently, I am pursuing a degree
-                in Informatics Engineering while working as a Junior Fullstack
-                Developer.
+                My full name is <strong>I Putu Wahyu Diva Kumuda</strong>, though colleagues and friends call me <strong>Wahyu</strong> or <strong>Yudip</strong>. Born on 15 June 2004, I am currently <strong id="age"></strong>.
               </p>
               <p>
-                I am deeply passionate about technology and web development,
-                constantly seeking opportunities to expand my knowledge in these
-                fields. My professional and academic journey has shaped me into
-                an honest, collaborative, and respectful individual who thrives
-                in team environments.
+                I am currently pursuing a degree in Informatics Engineering while operating actively as a Junior Fullstack Developer. My journey centers around turning complex ideas into streamlined, reliable web platforms.
               </p>
               <p>
-                Outside of work and studies, I enjoy coding personal projects
-                and gaming, which help me stay creative and sharpen my
-                problem-solving skills.
+                Outside of code and research, I build personal projects, explore emerging web technologies, and engage in gaming to sharpen strategic and analytical reflexes.
               </p>
-              <div class="cyber-stats">
-                <div class="stat-item">
+
+              <div class="focus-pill-row">
+                <span class="focus-chip"><i class="fas fa-server"></i> Backend Engineering</span>
+                <span class="focus-chip"><i class="fas fa-desktop"></i> Frontend Architecture</span>
+                <span class="focus-chip"><i class="fas fa-database"></i> Database Modeling</span>
+              </div>
+            </div>
+
+            <!-- Stats Bubble Widgets -->
+            <div class="widget-stats-column">
+              <!-- Stat 1: Experience -->
+              <div class="bubble-glass-card stat-bubble-card stat-item">
+                <div class="stat-bubble-icon icon-blue">
+                  <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-content">
                   <span class="stat-number">2+</span>
                   <span class="stat-label">Years Experience</span>
                 </div>
-                <div class="stat-item">
+                <span class="stat-subtext">Fullstack & Web Dev</span>
+              </div>
+
+              <!-- Stat 2: Projects -->
+              <div class="bubble-glass-card stat-bubble-card stat-item">
+                <div class="stat-bubble-icon icon-purple">
+                  <i class="fas fa-rocket"></i>
+                </div>
+                <div class="stat-content">
                   <span class="stat-number">50+</span>
                   <span class="stat-label">Projects Completed</span>
                 </div>
-                <div class="stat-item">
+                <span class="stat-subtext">Production & Open Source</span>
+              </div>
+
+              <!-- Stat 3: Clients -->
+              <div class="bubble-glass-card stat-bubble-card stat-item">
+                <div class="stat-bubble-icon icon-emerald">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="stat-content">
                   <span class="stat-number">30+</span>
                   <span class="stat-label">Happy Clients</span>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="about-cards">
-              <div class="cyber-card">
-                <h3>Backend Development</h3>
-                <p>Building robust and scalable server-side applications.</p>
-              </div>
-              <div class="cyber-card">
-                <h3>Frontend Development</h3>
-                <p>Creating responsive and interactive user interfaces.</p>
-              </div>
-              <div class="cyber-card">
-                <h3>Database Design</h3>
-                <p>Designing efficient and secure database structures.</p>
+                <span class="stat-subtext">Global & Local Delivery</span>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills-section cyber-section">
-      <div class="container">
-        <h2 class="section-title" data-text="Skills">Skills</h2>
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="cyber-card">
-              <h3 class="cyber-card-title">Frontend</h3>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-icon"
-                    ><i class="fab fa-html5"></i><i class="fab fa-css3-alt"></i
-                  ></span>
-                  <span class="skill-name">HTML/CSS</span>
+      <!-- Skills Section -->
+      <section id="skills" class="section-bubble-wrapper">
+        <div class="bubble-container">
+          <div class="section-header-bubble">
+            <div class="section-pill-tag">Core Capabilities</div>
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">
+              Carefully refined toolset spanning frontend interfaces, scalable backend services, and database systems.
+            </p>
+          </div>
+
+          <div class="skills-bubble-grid">
+            <!-- Frontend Pod -->
+            <div class="bubble-glass-card skill-pod-card">
+              <div class="pod-header">
+                <div class="pod-icon icon-blue">
+                  <i class="fas fa-palette"></i>
                 </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 90%"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-icon"><i class="fab fa-js"></i></span>
-                  <span class="skill-name">JavaScript</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 85%"></div>
+                <div>
+                  <h3 class="pod-title">Frontend</h3>
+                  <span class="pod-subtitle">User Interface & Experience</span>
                 </div>
               </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-icon"><i class="fab fa-react"></i></span>
-                  <span class="skill-name">React</span>
+
+              <div class="skills-list">
+                <!-- HTML/CSS -->
+                <div class="skill-meter-row">
+                  <div class="skill-meta">
+                    <span class="skill-name">
+                      <i class="fab fa-html5 skill-brand-icon color-html"></i> HTML5 / CSS3
+                    </span>
+                    <span class="skill-percent">90%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-bar skill-progress" style="width: 90%;"></div>
+                  </div>
                 </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 45%"></div>
+
+                <!-- JavaScript -->
+                <div class="skill-meter-row">
+                  <div class="skill-meta">
+                    <span class="skill-name">
+                      <i class="fab fa-js skill-brand-icon color-js"></i> JavaScript (ES6+)
+                    </span>
+                    <span class="skill-percent">85%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-bar skill-progress" style="width: 85%;"></div>
+                  </div>
+                </div>
+
+                <!-- React -->
+                <div class="skill-meter-row">
+                  <div class="skill-meta">
+                    <span class="skill-name">
+                      <i class="fab fa-react skill-brand-icon color-react"></i> React.js
+                    </span>
+                    <span class="skill-percent">45%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-bar skill-progress" style="width: 45%;"></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="cyber-card">
-              <h3 class="cyber-card-title">Backend</h3>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-icon"><i class="fab fa-node-js"></i></span>
-                  <span class="skill-name">Node.js</span>
+
+            <!-- Backend Pod -->
+            <div class="bubble-glass-card skill-pod-card">
+              <div class="pod-header">
+                <div class="pod-icon icon-purple">
+                  <i class="fas fa-network-wired"></i>
                 </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 50%"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-icon"><i class="fab fa-php"></i></span>
-                  <span class="skill-name">PHP</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 80%"></div>
+                <div>
+                  <h3 class="pod-title">Backend</h3>
+                  <span class="pod-subtitle">Server-Side & APIs</span>
                 </div>
               </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-icon"><i class="fab fa-python"></i></span>
-                  <span class="skill-name">Python</span>
+
+              <div class="skills-list">
+                <!-- PHP -->
+                <div class="skill-meter-row">
+                  <div class="skill-meta">
+                    <span class="skill-name">
+                      <i class="fab fa-php skill-brand-icon color-php"></i> PHP
+                    </span>
+                    <span class="skill-percent">80%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-bar skill-progress" style="width: 80%;"></div>
+                  </div>
                 </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 40%"></div>
+
+                <!-- Node.js -->
+                <div class="skill-meter-row">
+                  <div class="skill-meta">
+                    <span class="skill-name">
+                      <i class="fab fa-node-js skill-brand-icon color-node"></i> Node.js
+                    </span>
+                    <span class="skill-percent">50%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-bar skill-progress" style="width: 50%;"></div>
+                  </div>
+                </div>
+
+                <!-- Python -->
+                <div class="skill-meter-row">
+                  <div class="skill-meta">
+                    <span class="skill-name">
+                      <i class="fab fa-python skill-brand-icon color-python"></i> Python
+                    </span>
+                    <span class="skill-percent">40%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-bar skill-progress" style="width: 40%;"></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="cyber-card">
-              <h3 class="cyber-card-title">Database & Tools</h3>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-icon">
-                    <img
-                      src="https://www.mysql.com/common/logos/logo-mysql-170x115.png"
-                      alt="MySQL"
-                      class="skill-img"
-                    />
-                  </span>
-                  <span class="skill-name">MySQL</span>
+
+            <!-- Database & Tools Pod -->
+            <div class="bubble-glass-card skill-pod-card">
+              <div class="pod-header">
+                <div class="pod-icon icon-emerald">
+                  <i class="fas fa-boxes-stacked"></i>
                 </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 75%"></div>
+                <div>
+                  <h3 class="pod-title">Data & Workflow</h3>
+                  <span class="pod-subtitle">Storage & Versioning</span>
                 </div>
               </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-icon">
-                    <img
-                      src="https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg"
-                      alt="SQL Server"
-                      class="skill-img"
-                    />
-                  </span>
-                  <span class="skill-name">SQL Server</span>
+
+              <div class="skills-list">
+                <!-- Git & GitHub -->
+                <div class="skill-meter-row">
+                  <div class="skill-meta">
+                    <span class="skill-name">
+                      <i class="fab fa-git-alt skill-brand-icon color-git"></i> Git & GitHub
+                    </span>
+                    <span class="skill-percent">85%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-bar skill-progress" style="width: 85%;"></div>
+                  </div>
                 </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 60%"></div>
+
+                <!-- MySQL -->
+                <div class="skill-meter-row">
+                  <div class="skill-meta">
+                    <span class="skill-name">
+                      <i class="fas fa-database skill-brand-icon color-mysql"></i> MySQL
+                    </span>
+                    <span class="skill-percent">75%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-bar skill-progress" style="width: 75%;"></div>
+                  </div>
                 </div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-icon"><i class="fab fa-git-alt"></i></span>
-                  <span class="skill-name">Git & GitHub</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 85%"></div>
+
+                <!-- SQL Server -->
+                <div class="skill-meter-row">
+                  <div class="skill-meta">
+                    <span class="skill-name">
+                      <i class="fas fa-server skill-brand-icon color-sql"></i> SQL Server
+                    </span>
+                    <span class="skill-percent">60%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-bar skill-progress" style="width: 60%;"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section cyber-section">
-      <div class="container">
-        <h2 class="section-title" data-text="Projects">Projects</h2>
-        <div class="row g-4">
-          <div class="col-lg-6">
-            <div class="cyber-card project-card">
-              <div class="project-image">
+      <!-- Projects Section -->
+      <section id="projects" class="section-bubble-wrapper">
+        <div class="bubble-container">
+          <div class="section-header-bubble">
+            <div class="section-pill-tag">Selected Works</div>
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">
+              Interactive platforms built with focus on user experience, real-time data, and high-performance execution.
+            </p>
+          </div>
+
+          <div class="projects-bubble-grid">
+            <!-- Project 1: FlashPlay -->
+            <article class="bubble-glass-card project-card">
+              <div class="project-carousel-container">
                 <div class="project-carousel">
-                  <button class="carousel-nav prev"><i class="fas fa-chevron-left"></i></button>
+                  <button class="carousel-nav prev" type="button" aria-label="Previous FlashPlay image">
+                    <i class="fas fa-chevron-left"></i>
+                  </button>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img src="images/flashplay1.png" alt="FlashPlay 1" />
+                      <img src="images/flashplay1.png" alt="FlashPlay Preview 1" loading="lazy" />
                     </div>
                     <div class="carousel-item">
-                      <img src="images/flashplay2.png" alt="FlashPlay 2" />
+                      <img src="images/flashplay2.png" alt="FlashPlay Preview 2" loading="lazy" />
                     </div>
                     <div class="carousel-item">
-                      <img src="images/flashplay3.png" alt="FlashPlay 3" />
+                      <img src="images/flashplay3.png" alt="FlashPlay Preview 3" loading="lazy" />
                     </div>
                     <div class="carousel-item">
-                      <img src="images/flashplay4.png" alt="FlashPlay 4" />
+                      <img src="images/flashplay4.png" alt="FlashPlay Preview 4" loading="lazy" />
                     </div>
                   </div>
-                  <button class="carousel-nav next"><i class="fas fa-chevron-right"></i></button>
-                  <div class="carousel-dots">
-                    <span class="carousel-dot active"></span>
-                    <span class="carousel-dot"></span>
-                    <span class="carousel-dot"></span>
-                    <span class="carousel-dot"></span>
-                  </div>
-                </div>
-                <div class="project-overlay">
-                  <div class="project-links">
-                    <a
-                      href="https://flash-play.vercel.app/"
-                      target="_blank"
-                      class="cyber-button-sm"
-                      >View Live</a
-                    >
-                    <a
-                      href="https://github.com/wahyudivaaa/flash-play"
-                      target="_blank"
-                      class="cyber-button-github"
-                      ><i class="fab fa-github"></i> Code</a
-                    >
+                  <button class="carousel-nav next" type="button" aria-label="Next FlashPlay image">
+                    <i class="fas fa-chevron-right"></i>
+                  </button>
+                  <div class="carousel-dots" role="tablist" aria-label="FlashPlay slides">
+                    <button class="carousel-dot active" type="button" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 3"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 4"></button>
                   </div>
                 </div>
               </div>
-              <div class="project-content">
-                <h3>FlashPlay</h3>
-                <p>
-                  FlashPlay is a modern movie trailer streaming platform built
-                  using HTML5, CSS3, and Vanilla JavaScript on the frontend and
-                  Node.js on the backend. The website utilizes the TMDB API to
-                  provide up-to-date movie information and the YouTube Embedded
-                  Player for trailer playback.
+
+              <div class="project-details">
+                <div class="project-badge-row">
+                  <span class="project-type-badge">Streaming Web App</span>
+                </div>
+                <h3 class="project-heading">FlashPlay</h3>
+                <p class="project-summary">
+                  A modern movie trailer streaming web application built with HTML5, CSS3, and JavaScript on the frontend paired with Node.js on the backend. Integrates TMDB API for live movie metadata and YouTube Embedded Player for fluid trailer playback.
                 </p>
-                <div class="project-tech">
-                  <span class="tech-tag"
-                    ><i class="fab fa-html5"></i> HTML</span
+
+                <div class="tech-pill-cloud">
+                  <span class="tech-chip"><i class="fab fa-html5"></i> HTML5</span>
+                  <span class="tech-chip"><i class="fab fa-css3-alt"></i> CSS3</span>
+                  <span class="tech-chip"><i class="fab fa-js"></i> JavaScript</span>
+                  <span class="tech-chip"><i class="fab fa-node-js"></i> Node.js</span>
+                  <span class="tech-chip"><i class="fas fa-film"></i> TMDB API</span>
+                </div>
+
+                <div class="project-action-row">
+                  <a
+                    href="https://flash-play.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bubble-btn bubble-btn-primary"
                   >
-                  <span class="tech-tag"
-                    ><i class="fab fa-css3-alt"></i> CSS</span
+                    <span>Visit Live</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                  </a>
+                  <a
+                    href="https://github.com/wahyudivaaa/flash-play"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bubble-btn bubble-btn-outline"
                   >
-                  <span class="tech-tag"
-                    ><i class="fab fa-js"></i> JavaScript</span
-                  >
-                  <span class="tech-tag"
-                    ><i class="fab fa-node-js"></i> Node.js</span
-                  >
+                    <i class="fab fa-github"></i>
+                    <span>Repository</span>
+                  </a>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="cyber-card project-card">
-              <div class="project-image">
+            </article>
+
+            <!-- Project 2: FlashBot -->
+            <article class="bubble-glass-card project-card">
+              <div class="project-carousel-container">
                 <div class="project-carousel">
-                  <button class="carousel-nav prev"><i class="fas fa-chevron-left"></i></button>
+                  <button class="carousel-nav prev" type="button" aria-label="Previous FlashBot image">
+                    <i class="fas fa-chevron-left"></i>
+                  </button>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img src="images/flashbot1.png" alt="Flash Bot 1" />
+                      <img src="images/flashbot1.png" alt="FlashBot Preview 1" loading="lazy" />
                     </div>
                     <div class="carousel-item">
-                      <img src="images/flashbot2.png" alt="Flash Bot 2" />
+                      <img src="images/flashbot2.png" alt="FlashBot Preview 2" loading="lazy" />
                     </div>
                     <div class="carousel-item">
-                      <img src="images/flashbot3.png" alt="Flash Bot 3" />
+                      <img src="images/flashbot3.png" alt="FlashBot Preview 3" loading="lazy" />
                     </div>
                     <div class="carousel-item">
-                      <img src="images/flashbot4.png" alt="Flash Bot 4" />
+                      <img src="images/flashbot4.png" alt="FlashBot Preview 4" loading="lazy" />
                     </div>
                   </div>
-                  <button class="carousel-nav next"><i class="fas fa-chevron-right"></i></button>
-                  <div class="carousel-dots">
-                    <span class="carousel-dot active"></span>
-                    <span class="carousel-dot"></span>
-                    <span class="carousel-dot"></span>
-                    <span class="carousel-dot"></span>
-                  </div>
-                </div>
-                <div class="project-overlay">
-                  <div class="project-links">
-                    <a
-                      href="https://flash-bot-chat.vercel.app/"
-                      target="_blank"
-                      class="cyber-button-sm"
-                      >View Live</a
-                    >
-                    <a
-                      href="https://github.com/wahyudivaaa/flash-bot"
-                      target="_blank"
-                      class="cyber-button-github"
-                      ><i class="fab fa-github"></i> Code</a
-                    >
+                  <button class="carousel-nav next" type="button" aria-label="Next FlashBot image">
+                    <i class="fas fa-chevron-right"></i>
+                  </button>
+                  <div class="carousel-dots" role="tablist" aria-label="FlashBot slides">
+                    <button class="carousel-dot active" type="button" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 3"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 4"></button>
                   </div>
                 </div>
               </div>
-              <div class="project-content">
-                <h3>FlashBot</h3>
-                <p>
-                  FlashBot is an interactive AI chatbot built with Vue.js
-                  featuring a modern interface. It integrates Cohere AI for
-                  intelligent chat in Indonesian language and OpenWeatherMap for
-                  real-time weather information. Key features include syntax
-                  highlighting using Highlight.js, dark/light theme system, code
-                  preview, and dynamic avatars from DiceBear API. Designed with
-                  modern HTML5/CSS3 and Material Design Icons to deliver an
-                  engaging and responsive user experience.
+
+              <div class="project-details">
+                <div class="project-badge-row">
+                  <span class="project-type-badge">AI Assistant Platform</span>
+                </div>
+                <h3 class="project-heading">FlashBot</h3>
+                <p class="project-summary">
+                  An interactive conversational AI web application engineered with Vue.js. Integrates Cohere AI for natural language conversations in Indonesian, OpenWeatherMap API for live forecast queries, code syntax highlighting with Highlight.js, dynamic avatars, and theme switching.
                 </p>
-                <div class="project-tech">
-                  <span class="tech-tag"
-                    ><i class="fab fa-vuejs"></i> Vue.js</span
+
+                <div class="tech-pill-cloud">
+                  <span class="tech-chip"><i class="fab fa-vuejs"></i> Vue.js</span>
+                  <span class="tech-chip"><i class="fas fa-robot"></i> Cohere AI</span>
+                  <span class="tech-chip"><i class="fas fa-cloud-sun"></i> OpenWeatherMap</span>
+                  <span class="tech-chip"><i class="fas fa-code"></i> Highlight.js</span>
+                </div>
+
+                <div class="project-action-row">
+                  <a
+                    href="https://flash-bot-chat.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bubble-btn bubble-btn-primary"
                   >
-                  <span class="tech-tag"
-                    ><i class="fab fa-html5"></i> HTML</span
+                    <span>Visit Live</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                  </a>
+                  <a
+                    href="https://github.com/wahyudivaaa/flash-bot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bubble-btn bubble-btn-outline"
                   >
-                  <span class="tech-tag"
-                    ><i class="fab fa-css3-alt"></i> CSS</span
-                  >
-                  <span class="tech-tag"
-                    ><i class="fab fa-js"></i> JavaScript</span
-                  >
-                  <span class="tech-tag"
-                    ><i class="fas fa-robot"></i> Cohere AI</span
-                  >
-                  <span class="tech-tag"
-                    ><i class="fas fa-cloud"></i> OpenWeatherMap</span
-                  >
-                  <span class="tech-tag"
-                    ><i class="fas fa-code"></i> Highlight.js</span
-                  >
-                  <span class="tech-tag"
-                    ><i class="fas fa-icons"></i> Material Design</span
-                  >
+                    <i class="fab fa-github"></i>
+                    <span>Repository</span>
+                  </a>
                 </div>
               </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Dock -->
+    <footer class="footer-bubble-dock">
+      <div class="bubble-container">
+        <div class="dock-card bubble-glass-card">
+          <div class="dock-brand">
+            <span class="dock-logo">WD</span>
+            <div class="dock-text">
+              <span class="dock-author">Wahyu Diva</span>
+              <span class="dock-sub">Junior Fullstack Developer</span>
             </div>
           </div>
-          <!-- Add more project cards as needed -->
-        </div>
-      </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-content text-center">
-        <p class="cyber-text">
-          <i class="fas fa-code"></i> with
-          <i class="fas fa-heart text-danger"></i> by
-          <span class="highlight">Wahyu Diva</span>
-        </p>
-        <p class="cyber-text">
-          &copy; <span id="currentYear"></span> All Rights Reserved
-        </p>
+          <div class="dock-socials">
+            <a
+              href="https://github.com/wahyudivaaa"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="dock-icon-link"
+              aria-label="Wahyu Diva on GitHub"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="mailto:contact@wahyudiva.dev"
+              class="dock-icon-link"
+              aria-label="Send an email to Wahyu Diva"
+            >
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a
+              href="#home"
+              class="dock-icon-link scroll-top-link"
+              aria-label="Scroll back to top"
+            >
+              <i class="fas fa-arrow-up"></i>
+            </a>
+          </div>
+
+          <div class="dock-copyright">
+            <span>&copy; <span id="currentYear"></span> All Rights Reserved</span>
+          </div>
+        </div>
       </div>
     </footer>
 
-    <!-- Chatbot -->
-    <div class="chatbot-container">
+    <!-- iOS 28 Bubble AI Chatbot Widget -->
+    <div class="chatbot-container" role="dialog" aria-label="AI Assistant" aria-hidden="true">
       <div class="chatbot-header">
         <div class="chatbot-title">
-          <i class="fas fa-robot"></i>
-          <span>AI Assistant</span>
+          <div class="bot-avatar-pill">
+            <i class="fas fa-sparkles"></i>
+          </div>
+          <div class="bot-info-meta">
+            <span class="bot-name">AI Assistant</span>
+            <span class="bot-badge">Gemini Flash</span>
+          </div>
         </div>
-        <button class="close-chat">
-          <i class="fas fa-times"></i>
+        <button class="close-chat" type="button" aria-label="Close chat window">
+          <i class="fas fa-xmark"></i>
         </button>
       </div>
-      <div class="chatbot-messages"></div>
+
+      <!-- Quick Suggestion Bubbles -->
+      <div class="chat-quick-suggestions">
+        <button class="suggestion-chip" type="button">Tentang Wahyu</button>
+        <button class="suggestion-chip" type="button">Keahlian Utama</button>
+        <button class="suggestion-chip" type="button">Proyek FlashPlay</button>
+      </div>
+
+      <div class="chatbot-messages" aria-live="polite"></div>
+
       <div class="chatbot-input">
-        <input type="text" id="chatInput" placeholder="Ask me anything..." />
-        <button class="send-message">
-          <i class="fas fa-paper-plane"></i>
+        <input
+          type="text"
+          id="chatInput"
+          placeholder="Ask me anything..."
+          aria-label="Chat input field"
+          autocomplete="off"
+        />
+        <button class="send-message" type="button" aria-label="Send message">
+          <i class="fas fa-arrow-up"></i>
         </button>
       </div>
     </div>
 
-    <div class="chatbot-toggle">
-      <i class="fas fa-comments"></i>
-      <span class="notification-dot"></span>
-    </div>
+    <!-- Floating Chatbot Launcher Bubble -->
+    <button
+      class="chatbot-toggle"
+      type="button"
+      aria-label="Toggle AI Assistant Chat"
+      title="Chat with AI Assistant"
+    >
+      <div class="toggle-bubble-inner">
+        <i class="fas fa-sparkles launcher-icon"></i>
+        <i class="fas fa-xmark launcher-close-icon"></i>
+        <span class="notification-dot" aria-hidden="true"></span>
+      </div>
+    </button>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="js/main.js?v=responsive-20260515"></script>
-    <script src="js/chatbot.js?v=responsive-20260515"></script>
+    <script src="js/main.js?v=ios28-bubble-v1"></script>
+    <script src="js/chatbot.js?v=ios28-bubble-v1"></script>
   </body>
 </html>
-

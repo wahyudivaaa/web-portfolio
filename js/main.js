@@ -1,415 +1,447 @@
-// Initialize GSAP
-gsap.registerPlugin(ScrollTrigger);
+/**
+ * iOS 28 Minimalist Bubble UI / UX Interactions
+ * Main JavaScript Engine for Wahyu Diva Portfolio
+ */
 
-// Performance optimization: Batch animations using GSAP timeline
-const createMainTimeline = () => {
-    const tl = gsap.timeline();
-    return tl;
-};
+// Register GSAP plugins if available
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
-// Navbar Animation with mobile check
-const initNavbarAnimation = () => {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
+// ---------------------------------------------------------------------------
+// 1. Theme Controller (Dual Theme: Dark / Light with Persistence)
+// ---------------------------------------------------------------------------
+const initTheme = () => {
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
 
-    let lastScroll = 0;
-    let ticking = false;
+  // Determine starting theme
+  const savedTheme = localStorage.getItem('theme');
+  const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  const currentTheme = savedTheme ? savedTheme : (systemPrefersDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', currentTheme);
 
-    window.addEventListener('scroll', () => {
-        // Skip animation if mobile menu is open
-        const collapse = document.querySelector('.navbar-collapse');
-        if (collapse && collapse.classList.contains('show')) return;
+  const updateToggleAria = (theme) => {
+    if (!themeToggle) return;
+    const isDark = theme === 'dark';
+    themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+    themeToggle.setAttribute('title', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+  };
 
-        // Match Bootstrap's navbar-expand-lg breakpoint.
-        if (window.innerWidth <= 991.98) return;
+  updateToggleAria(currentTheme);
 
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                const currentScroll = window.pageYOffset;
-                if (currentScroll > lastScroll && currentScroll > 100) {
-                    navbar.classList.add('navbar-hidden');
-                } else {
-                    navbar.classList.remove('navbar-hidden');
-                }
-                lastScroll = currentScroll;
-                ticking = false;
-            });
-            ticking = true;
-        }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const activeTheme = root.getAttribute('data-theme') || 'dark';
+      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
+      
+      root.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateToggleAria(newTheme);
     });
-};
+  }
 
-// Optimized Glitch Effect
-const initGlitchEffect = () => {
-    const glitchTexts = document.querySelectorAll('.cyber-glitch');
-    glitchTexts.forEach(text => {
-        if (text.hasAttribute('data-text')) return;
-        text.setAttribute('data-text', text.textContent);
+  // React to OS preference changes if user hasn't overridden
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        const autoTheme = e.matches ? 'dark' : 'light';
+        root.setAttribute('data-theme', autoTheme);
+        updateToggleAria(autoTheme);
+      }
     });
+  }
 };
 
-// Optimized Skill Bars Animation using GSAP batching
-const initSkillBars = () => {
-    const skillBars = document.querySelectorAll('.skill-progress');
-    if (skillBars.length === 0) return;
+// ---------------------------------------------------------------------------
+// 2. Navigation & Dynamic Island Controller
+// ---------------------------------------------------------------------------
+const initNavigation = () => {
+  const mobileToggle = document.getElementById('mobileMenuToggle');
+  const mobileSheet = document.getElementById('mobileMenuSheet');
+  const island = document.querySelector('.dynamic-island');
+  const navLinks = document.querySelectorAll('.island-link, .sheet-link');
+  const sections = document.querySelectorAll('section[id]');
+  const chatTrigger = document.querySelector('.chat-trigger-btn');
 
-    // Batch all skill bar animations
-    gsap.from(skillBars, {
-        width: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        stagger: 0.2,
-        scrollTrigger: {
-            trigger: ".skills-section",
-            start: "top 80%",
-            toggleActions: "play none none reverse"
-        }
-    });
-};
+  // Scrollspy & Island Elevation
+  const onScroll = () => {
+    const scrollPos = window.scrollY + 200;
 
-// Optimized Project Cards Animation
-const initProjectCards = () => {
-    const cards = document.querySelectorAll('.project-card');
-    if (cards.length === 0) return;
-
-    // Create a single ScrollTrigger for all cards
-    gsap.set(cards, { opacity: 0, y: 50 }); // Set initial state
-
-    ScrollTrigger.batch(cards, {
-        start: "top 85%",
-        onEnter: batch => {
-            gsap.to(batch, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: "power2.out"
-            });
-        },
-        once: true // Only animate once
-    });
-};
-
-// Optimized Cyber Grid with reduced updates
-const initCyberGrid = () => {
-    const grid = document.querySelector('.cyber-grid');
-    if (!grid) return;
-
-    const gridSize = 20;
-    const rows = Math.ceil(window.innerHeight / gridSize);
-    const cols = Math.ceil(window.innerWidth / gridSize);
-    
-    // Create grid cells only once
-    grid.innerHTML = '';
-    const fragment = document.createDocumentFragment();
-    
-    for (let i = 0; i < rows * cols; i++) {
-        const cell = document.createElement('div');
-        cell.classList.add('grid-cell');
-        fragment.appendChild(cell);
+    // Island elevation style
+    if (island) {
+      if (window.scrollY > 30) {
+        island.classList.add('island-scrolled');
+      } else {
+        island.classList.remove('island-scrolled');
+      }
     }
-    
-    grid.appendChild(fragment);
-    grid.style.gridTemplateColumns = `repeat(${cols}, ${gridSize}px)`;
-    
-    // Optimize grid animation
-    const cells = Array.from(grid.children);
-    let lastAnimatedCell = null;
-    
-    const animateGrid = () => {
-        if (lastAnimatedCell) {
-            lastAnimatedCell.classList.remove('grid-cell-active');
-        }
-        
-        const randomCell = cells[Math.floor(Math.random() * cells.length)];
-        if (randomCell) {
-            randomCell.classList.add('grid-cell-active');
-            lastAnimatedCell = randomCell;
-        }
-    };
 
-    // Reduce animation frequency
-    setInterval(animateGrid, 200);
+    // Active Section Tracking
+    sections.forEach((section) => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
 
-    // Debounce resize handler
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        if (resizeTimeout) clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            const newRows = Math.ceil(window.innerHeight / gridSize);
-            const newCols = Math.ceil(window.innerWidth / gridSize);
-            if (newRows !== rows || newCols !== cols) {
-                initCyberGrid();
-            }
-        }, 250);
-    });
-};
-
-// Optimized Section Titles Animation
-const initSectionTitles = () => {
-    const titles = document.querySelectorAll('.section-title');
-    if (titles.length === 0) return;
-
-    titles.forEach(title => {
-        if (!title.hasAttribute('data-text')) {
-            title.setAttribute('data-text', title.textContent);
-        }
-    });
-
-    // Batch all title animations
-    gsap.from(titles, {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        scrollTrigger: {
-            trigger: "body",
-            start: "top 80%",
-            toggleActions: "play none none none"
-        }
-    });
-};
-
-// Optimized Hero Animation using a single timeline
-const initHeroAnimation = () => {
-    const heroElements = {
-        title: '.hero-content h1',
-        subtitle: '.typing-wrapper',
-        text: '.hero-content .cyber-text',
-        buttons: '.hero-buttons',
-        image: '.hero-image'
-    };
-
-    // Check if elements exist
-    if (!document.querySelector(heroElements.title)) return;
-
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    
-    tl.from(heroElements.title, { y: 100, opacity: 0, duration: 1 })
-      .from(heroElements.subtitle, { y: 50, opacity: 0, duration: 0.8 }, "-=0.5")
-      .from(heroElements.text, { y: 50, opacity: 0, duration: 0.8 }, "-=0.5")
-      .from(heroElements.buttons, { y: 50, opacity: 0, duration: 0.8 }, "-=0.5")
-      .from(heroElements.image, { x: 100, opacity: 0, duration: 1 }, "-=1");
-};
-
-// Initialize Typed.js with optimized settings
-const initTypedText = () => {
-    const element = document.querySelector('#typing-text');
-    if (!element) return;
-
-    new Typed('#typing-text', {
-        strings: [
-            'Junior Full Stack Developer',
-            'Web Designer',
-            'UI/UX Designer',
-            'Software Engineer',
-            'Problem Solver'
-        ],
-        typeSpeed: 50,
-        backSpeed: 30,
-        backDelay: 1500,
-        startDelay: 1000,
-        loop: true,
-        showCursor: true,
-        cursorChar: '|',
-        autoInsertCss: true,
-        smartBackspace: true
-    });
-};
-
-// Optimized Mobile Menu
-const initMobileMenu = () => {
-    const navbar = document.querySelector('.navbar');
-    const collapse = document.querySelector('.navbar-collapse');
-
-    if (!navbar || !collapse) return;
-
-    // Handle scroll lock
-    collapse.addEventListener('show.bs.collapse', () => {
-        document.body.style.overflow = 'hidden';
-        navbar.classList.remove('navbar-hidden');
-    });
-
-    collapse.addEventListener('hidden.bs.collapse', () => {
-        document.body.style.overflow = '';
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        const isNavbar = navbar.contains(e.target);
-        const isCollapsed = !collapse.classList.contains('show');
-        
-        if (!isNavbar && !isCollapsed) {
-            bootstrap.Collapse.getInstance(collapse).hide();
-        }
-    });
-};
-
-// Project Image Carousel with Glitch Effect and Manual Controls
-function initProjectCarousels() {
-    const carousels = document.querySelectorAll('.project-carousel');
-    
-    carousels.forEach(carousel => {
-        const items = carousel.querySelectorAll('.carousel-item');
-        const prevBtn = carousel.querySelector('.carousel-nav.prev');
-        const nextBtn = carousel.querySelector('.carousel-nav.next');
-        const dots = carousel.querySelectorAll('.carousel-dot');
-        let currentIndex = 0;
-        let isTransitioning = false;
-        let intervalId = null;
-        
-        function updateDots() {
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        }
-        
-        function goToSlide(index) {
-            if (isTransitioning || index === currentIndex) return;
-            isTransitioning = true;
-
-            const currentImage = items[currentIndex];
-            const nextImage = items[index];
-
-            // Reset interval
-            if (intervalId) {
-                clearInterval(intervalId);
-            }
-
-            // Glitch transition
-            currentImage.classList.add('glitch-transition');
-            
-            currentImage.addEventListener('animationend', function onEnd() {
-                currentImage.removeEventListener('animationend', onEnd);
-                currentImage.classList.remove('glitch-transition', 'active');
-                nextImage.classList.add('active');
-                currentIndex = index;
-                updateDots();
-                isTransitioning = false;
-
-                // Restart auto-slide
-                intervalId = setInterval(() => goToSlide((currentIndex + 1) % items.length), 3500);
-            }, { once: true });
-        }
-        
-        function switchImage() {
-            goToSlide((currentIndex + 1) % items.length);
-        }
-        
-        // Manual navigation - Previous
-        if (prevBtn) {
-            prevBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const prevIndex = (currentIndex - 1 + items.length) % items.length;
-                goToSlide(prevIndex);
-            });
-        }
-        
-        // Manual navigation - Next
-        if (nextBtn) {
-            nextBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const nextIndex = (currentIndex + 1) % items.length;
-                goToSlide(nextIndex);
-            });
-        }
-        
-        // Dot navigation
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', (e) => {
-                e.stopPropagation();
-                goToSlide(index);
-            });
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach((link) => {
+          const href = link.getAttribute('href');
+          if (href === `#${id}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
         });
-        
-        // Initialize first slide and dots
-        items[0].classList.add('active');
-        updateDots();
-        
-        // Start auto-slide
-        intervalId = setInterval(switchImage, 3500);
+      }
     });
-}
+  };
 
-// Dynamic copyright year
-const initFooterYear = () => {
-    const yearElement = document.getElementById('currentYear');
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
-    }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile Menu Sheet Toggle
+  if (mobileToggle && mobileSheet) {
+    const toggleMenu = () => {
+      const isOpen = mobileSheet.classList.contains('open');
+      if (isOpen) {
+        mobileSheet.classList.remove('open');
+        mobileSheet.setAttribute('aria-hidden', 'true');
+        mobileToggle.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileSheet.classList.add('open');
+        mobileSheet.setAttribute('aria-hidden', 'false');
+        mobileToggle.classList.add('active');
+        mobileToggle.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Close when clicking mobile links
+    mobileSheet.querySelectorAll('.sheet-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileSheet.classList.remove('open');
+        mobileSheet.setAttribute('aria-hidden', 'true');
+        mobileToggle.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mobileSheet.contains(e.target) && !mobileToggle.contains(e.target)) {
+        if (mobileSheet.classList.contains('open')) {
+          mobileSheet.classList.remove('open');
+          mobileSheet.setAttribute('aria-hidden', 'true');
+          mobileToggle.classList.remove('active');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileSheet.classList.contains('open')) {
+        mobileSheet.classList.remove('open');
+        mobileSheet.setAttribute('aria-hidden', 'true');
+        mobileToggle.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Header Chat Trigger Button
+  if (chatTrigger) {
+    chatTrigger.addEventListener('click', () => {
+      const chatbotToggle = document.querySelector('.chatbot-toggle');
+      if (chatbotToggle) {
+        chatbotToggle.click();
+      }
+    });
+  }
 };
 
-// Calculate age
-function calculateAge() {
-    const birthDate = new Date('2004-06-15');
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    
-    document.getElementById('age').textContent = age + ' years old';
-}
+// ---------------------------------------------------------------------------
+// 3. Dynamic Typed.js Roles
+// ---------------------------------------------------------------------------
+const initTypedText = () => {
+  const element = document.querySelector('#typing-text');
+  if (!element || typeof Typed === 'undefined') return;
 
-// Calculate experience duration
+  new Typed('#typing-text', {
+    strings: [
+      'Junior Fullstack Developer',
+      'Modern Web Developer',
+      'UI/UX Enthusiast',
+      'Problem Solver'
+    ],
+    typeSpeed: 45,
+    backSpeed: 25,
+    backDelay: 1800,
+    startDelay: 600,
+    loop: true,
+    showCursor: true,
+    cursorChar: '|',
+    autoInsertCss: true,
+    smartBackspace: true
+  });
+};
+
+// ---------------------------------------------------------------------------
+// 4. Dynamic Age & Experience Calculation
+// ---------------------------------------------------------------------------
+const calculateAge = () => {
+  const ageEl = document.getElementById('age');
+  if (!ageEl) return;
+
+  const birthDate = new Date('2004-06-15');
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
+  ageEl.textContent = `${age} years old`;
+};
+
 const calculateExperience = () => {
-    const startDate = new Date('2022-06-01');
-    const currentDate = new Date();
-    
-    const years = currentDate.getFullYear() - startDate.getFullYear();
-    const months = currentDate.getMonth() - startDate.getMonth();
-    let duration = years;
-    
-    if (months < 0) {
-        duration = years - 1;
+  const startDate = new Date('2022-06-01');
+  const currentDate = new Date();
+
+  let years = currentDate.getFullYear() - startDate.getFullYear();
+  const months = currentDate.getMonth() - startDate.getMonth();
+
+  if (months < 0) {
+    years -= 1;
+  }
+
+  const expElements = document.querySelectorAll('.stat-item');
+  expElements.forEach((element) => {
+    const label = element.querySelector('.stat-label');
+    if (label && label.textContent.includes('Years Experience')) {
+      const numberElement = element.querySelector('.stat-number');
+      if (numberElement) {
+        numberElement.textContent = `${years}+`;
+      }
     }
-    
-    // Only update the experience duration stat
-    const expElements = document.querySelectorAll('.stat-item');
-    expElements.forEach(element => {
-        const label = element.querySelector('.stat-label');
-        if (label && label.textContent === 'Years Experience') {
-            const numberElement = element.querySelector('.stat-number');
-            if (numberElement) {
-                numberElement.textContent = duration + '+';
-            }
-        }
+  });
+};
+
+const initFooterYear = () => {
+  const yearElement = document.getElementById('currentYear');
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+};
+
+// ---------------------------------------------------------------------------
+// 5. Project Image Carousel with Touch & Swipe Support
+// ---------------------------------------------------------------------------
+const initProjectCarousels = () => {
+  const carousels = document.querySelectorAll('.project-carousel');
+
+  carousels.forEach((carousel) => {
+    const items = carousel.querySelectorAll('.carousel-item');
+    const prevBtn = carousel.querySelector('.carousel-nav.prev');
+    const nextBtn = carousel.querySelector('.carousel-nav.next');
+    const dots = carousel.querySelectorAll('.carousel-dot');
+
+    if (items.length === 0) return;
+
+    let currentIndex = 0;
+    let autoSlideInterval = null;
+
+    const updateCarousel = (index) => {
+      items.forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      currentIndex = index;
+    };
+
+    const nextSlide = () => {
+      const next = (currentIndex + 1) % items.length;
+      updateCarousel(next);
+    };
+
+    const prevSlide = () => {
+      const prev = (currentIndex - 1 + items.length) % items.length;
+      updateCarousel(prev);
+    };
+
+    const startTimer = () => {
+      stopTimer();
+      autoSlideInterval = setInterval(nextSlide, 4000);
+    };
+
+    const stopTimer = () => {
+      if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = null;
+      }
+    };
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nextSlide();
+        startTimer();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        prevSlide();
+        startTimer();
+      });
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateCarousel(index);
+        startTimer();
+      });
     });
-};
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    initLoader();
-    initNavbarAnimation();
-    initGlitchEffect();
-    initSkillBars();
-    initProjectCards();
-    initCyberGrid();
-    initSectionTitles();
-    initHeroAnimation();
-    initTypedText();
-    initMobileMenu();
-    initProjectCarousels();
-    initFooterYear();
-    calculateAge();
-    calculateExperience();
-});
+    // Touch Swipe Support for mobile devices
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-const initLoader = () => {
-    document.body.classList.add('loading');
-    
-    // Simulate loading time for smoother transition
-    setTimeout(() => {
-        const loader = document.querySelector('.cyber-loader');
-        document.body.classList.remove('loading');
-        if (loader) {
-            loader.classList.add('hidden');
-            // Remove loader from DOM after transition
-            loader.addEventListener('transitionend', () => {
-                loader.remove();
-            });
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      stopTimer();
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+      startTimer();
+    }, { passive: true });
+
+    const handleSwipe = () => {
+      const diff = touchEndX - touchStartX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) {
+          prevSlide();
+        } else {
+          nextSlide();
         }
-    }, 2500); // Show loader for 2.5 seconds
+      }
+    };
+
+    // Pause on hover
+    carousel.addEventListener('mouseenter', stopTimer);
+    carousel.addEventListener('mouseleave', startTimer);
+
+    // Initial state
+    updateCarousel(0);
+    startTimer();
+  });
 };
+
+// ---------------------------------------------------------------------------
+// 6. GSAP Smooth Entry Animations
+// ---------------------------------------------------------------------------
+const initAnimations = () => {
+  if (typeof gsap === 'undefined') return;
+
+  // Hero Text Stagger
+  gsap.from('.hero-text-card > *', {
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.12,
+    ease: 'power3.out'
+  });
+
+  // Hero Avatar
+  gsap.from('.hero-avatar-card', {
+    scale: 0.92,
+    opacity: 0,
+    duration: 1,
+    delay: 0.2,
+    ease: 'power3.out'
+  });
+
+  // Section Headers Reveal
+  gsap.utils.toArray('.section-header-bubble').forEach((header) => {
+    gsap.from(header, {
+      scrollTrigger: {
+        trigger: header,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+  });
+
+  // About Widgets
+  gsap.from('.about-widget-grid > *', {
+    scrollTrigger: {
+      trigger: '.about-widget-grid',
+      start: 'top 82%',
+      toggleActions: 'play none none none'
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: 'power3.out'
+  });
+
+  // Skills Cards
+  gsap.from('.skill-pod-card', {
+    scrollTrigger: {
+      trigger: '.skills-bubble-grid',
+      start: 'top 82%',
+      toggleActions: 'play none none none'
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: 'power3.out'
+  });
+
+  // Projects Cards
+  gsap.from('.projects-bubble-grid .project-card', {
+    scrollTrigger: {
+      trigger: '.projects-bubble-grid',
+      start: 'top 82%',
+      toggleActions: 'play none none none'
+    },
+    y: 50,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: 'power3.out'
+  });
+};
+
+// ---------------------------------------------------------------------------
+// 7. Initialize Everything on DOMContentLoaded
+// ---------------------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initNavigation();
+  initTypedText();
+  calculateAge();
+  calculateExperience();
+  initFooterYear();
+  initProjectCarousels();
+  initAnimations();
+});
