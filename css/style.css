@@ -769,8 +769,8 @@ button {
    -------------------------------------------------------------------------- */
 .about-grid {
   display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: 22px;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 24px;
   align-items: stretch;
 }
 
@@ -780,107 +780,84 @@ button {
   flex-direction: column;
 }
 
-.card-heading {
-  font-size: 1.45rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  margin-bottom: 16px;
-}
-
 .about-bio-card p {
   color: var(--text-secondary);
   font-size: 0.98rem;
-  margin-bottom: 14px;
-  line-height: 1.65;
+  margin-bottom: 16px;
+  line-height: 1.7;
 }
 
-.focus-chip-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
   margin-top: auto;
-  padding-top: 18px;
+  padding-top: 20px;
 }
 
-.focus-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
+.stat-bubble-card,
+.stat-item {
+  padding: 18px 14px;
+  border-radius: var(--radius-inner);
   background: var(--liquid-glass-subtle);
   border: 1px solid var(--liquid-border-rim);
   border-top-color: var(--liquid-border-specular);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s var(--ease-spring);
 }
 
-.stats-column {
+.stat-bubble-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-number {
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.about-cards-column {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.stat-bubble-card,
-.stat-item {
-  padding: 24px 26px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.stat-icon-bubble {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  flex-shrink: 0;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
-}
-
-.icon-blue {
-  background: var(--accent-subtle);
-  color: var(--accent);
-}
-
-.icon-purple {
-  background: rgba(99, 102, 241, 0.15);
-  color: #6366f1;
-}
-
-.icon-emerald {
-  background: rgba(16, 185, 129, 0.15);
-  color: var(--accent-emerald);
-}
-
-.stat-meta {
+.about-subcard {
+  padding: 26px 28px;
+  border-radius: var(--radius-inner);
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
-.stat-number {
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+.about-subcard h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--text-primary);
+  margin-bottom: 8px;
 }
 
-.stat-label {
-  font-size: 0.9rem;
-  font-weight: 600;
+.about-subcard p {
+  font-size: 0.94rem;
   color: var(--text-secondary);
+  line-height: 1.6;
 }
 
-/* --------------------------------------------------------------------------
-   9. Skills Section (Liquid Capability Chips)
-   -------------------------------------------------------------------------- */
+/* Skills Section (Liquid Glass Meter Bars & Live Counters) */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -893,67 +870,51 @@ button {
   flex-direction: column;
 }
 
-.skill-group-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--liquid-border-subtle);
-}
-
-.group-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.18rem;
-  flex-shrink: 0;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35);
-}
-
 .group-title {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--text-primary);
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--liquid-border-subtle);
 }
 
-.group-desc {
-  font-size: 0.78rem;
-  color: var(--text-tertiary);
-}
-
-.skill-chips-wrap {
+.skill-items-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
-.skill-bubble-chip {
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-info {
   display: flex;
   align-items: center;
-  padding: 10px 14px;
-  border-radius: 16px;
-  background: var(--liquid-glass-subtle);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  transition: all 0.25s var(--ease-spring);
+  justify-content: space-between;
 }
 
-.skill-bubble-chip:hover {
-  background: var(--liquid-glass-hover);
-  transform: translateX(3px) scale(1.01);
+.skill-icon-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
-.skill-icon {
+.skill-brand-icon {
   font-size: 1.15rem;
-  width: 24px;
-  margin-right: 10px;
-  flex-shrink: 0;
+}
+
+.skill-img-brand {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 .color-html { color: #e34f26; }
@@ -964,26 +925,38 @@ button {
 .color-node { color: #339933; }
 .color-python { color: #3776ab; }
 .color-git { color: #f05032; }
-.color-mysql { color: #4479a1; }
-.color-sql { color: #cc292b; }
-.color-blue { color: var(--accent); }
-.color-purple { color: #6366f1; }
 
-.skill-label {
-  font-size: 0.9rem;
+.skill-name {
+  font-size: 0.92rem;
   font-weight: 600;
   color: var(--text-primary);
-  flex-grow: 1;
 }
 
-.skill-tier {
-  font-size: 0.72rem;
+.skill-percentage {
+  font-size: 0.88rem;
   font-weight: 700;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 
+.skill-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--liquid-glass-subtle);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--liquid-border-subtle);
+}
+
+.skill-progress {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--accent), #6366f1);
+  box-shadow: 0 0 10px rgba(41, 151, 255, 0.35);
+  transition: width 1.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 /* --------------------------------------------------------------------------
    10. Projects Section (Showcase & Carousel)
    -------------------------------------------------------------------------- */
@@ -1178,80 +1151,39 @@ button {
 }
 
 .footer-dock {
-  padding: 22px 30px;
+  padding: 24px 30px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
   border-radius: var(--radius-pill);
 }
 
-.dock-identity {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.dock-avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 0.92rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px -2px rgba(0, 113, 227, 0.4);
-}
-
-.dock-author-info {
+.footer-content {
   display: flex;
   flex-direction: column;
+  gap: 6px;
+  align-items: center;
 }
 
-.dock-name {
-  font-size: 0.94rem;
+.footer-brand-text {
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.footer-copy-text {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.highlight {
+  color: var(--accent);
   font-weight: 700;
-  color: var(--text-primary);
 }
 
-.dock-sub {
-  font-size: 0.78rem;
-  color: var(--text-tertiary);
-}
-
-.dock-social-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.dock-circle-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--liquid-glass-control);
-  border: 1px solid var(--liquid-border-rim);
-  border-top-color: var(--liquid-border-specular);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35);
-  color: var(--text-primary);
-  font-size: 1.1rem;
-  transition: all 0.25s var(--ease-spring);
-}
-
-.dock-circle-btn:hover {
-  background: var(--accent);
-  color: #ffffff;
-  transform: translateY(-2px) scale(1.08);
-}
-
-.dock-copyright {
-  font-size: 0.84rem;
-  color: var(--text-tertiary);
+.text-danger {
+  color: #ff3b30;
 }
 
 /* --------------------------------------------------------------------------

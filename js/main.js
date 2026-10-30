@@ -432,7 +432,74 @@ const initAnimations = () => {
   });
 };
 // ---------------------------------------------------------------------------
-// 7. Liquid Glass Specular Mouse Tracking (Desktop Fine Pointer Only)
+// 7. Skills Animated Percentage Counter & Progress Fill
+// ---------------------------------------------------------------------------
+const initSkillBars = () => {
+  const skillItems = document.querySelectorAll('.skill-item');
+  if (skillItems.length === 0) return;
+
+  let hasAnimated = false;
+
+  const animateSkills = () => {
+    if (hasAnimated) return;
+    hasAnimated = true;
+
+    skillItems.forEach((item) => {
+      const progressBar = item.querySelector('.skill-progress');
+      const percentEl = item.querySelector('.skill-percentage');
+      if (!progressBar || !percentEl) return;
+
+      const targetWidth = progressBar.getAttribute('data-width') || '0%';
+      const targetPercent = parseInt(percentEl.getAttribute('data-target') || '0', 10);
+
+      // Animate progress bar fill
+      progressBar.style.width = targetWidth;
+
+      // Animate percentage count-up
+      const duration = 1200;
+      const startTime = performance.now();
+
+      const updateCounter = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const val = Math.floor(easeOut * targetPercent);
+        percentEl.textContent = `${val}%`;
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          percentEl.textContent = `${targetPercent}%`;
+        }
+      };
+
+      requestAnimationFrame(updateCounter);
+    });
+  };
+
+  if (typeof ScrollTrigger !== 'undefined') {
+    ScrollTrigger.create({
+      trigger: '#skills',
+      start: 'top 75%',
+      onEnter: () => animateSkills(),
+      once: true
+    });
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateSkills();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) observer.observe(skillsSection);
+  }
+};
+
+// ---------------------------------------------------------------------------
+// 8. Liquid Glass Specular Mouse Tracking (Desktop Fine Pointer Only)
 // ---------------------------------------------------------------------------
 const initLiquidGlassEffects = () => {
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -450,7 +517,7 @@ const initLiquidGlassEffects = () => {
 };
 
 // ---------------------------------------------------------------------------
-// 8. Initialize Everything on DOMContentLoaded
+// 9. Initialize Everything on DOMContentLoaded
 // ---------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
@@ -460,6 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
   calculateExperience();
   initFooterYear();
   initProjectCarousels();
+  initSkillBars();
   initAnimations();
   initLiquidGlassEffects();
 });
