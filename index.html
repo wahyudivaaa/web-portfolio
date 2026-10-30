@@ -50,7 +50,7 @@
     />
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/style.css?v=liquid-glass-v5" />
+    <link rel="stylesheet" href="css/style.css?v=apple-liquid-v6" />
 
     <!-- Typed.js & Vercel Analytics -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -64,13 +64,6 @@
     </script>
   </head>
   <body>
-    <!-- Ambient Liquid Caustic Canvas for Real Glass Optical Refraction -->
-    <div class="liquid-caustic-canvas" aria-hidden="true">
-      <div class="caustic-pool pool-primary"></div>
-      <div class="caustic-pool pool-secondary"></div>
-      <div class="caustic-pool pool-tertiary"></div>
-    </div>
-
     <!-- Floating Dynamic Island Header Navigation -->
     <header class="dynamic-island-wrapper">
       <nav class="dynamic-island" aria-label="Primary Navigation">
@@ -150,50 +143,42 @@
     </header>
 
     <main id="main-content">
-      <!-- Hero Section -->
+      <!-- Hero Section (Clean, Unified Apple Showcase) -->
       <section id="home" class="hero-section">
         <div class="app-container">
-          <div class="hero-grid">
-            <div class="hero-content-card squircle-card">
-              <h1 class="hero-headline">
-                Hi, I'm <span class="highlight">Wahyu Diva</span>
-              </h1>
-
-              <div class="hero-role-row">
-                <span class="role-static">I'm a </span>
-                <span id="typing-text" class="typed-role-badge"></span>
-              </div>
-
-              <p class="hero-lead">Turning ideas into reality through code</p>
-
-              <div class="hero-action-row">
-                <a href="#projects" class="pill-btn pill-btn-primary">
-                  <span>View Work</span>
-                  <i class="fas fa-arrow-down" aria-hidden="true"></i>
-                </a>
-              </div>
+          <div class="hero-unified-card glass-panel">
+            <div class="hero-avatar-bubble">
+              <img
+                src="images/profile.png"
+                alt="Profile"
+                class="hero-profile-img"
+                loading="eager"
+              />
             </div>
 
-            <!-- Profile Visual -->
-            <div class="hero-visual-card squircle-card">
-              <div class="profile-squircle-frame">
-                <img
-                  src="images/profile.png"
-                  alt="Profile"
-                  class="profile-photo"
-                  loading="eager"
-                />
-              </div>
+            <h1 class="hero-headline">
+              Hi, I'm <span class="highlight">Wahyu Diva</span>
+            </h1>
+
+            <div class="typing-wrapper">
+              <span class="cyber-subtitle">I'm a </span>
+              <span id="typing-text" class="cyber-subtitle"></span>
             </div>
+
+            <p class="cyber-text">Turning ideas into reality through code</p>
+
+            <div class="hero-buttons">
+              <a href="#projects" class="btn-apple-primary">View Work</a>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <a href="#about" class="scroll-indicator" aria-label="Scroll to About section">
+              <div class="mouse">
+                <div class="wheel"></div>
+              </div>
+              <span class="scroll-text">SCROLL DOWN</span>
+            </a>
           </div>
-
-          <!-- Scroll Indicator -->
-          <a href="#about" class="scroll-hint-link" aria-label="Scroll to About section">
-            <span class="scroll-pill-capsule">
-              <span class="scroll-pill-dot"></span>
-            </span>
-            <span class="scroll-hint-text">SCROLL DOWN</span>
-          </a>
         </div>
       </section>
 
@@ -206,8 +191,8 @@
 
           <div class="about-grid">
             <!-- Bio Card -->
-            <div class="squircle-card about-bio-card">
-              <p>Hello!</p>
+            <div class="glass-panel about-bio-card">
+              <p class="greeting-text">Hello!</p>
               <p>
                 My name is I Putu Wahyu Diva Kumuda, but you can call me Wahyu
                 or Yudip. I was born on 15 June 2004, making me
@@ -244,19 +229,28 @@
               </div>
             </div>
 
-            <!-- About Cards -->
+            <!-- Focus Subcards -->
             <div class="about-cards-column">
-              <div class="squircle-card about-subcard">
-                <h3>Backend Development</h3>
-                <p>Building robust and scalable server-side applications.</p>
+              <div class="glass-panel about-subcard">
+                <div class="subcard-icon"><i class="fas fa-server" aria-hidden="true"></i></div>
+                <div class="subcard-content">
+                  <h3>Backend Development</h3>
+                  <p>Building robust and scalable server-side applications.</p>
+                </div>
               </div>
-              <div class="squircle-card about-subcard">
-                <h3>Frontend Development</h3>
-                <p>Creating responsive and interactive user interfaces.</p>
+              <div class="glass-panel about-subcard">
+                <div class="subcard-icon"><i class="fas fa-desktop" aria-hidden="true"></i></div>
+                <div class="subcard-content">
+                  <h3>Frontend Development</h3>
+                  <p>Creating responsive and interactive user interfaces.</p>
+                </div>
               </div>
-              <div class="squircle-card about-subcard">
-                <h3>Database Design</h3>
-                <p>Designing efficient and secure database structures.</p>
+              <div class="glass-panel about-subcard">
+                <div class="subcard-icon"><i class="fas fa-database" aria-hidden="true"></i></div>
+                <div class="subcard-content">
+                  <h3>Database Design</h3>
+                  <p>Designing efficient and secure database structures.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -272,7 +266,7 @@
 
           <div class="skills-grid">
             <!-- Frontend Card -->
-            <div class="squircle-card skill-group-card">
+            <div class="glass-panel skill-group-card">
               <h3 class="group-title">Frontend</h3>
 
               <div class="skill-items-list">
@@ -322,7 +316,7 @@
             </div>
 
             <!-- Backend Card -->
-            <div class="squircle-card skill-group-card">
+            <div class="glass-panel skill-group-card">
               <h3 class="group-title">Backend</h3>
 
               <div class="skill-items-list">
@@ -371,7 +365,7 @@
             </div>
 
             <!-- Database & Tools Card -->
-            <div class="squircle-card skill-group-card">
+            <div class="glass-panel skill-group-card">
               <h3 class="group-title">Database & Tools</h3>
 
               <div class="skill-items-list">
@@ -439,7 +433,7 @@
 
           <div class="projects-grid">
             <!-- Project 1: FlashPlay -->
-            <article class="squircle-card project-card">
+            <article class="glass-panel project-card">
               <div class="project-carousel-container">
                 <div class="project-carousel">
                   <button class="carousel-nav prev" type="button" aria-label="Previous FlashPlay image">
@@ -493,7 +487,7 @@
                     href="https://flash-play.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="pill-btn pill-btn-primary"
+                    class="btn-apple-primary"
                   >
                     <span>View Live</span>
                     <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
@@ -502,7 +496,7 @@
                     href="https://github.com/wahyudivaaa/flash-play"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="pill-btn pill-btn-secondary"
+                    class="btn-apple-secondary"
                   >
                     <i class="fab fa-github" aria-hidden="true"></i>
                     <span>Code</span>
@@ -512,7 +506,7 @@
             </article>
 
             <!-- Project 2: FlashBot -->
-            <article class="squircle-card project-card">
+            <article class="glass-panel project-card">
               <div class="project-carousel-container">
                 <div class="project-carousel">
                   <button class="carousel-nav prev" type="button" aria-label="Previous FlashBot image">
@@ -573,7 +567,7 @@
                     href="https://flash-bot-chat.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="pill-btn pill-btn-primary"
+                    class="btn-apple-primary"
                   >
                     <span>View Live</span>
                     <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
@@ -582,7 +576,7 @@
                     href="https://github.com/wahyudivaaa/flash-bot"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="pill-btn pill-btn-secondary"
+                    class="btn-apple-secondary"
                   >
                     <i class="fab fa-github" aria-hidden="true"></i>
                     <span>Code</span>
@@ -596,19 +590,17 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer-dock-wrapper">
+    <footer class="footer-wrapper">
       <div class="app-container">
-        <div class="squircle-card footer-dock">
-          <div class="footer-content text-center">
-            <p class="footer-brand-text">
-              <i class="fas fa-code" aria-hidden="true"></i> with
-              <i class="fas fa-heart text-danger" aria-hidden="true"></i> by
-              <span class="highlight">Wahyu Diva</span>
-            </p>
-            <p class="footer-copy-text">
-              &copy; <span id="currentYear"></span> All Rights Reserved
-            </p>
-          </div>
+        <div class="glass-panel footer-panel text-center">
+          <p class="footer-brand-text">
+            <i class="fas fa-code" aria-hidden="true"></i> with
+            <i class="fas fa-heart text-danger" aria-hidden="true"></i> by
+            <span class="highlight">Wahyu Diva</span>
+          </p>
+          <p class="footer-copy-text">
+            &copy; <span id="currentYear"></span> All Rights Reserved
+          </p>
         </div>
       </div>
     </footer>
@@ -667,7 +659,7 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="js/main.js?v=liquid-glass-v5"></script>
-    <script src="js/chatbot.js?v=liquid-glass-v5"></script>
+    <script src="js/main.js?v=apple-liquid-v6"></script>
+    <script src="js/chatbot.js?v=apple-liquid-v6"></script>
   </body>
 </html>

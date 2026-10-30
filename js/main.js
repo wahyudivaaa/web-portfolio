@@ -356,24 +356,14 @@ const initProjectCarousels = () => {
 const initAnimations = () => {
   if (typeof gsap === 'undefined') return;
 
-  // Hero Content Entrance
-  gsap.from('.hero-content-card > *', {
-    y: 24,
+  // Hero Unified Card Entrance
+  gsap.from('.hero-unified-card > *', {
+    y: 20,
     opacity: 0,
     duration: 0.8,
-    stagger: 0.1,
+    stagger: 0.08,
     ease: 'power3.out'
   });
-
-  // Hero Visual Card
-  gsap.from('.hero-visual-card', {
-    scale: 0.94,
-    opacity: 0,
-    duration: 0.9,
-    delay: 0.15,
-    ease: 'power3.out'
-  });
-
   // Section Headers
   gsap.utils.toArray('.section-header').forEach((header) => {
     gsap.from(header, {
@@ -504,7 +494,7 @@ const initSkillBars = () => {
 const initLiquidGlassEffects = () => {
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
-  const cards = document.querySelectorAll('.squircle-card');
+  const cards = document.querySelectorAll('.glass-panel');
   cards.forEach((card) => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
