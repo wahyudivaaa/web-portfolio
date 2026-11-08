@@ -174,8 +174,7 @@ button {
   border-top-color: var(--glass-panel-border-top);
   border-radius: var(--radius-card);
   box-shadow: var(--glass-bevel), var(--glass-shadow);
-  transition: transform 0.35s var(--ease-smooth),
-              box-shadow 0.35s var(--ease-smooth),
+  transition: box-shadow 0.35s var(--ease-smooth),
               background-color 0.35s var(--ease-smooth),
               border-color 0.35s var(--ease-smooth);
 }
