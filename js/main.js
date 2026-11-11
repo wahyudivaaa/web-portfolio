@@ -65,18 +65,27 @@ const initNavigation = () => {
   const sections = document.querySelectorAll('section[id]');
   const chatTrigger = document.querySelector('.chat-trigger-btn');
 
-  // Scrollspy & Island Elevation
+  // Scrollspy, Island Elevation & Compact-on-scroll (iOS tab bar behavior)
+  let lastScrollY = window.scrollY;
   const onScroll = () => {
     const scrollPos = window.scrollY + 200;
+    const y = window.scrollY;
 
-    // Island elevation style
     if (island) {
-      if (window.scrollY > 30) {
+      if (y > 30) {
         island.classList.add('island-scrolled');
       } else {
         island.classList.remove('island-scrolled');
       }
+
+      // Compact while scrolling down past the hero, expand on scroll up
+      if (y > 160 && y > lastScrollY + 4) {
+        island.classList.add('island-compact');
+      } else if (y < lastScrollY - 4 || y <= 160) {
+        island.classList.remove('island-compact');
+      }
     }
+    lastScrollY = y;
 
     // Active Section Tracking
     sections.forEach((section) => {
@@ -164,32 +173,6 @@ const initNavigation = () => {
       }
     });
   }
-};
-
-// ---------------------------------------------------------------------------
-// 3. Dynamic Typed.js Roles
-// ---------------------------------------------------------------------------
-const initTypedText = () => {
-  const element = document.querySelector('#typing-text');
-  if (!element || typeof Typed === 'undefined') return;
-
-  new Typed('#typing-text', {
-    strings: [
-      'Junior Fullstack Developer',
-      'Modern Web Developer',
-      'UI/UX Enthusiast',
-      'Problem Solver'
-    ],
-    typeSpeed: 45,
-    backSpeed: 25,
-    backDelay: 1800,
-    startDelay: 600,
-    loop: true,
-    showCursor: true,
-    cursorChar: '|',
-    autoInsertCss: true,
-    smartBackspace: true
-  });
 };
 
 // ---------------------------------------------------------------------------
@@ -355,9 +338,10 @@ const initProjectCarousels = () => {
 // ---------------------------------------------------------------------------
 const initAnimations = () => {
   if (typeof gsap === 'undefined') return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // Hero Unified Card Entrance
-  gsap.from('.hero-unified-card > *', {
+  // Hero Entrance (copy children stagger, visual as one unit)
+  gsap.from('.hero-copy > *, .hero-visual', {
     y: 20,
     opacity: 0,
     duration: 0.8,
@@ -437,102 +421,14 @@ const initAnimations = () => {
   });
 };
 // ---------------------------------------------------------------------------
-// 7. Skills Animated Percentage Counter & Progress Fill
-// ---------------------------------------------------------------------------
-const initSkillBars = () => {
-  const skillItems = document.querySelectorAll('.skill-item');
-  if (skillItems.length === 0) return;
-
-  let hasAnimated = false;
-
-  const animateSkills = () => {
-    if (hasAnimated) return;
-    hasAnimated = true;
-
-    skillItems.forEach((item) => {
-      const progressBar = item.querySelector('.skill-progress');
-      const percentEl = item.querySelector('.skill-percentage');
-      if (!progressBar || !percentEl) return;
-
-      const targetWidth = progressBar.getAttribute('data-width') || '0%';
-      const targetPercent = parseInt(percentEl.getAttribute('data-target') || '0', 10);
-
-      // Animate progress bar fill
-      progressBar.style.width = targetWidth;
-
-      // Animate percentage count-up
-      const duration = 1200;
-      const startTime = performance.now();
-
-      const updateCounter = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeOut = 1 - Math.pow(1 - progress, 3);
-        const val = Math.floor(easeOut * targetPercent);
-        percentEl.textContent = `${val}%`;
-
-        if (progress < 1) {
-          requestAnimationFrame(updateCounter);
-        } else {
-          percentEl.textContent = `${targetPercent}%`;
-        }
-      };
-
-      requestAnimationFrame(updateCounter);
-    });
-  };
-
-  if (typeof ScrollTrigger !== 'undefined') {
-    ScrollTrigger.create({
-      trigger: '#skills',
-      start: 'top 75%',
-      onEnter: () => animateSkills(),
-      once: true
-    });
-  } else {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateSkills();
-          observer.disconnect();
-        }
-      });
-    }, { threshold: 0.2 });
-    const skillsSection = document.getElementById('skills');
-    if (skillsSection) observer.observe(skillsSection);
-  }
-};
-
-// ---------------------------------------------------------------------------
-// 8. Liquid Glass Specular Mouse Tracking (Desktop Fine Pointer Only)
-// ---------------------------------------------------------------------------
-const initLiquidGlassEffects = () => {
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-  const cards = document.querySelectorAll('.glass-panel');
-  cards.forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
-    });
-  });
-};
-
-// ---------------------------------------------------------------------------
 // 9. Initialize Everything on DOMContentLoaded
 // ---------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNavigation();
-  initTypedText();
   calculateAge();
   calculateExperience();
   initFooterYear();
   initProjectCarousels();
-  initSkillBars();
   initAnimations();
-  initLiquidGlassEffects();
 });
