@@ -1501,3 +1501,271 @@ section[id] {
     row-gap: 2px;
   }
 }
+
+/* ==========================================================================
+   13. Redesign v9 (2026-11-11): section eyebrows, hero availability badge
+   + socials, Experience & Education timelines, footer socials.
+   NOTE: .glass-panel must never receive a transform transition (GSAP
+   collision) — hover motion lives on non-panel elements.
+   Background stays flat per Wahyu's instruction (no color gradients).
+   ========================================================================== */
+
+/* Section eyebrow labels */
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background-color: var(--accent-subtle);
+  border: 1px solid var(--glass-panel-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 14px;
+}
+
+/* Hero availability badge */
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background-color: var(--glass-chip);
+  border: 1px solid var(--glass-panel-border);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 22px;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #30d158;
+  flex-shrink: 0;
+  animation: statusPulse 2.2s infinite;
+}
+
+@keyframes statusPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(48, 209, 88, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(48, 209, 88, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(48, 209, 88, 0);
+  }
+}
+
+/* Hero location + socials */
+.hero-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: -14px;
+  margin-bottom: 26px;
+}
+
+.hero-location i {
+  color: var(--accent);
+}
+
+.hero-buttons {
+  margin-bottom: 24px;
+}
+
+.hero-socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.hero-social-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--glass-control);
+  border: 1px solid var(--glass-panel-border);
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  transition: all 0.22s var(--ease-spring);
+}
+
+.hero-social-btn:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+  transform: translateY(-3px);
+  border-color: transparent;
+}
+
+.footer-socials {
+  margin: 18px 0 6px;
+}
+
+/* Experience & Education timelines */
+.timeline {
+  position: relative;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 6px 0 2px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background-color: var(--glass-panel-border);
+  border-radius: var(--radius-pill);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 68px;
+  margin-bottom: 26px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--accent-subtle);
+  border: 1px solid var(--glass-panel-border);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  z-index: 1;
+}
+
+.timeline-card {
+  padding: 28px 30px;
+}
+
+.timeline-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.timeline-role {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.timeline-org {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.timeline-period {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  background-color: var(--glass-chip);
+  border: 1px solid var(--glass-panel-border);
+  padding: 6px 13px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.timeline-desc {
+  font-size: 0.97rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Redesign responsive adjustments */
+@media (max-width: 1120px) {
+  .island-link {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .brand-name {
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 880px) and (min-width: 769px) {
+  .chat-btn-label {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline-item {
+    padding-left: 58px;
+  }
+
+  .timeline::before {
+    left: 19px;
+  }
+
+  .timeline-dot {
+    width: 40px;
+    height: 40px;
+    font-size: 0.92rem;
+    top: 20px;
+  }
+
+  .timeline-card {
+    padding: 22px 20px;
+  }
+
+  .timeline-head {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-socials {
+    margin-bottom: 28px;
+  }
+
+  .hero-buttons {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 360px) {
+  .availability-badge {
+    font-size: 0.78rem;
+    padding: 7px 12px;
+  }
+}
