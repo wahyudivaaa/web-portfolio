@@ -713,4 +713,8 @@ const initRealGlass = () => {
   if (themeBtn) attach(themeBtn, makeFilter('glass-btn-theme'), 12, 0.45);
   const chatBtn = document.querySelector('.chat-trigger-btn');
   if (chatBtn) attach(chatBtn, makeFilter('glass-btn-chat'), 14, 0.4);
+  // v14: the chatbot FAB is the one extra refractive surface beyond the
+  // nav lens (research rule: refraction stays rare = small chrome only)
+  const fab = document.querySelector('.chatbot-toggle');
+  if (fab) attach(fab, makeFilter('glass-fab'), 16, 0.45);
 };
