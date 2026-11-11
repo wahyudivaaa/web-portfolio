@@ -2228,3 +2228,334 @@ section[id] {
     left: -4px;
   }
 }
+
+/* ==========================================================================
+   REDESIGN v11 — Header & Footer in Apple Liquid Glass (iOS 26)
+   - The island becomes a true glass capsule: translucent fill, specular rim.
+   - The active tab is a glass LENS that glides between tabs (like the iOS 26
+     tab bar selection capsule) — no more solid accent pill.
+   - Footer rebuilt as a structured panel: brand + nav on top, hairline,
+     glass social buttons + glass back-to-top button below.
+   Glass stays in the functional layer only; the page background stays flat.
+   ========================================================================== */
+:root {
+  --lens-bg: rgba(255, 255, 255, 0.72);
+  --lens-border: rgba(0, 0, 0, 0.06);
+  --lens-highlight: rgba(255, 255, 255, 0.95);
+  --lens-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.18),
+                 0 1px 4px rgba(0, 0, 0, 0.08);
+  --glass-btn-fill: rgba(255, 255, 255, 0.55);
+  --glass-btn-rim: rgba(255, 255, 255, 0.7);
+  --ease-glass: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-glass-spring: cubic-bezier(0.34, 1.3, 0.4, 1);
+}
+
+[data-theme="dark"] {
+  --lens-bg: rgba(255, 255, 255, 0.13);
+  --lens-border: rgba(255, 255, 255, 0.2);
+  --lens-highlight: rgba(255, 255, 255, 0.38);
+  --lens-shadow: 0 8px 22px -6px rgba(0, 0, 0, 0.65),
+                 0 1px 4px rgba(0, 0, 0, 0.4);
+  --glass-btn-fill: rgba(255, 255, 255, 0.08);
+  --glass-btn-rim: rgba(255, 255, 255, 0.22);
+}
+
+/* --- Island: richer liquid-glass material ------------------------------- */
+.dynamic-island {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.04) 52%,
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: var(--glass-bevel), var(--glass-shadow-island),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.dynamic-island::after {
+  opacity: 0.35;
+}
+
+.brand-avatar-bubble {
+  box-shadow: inset 0 1px 0 0 var(--glass-btn-rim),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Tab track + sliding glass lens ------------------------------------- */
+.island-links {
+  position: relative;
+  isolation: isolate;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.07),
+    inset 0 0 0 1px var(--glass-panel-border);
+}
+
+.island-lens {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  z-index: 0;
+  height: calc(100% - 8px);
+  width: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--lens-bg);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.06) 55%,
+    rgba(255, 255, 255, 0)
+  );
+  border: 1px solid var(--lens-border);
+  box-shadow: inset 0 1px 0 0 var(--lens-highlight), var(--lens-shadow);
+  backdrop-filter: blur(10px) saturate(170%);
+  -webkit-backdrop-filter: blur(10px) saturate(170%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.5s var(--ease-glass-spring),
+    width 0.5s var(--ease-glass-spring), opacity 0.25s var(--ease-glass);
+}
+
+.island-link {
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+  transition: color 0.25s var(--ease-glass), transform 0.15s var(--ease-out);
+}
+
+/* The lens marks the active tab now — no solid fill on the link itself */
+.island-link.active {
+  color: var(--text-primary);
+  background-color: transparent;
+  font-weight: 800;
+}
+
+/* --- Island action buttons: liquid glass discs --------------------------- */
+.island-btn {
+  background-color: var(--glass-btn-fill);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.03) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  border-color: var(--lens-border);
+  box-shadow: inset 0 1px 0 0 var(--lens-highlight),
+    0 3px 8px -2px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  transition: transform 0.25s var(--ease-glass-spring),
+    background-color 0.25s var(--ease-glass), color 0.25s var(--ease-glass);
+}
+
+.chat-trigger-btn {
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+}
+
+.chat-trigger-btn:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+  transform: scale(1.04);
+}
+
+/* --- Mobile sheet: active row becomes a glass pill ----------------------- */
+.sheet-link.active {
+  background-color: var(--lens-bg);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.04) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: inset 0 1px 0 0 var(--lens-highlight),
+    inset 0 0 0 1px var(--lens-border);
+  color: var(--text-primary);
+}
+
+.sheet-link.active i {
+  color: var(--accent);
+}
+
+/* --- Footer v11 ------------------------------------------------------------ */
+.footer-wrapper {
+  padding: 16px 0 56px;
+}
+
+.footer-panel {
+  background-color: var(--glass-panel-bg);
+  border: 1px solid var(--glass-panel-border);
+  border-top-color: var(--glass-panel-border-top);
+  border-radius: var(--radius-card);
+  box-shadow: var(--glass-bevel), var(--glass-shadow);
+  padding: 28px 32px 24px;
+  text-align: left;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 28px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--glass-panel-border);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+}
+
+.footer-brand .brand-avatar-bubble {
+  width: 38px;
+  height: 38px;
+}
+
+.footer-brand-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.footer-brand-name {
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+.footer-brand-role {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.footer-nav a {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  transition: color 0.2s var(--ease-glass),
+    background-color 0.2s var(--ease-glass), transform 0.15s var(--ease-out);
+}
+
+.footer-nav a:hover {
+  color: var(--text-primary);
+  background-color: var(--glass-chip-hover);
+}
+
+.footer-nav a:active {
+  transform: scale(0.97);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+}
+
+.footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-socials {
+  margin: 0;
+}
+
+.footer-socials .hero-social-btn {
+  width: 42px;
+  height: 42px;
+  background-color: var(--glass-btn-fill);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.03) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  border-color: var(--lens-border);
+  box-shadow: inset 0 1px 0 0 var(--lens-highlight),
+    0 3px 8px -2px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+}
+
+.footer-socials .hero-social-btn:hover {
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+  border-color: var(--lens-border);
+  transform: translateY(-3px);
+}
+
+.to-top-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background-color: var(--glass-btn-fill);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.03) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  border: 1px solid var(--lens-border);
+  box-shadow: inset 0 1px 0 0 var(--lens-highlight),
+    0 3px 8px -2px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  transition: transform 0.25s var(--ease-glass-spring),
+    background-color 0.25s var(--ease-glass);
+}
+
+.to-top-btn:hover {
+  transform: translateY(-3px);
+}
+
+.to-top-btn:active {
+  transform: scale(0.94);
+}
+
+@media (max-width: 768px) {
+  .footer-panel {
+    padding: 24px 20px 20px;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .island-lens,
+  .island-btn,
+  .footer-socials .hero-social-btn,
+  .to-top-btn {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background-color: var(--glass-solid);
+  }
+}
