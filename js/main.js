@@ -420,6 +420,21 @@ const initAnimations = () => {
     stagger: 0.18,
     ease: 'power3.out'
   });
+
+  // Experience & Education Timeline Items (Redesign v9)
+  gsap.utils.toArray('.timeline-item').forEach((item) => {
+    gsap.from(item, {
+      scrollTrigger: {
+        trigger: item,
+        start: 'top 88%',
+        toggleActions: 'play none none none'
+      },
+      y: 26,
+      opacity: 0,
+      duration: 0.65,
+      ease: 'power3.out'
+    });
+  });
 };
 // ---------------------------------------------------------------------------
 // 7. Skills Animated Percentage Counter & Progress Fill
