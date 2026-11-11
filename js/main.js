@@ -718,3 +718,16 @@ const initRealGlass = () => {
   const fab = document.querySelector('.chatbot-toggle');
   if (fab) attach(fab, makeFilter('glass-fab'), 16, 0.45);
 };
+
+/* ===== REDESIGN v15: live local-time clock in the footer (WITA) ===== */
+(function initFooterClock() {
+  var el = document.getElementById('footerClock');
+  if (!el) return;
+  var fmt = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Makassar',
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+  });
+  function tick() { el.textContent = fmt.format(new Date()); }
+  tick();
+  setInterval(tick, 1000);
+})();
