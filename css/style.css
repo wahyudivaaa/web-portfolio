@@ -2711,3 +2711,125 @@ html.has-refract .island-frost {
 html.has-refract[data-theme="dark"] .island-frost {
   background-color: rgba(30, 30, 35, 0.45);
 }
+
+/* ================================================================
+   REDESIGN v14 — SITE-WIDE LIQUID GLASS HARMONIZATION
+   Basis: Apple HIG/WWDC25 (glass ONLY in the functional layer) +
+   site-wide harmonization research 2026-11-11. One glass family:
+   shared tint tokens, shared rim light, shared blur language.
+   Content (cards, timelines, static tags, form wells) stays solid.
+   ================================================================ */
+
+/* Primary action = tinted glass (glassProminent) */
+.btn-apple-primary {
+  background-color: color-mix(in srgb, var(--accent) 84%, transparent);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.45),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.15),
+    0 8px 24px -6px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.btn-apple-primary:hover {
+  background-color: color-mix(in srgb, var(--accent) 94%, transparent);
+}
+
+/* Secondary actions + chatbot suggestion chips = clear glass */
+.btn-apple-secondary,
+.suggestion-chip {
+  background-color: var(--glass-btn-fill);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid var(--lens-border);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.12),
+    0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Carousel controls float over photos: clear glass + dimming */
+.carousel-nav {
+  background-color: rgba(18, 18, 24, 0.32);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.45),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.15),
+    0 6px 18px rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+}
+
+/* Social buttons grouped under ONE glass pill (no glass-on-glass:
+   the buttons inside become plain fills on the shared material) */
+.hero-socials {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  background-color: var(--glass-btn-fill);
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  border: 1px solid var(--glass-panel-border);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    0 6px 18px rgba(0, 0, 0, 0.1);
+  align-self: flex-start;
+}
+
+.hero-socials .hero-social-btn {
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.hero-socials .hero-social-btn:hover {
+  background-color: var(--glass-panel-hover);
+}
+
+/* Hero bubbles join the same blur language */
+.hero-bubble {
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+}
+
+/* Chatbot: panel = Regular glass aligned to the family;
+   toggle = tinted glass (refracted in Chromium via JS) */
+.chatbot-container {
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+.chatbot-toggle {
+  background-color: color-mix(in srgb, var(--accent) 88%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.15),
+    0 10px 28px -6px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .btn-apple-secondary,
+  .suggestion-chip,
+  .hero-socials,
+  .carousel-nav,
+  .chatbot-container {
+    background-color: var(--glass-solid);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .btn-apple-primary,
+  .chatbot-toggle {
+    background-color: var(--accent);
+  }
+}
