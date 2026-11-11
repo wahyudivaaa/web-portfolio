@@ -2833,3 +2833,62 @@ html.has-refract[data-theme="dark"] .island-frost {
     background-color: var(--accent);
   }
 }
+
+/* ============================================================
+   REDESIGN v15 — FOOTER CONTENT (nav links removed at Wahyu's
+   order: a footer repeats the header when it only holds the
+   same menu. Replaced with footer-grade info: status, location,
+   live local time, and a one-line tagline.)
+   ============================================================ */
+.footer-tagline {
+  margin: 14px 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 460px;
+}
+.footer-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 36px;
+  align-items: flex-start;
+}
+.footer-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.footer-info-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.footer-info-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #30d158;
+  box-shadow: 0 0 0 3px rgba(48, 209, 88, 0.18);
+  flex: none;
+}
+.footer-clock {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.84rem;
+}
+@media (max-width: 768px) {
+  .footer-info { gap: 14px 24px; }
+  .footer-tagline { max-width: none; }
+}
