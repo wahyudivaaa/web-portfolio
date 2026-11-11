@@ -2627,3 +2627,87 @@ section[id] {
     padding-bottom: 36px;
   }
 }
+
+/* ==========================================================================
+   REDESIGN v13 — REAL GLASS prototype (research 2026-11-11)
+   True optical refraction via SVG feDisplacementMap in backdrop-filter,
+   Chromium only, enabled by JS adding .has-refract to <html> (positive
+   Chromium detection + fine pointer + desktop width). Everywhere else the
+   v11/v12 frost stays untouched.
+   - The island's frost moves to a sibling layer (.island-frost, injected
+     by JS) so the lens's backdrop is NOT trapped by an ancestor filter.
+   - The lens and the island buttons get per-element displacement maps
+     generated on canvas at their exact size (flat centre, bent rim).
+   - A pointer-reactive specular sheen rides on the island (::after).
+   ========================================================================== */
+html.has-refract .dynamic-island {
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.island-frost {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background-color: var(--glass-panel-bg);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.04) 52%,
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  pointer-events: none;
+}
+
+html.has-refract .dynamic-island > *:not(.island-frost) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pointer-reactive specular: a soft light that follows the cursor along
+   the island, layered over the static top sheen */
+.dynamic-island::after {
+  background:
+    radial-gradient(
+      170px 74px at var(--light-x, 50%) -12%,
+      rgba(255, 255, 255, 0.38),
+      rgba(255, 255, 255, 0) 70%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.22),
+      rgba(255, 255, 255, 0.05) 45%,
+      rgba(255, 255, 255, 0) 70%
+    );
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  html.has-refract .dynamic-island {
+    background-color: var(--glass-solid);
+  }
+
+  .island-frost {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background-color: var(--glass-solid);
+  }
+}
+
+/* v13.1 clarity tuning (owner chose real refraction, 2026-11-11): in
+   refract mode the island frost gets lighter and sharper so the page
+   behind the header keeps enough contrast for the lens to bend visibly.
+   Non-refract browsers keep the exact v11/v12 frost above. */
+html.has-refract .island-frost {
+  background-color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px) saturate(170%);
+  -webkit-backdrop-filter: blur(12px) saturate(170%);
+}
+
+html.has-refract[data-theme="dark"] .island-frost {
+  background-color: rgba(30, 30, 35, 0.45);
+}
