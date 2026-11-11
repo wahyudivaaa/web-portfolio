@@ -37,7 +37,7 @@
 
   --text-primary: #1d1d1f;
   --text-secondary: #515154;
-  --text-tertiary: #86868b;
+  --text-tertiary: #6e6e73;
 
   --accent: #0071e3;
   --accent-hover: #0077ed;
@@ -85,7 +85,7 @@
 
   --text-primary: #ffffff;
   --text-secondary: #a1a1a6;
-  --text-tertiary: #6e6e73;
+  --text-tertiary: #8e8e93;
 
   --accent: #2997ff;
   --accent-hover: #52aaff;
@@ -332,7 +332,7 @@ button {
 
 [data-theme="light"] .theme-icon-moon {
   display: inline-block;
-  color: #6366f1;
+  color: var(--accent);
 }
 
 /* AI Assistant Pill in Nav */
@@ -1767,5 +1767,464 @@ section[id] {
   .availability-badge {
     font-size: 0.78rem;
     padding: 7px 12px;
+  }
+}
+
+/* ==========================================================================
+   14. Redesign v10 (2026-11-11): Liquid Glass discipline + antislop pass.
+   Research basis: UI UX Pro Max rules, Apple iOS 26 Liquid Glass HIG,
+   anti-AI-slop audit. Key moves:
+   - Glass is DEMOTED to the functional layer only (island nav, mobile
+     sheet, chatbot, carousel controls, hero bubbles). Content panels are
+     solid material now: on this flat canvas they look identical, but the
+     page no longer pays a backdrop blur for every card (mobile perf).
+   - Hero is asymmetric (copy left, visual right) with real glass bubbles.
+   - Skill bars replaced by level labels; mono type for labels/metrics.
+   - iOS motion tokens, press states, >=44px targets, reduced-motion and
+     reduced-transparency support. Background stays flat (Wahyu's rule).
+   ========================================================================== */
+
+:root {
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --glass-solid: #ffffff;
+}
+
+[data-theme="dark"] {
+  --glass-solid: #1c1c21;
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: -120px;
+  left: 16px;
+  z-index: 2000;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: top 0.2s var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 12px;
+  color: #ffffff;
+}
+
+/* Content layer: solid material, no backdrop blur */
+.glass-panel {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Functional glass: lighter, tokenised blur + specular sheen on the island */
+.dynamic-island {
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  position: relative;
+  overflow: hidden;
+}
+
+.dynamic-island::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05) 45%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0.45;
+}
+
+.chatbot-container {
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+/* Island compacts while scrolling down, expands on scroll up (iOS tab bar) */
+.dynamic-island.island-compact {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  transform: translateY(-3px) scale(0.98);
+  box-shadow: var(--glass-bevel), var(--glass-shadow-hover);
+}
+
+/* Mono labels & metrics (editorial detail, SF Mono voice) */
+.section-eyebrow,
+.stack-tag,
+.timeline-period,
+.stat-label,
+.skill-level {
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+/* Press feedback on everything tappable (iOS: scale 0.97) */
+.island-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+}
+
+.island-link:active {
+  transform: scale(0.97);
+}
+
+.sheet-link:active,
+.suggestion-chip:active {
+  transform: scale(0.97);
+}
+
+.hero-social-btn:active {
+  transform: scale(0.94);
+}
+
+.carousel-nav:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.send-message:active,
+.close-chat:active {
+  transform: scale(0.94);
+}
+
+/* --- Hero v10: asymmetric layout --------------------------------------- */
+.hero-section {
+  min-height: auto;
+}
+
+.hero-unified-card {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+  padding: 56px 48px;
+  text-align: left;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-copy .availability-badge {
+  margin-bottom: 20px;
+}
+
+.hero-headline {
+  font-size: clamp(2.7rem, 5.2vw, 4rem);
+  margin-bottom: 12px;
+}
+
+.hero-role {
+  font-size: clamp(1.2rem, 2.1vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.hero-copy .cyber-text {
+  max-width: 480px;
+  margin-bottom: 18px;
+}
+
+.hero-copy .hero-location {
+  margin: 0 0 28px;
+}
+
+.hero-copy .hero-buttons {
+  justify-content: flex-start;
+  margin-bottom: 26px;
+}
+
+.hero-copy .hero-socials {
+  justify-content: flex-start;
+  margin-bottom: 0;
+}
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 18px 8px;
+}
+
+.hero-visual .hero-avatar-bubble {
+  width: 250px;
+  height: 250px;
+  border-radius: 52px;
+  margin-bottom: 0;
+}
+
+/* Real glass bubbles floating over the hero visual (functional glass) */
+.hero-bubble {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 16px 11px 12px;
+  border-radius: 20px;
+  background-color: var(--glass-panel-bg);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--glass-panel-border);
+  border-top-color: var(--glass-panel-border-top);
+  box-shadow: var(--glass-bevel), var(--glass-shadow-island);
+  animation: bubbleFloat 6s ease-in-out infinite alternate;
+  z-index: 2;
+}
+
+.bubble-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.bubble-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.bubble-text strong {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.bubble-text small {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.bubble-exp {
+  top: 2%;
+  left: 0;
+}
+
+.bubble-projects {
+  bottom: 6%;
+  right: 0;
+  animation-delay: -2s;
+}
+
+.bubble-stack {
+  bottom: -2%;
+  left: 6%;
+  animation-delay: -4s;
+}
+
+@keyframes bubbleFloat {
+  from {
+    transform: translateY(-4px);
+  }
+  to {
+    transform: translateY(6px);
+  }
+}
+
+/* --- Skills v10: level labels instead of percentage bars ---------------- */
+.skill-level {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--glass-panel-border);
+  background-color: var(--glass-chip);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.skill-level.level-advanced {
+  color: var(--accent);
+  background-color: var(--accent-subtle);
+}
+
+.skill-item {
+  padding: 14px 16px;
+}
+
+/* --- Projects v10: role line + 44px carousel targets -------------------- */
+.project-role {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 12px;
+}
+
+.project-title {
+  margin-bottom: 6px;
+}
+
+.carousel-nav {
+  width: 44px;
+  height: 44px;
+}
+
+.carousel-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: transparent;
+  position: relative;
+}
+
+.carousel-dot::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: all 0.2s var(--ease-out);
+}
+
+.carousel-dot.active {
+  width: 24px;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.carousel-dot.active::before {
+  width: 16px;
+  border-radius: var(--radius-pill);
+  background-color: #ffffff;
+}
+
+/* --- Accessibility: reduced transparency / no backdrop-filter ----------- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .dynamic-island,
+  .mobile-bubble-sheet,
+  .chatbot-container,
+  .hero-bubble {
+    background-color: var(--glass-solid);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .dynamic-island,
+  .mobile-bubble-sheet,
+  .chatbot-container,
+  .hero-bubble,
+  .carousel-nav,
+  .carousel-dots {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background-color: var(--glass-solid);
+  }
+}
+
+@media (prefers-contrast: more) {
+  .glass-panel,
+  .dynamic-island,
+  .hero-bubble {
+    border-color: var(--text-tertiary);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* --- Hero responsive ----------------------------------------------------- */
+@media (max-width: 992px) {
+  .hero-unified-card {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 44px 32px;
+  }
+
+  .hero-copy {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-copy .hero-buttons,
+  .hero-copy .hero-socials {
+    justify-content: center;
+  }
+
+  .hero-visual .hero-avatar-bubble {
+    width: 210px;
+    height: 210px;
+    border-radius: 46px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-unified-card {
+    padding: 36px 20px;
+    gap: 34px;
+  }
+
+  .hero-visual {
+    padding: 14px 4px;
+  }
+
+  .hero-visual .hero-avatar-bubble {
+    width: 168px;
+    height: 168px;
+    border-radius: 38px;
+  }
+
+  .hero-bubble {
+    padding: 9px 13px 9px 10px;
+    border-radius: 16px;
+  }
+
+  .bubble-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.82rem;
+  }
+
+  .bubble-text strong {
+    font-size: 0.84rem;
+  }
+
+  .bubble-text small {
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .bubble-projects {
+    right: -4px;
+  }
+
+  .bubble-exp {
+    left: -4px;
   }
 }
