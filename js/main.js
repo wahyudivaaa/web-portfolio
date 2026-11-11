@@ -109,6 +109,47 @@ const initNavigation = () => {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  // Liquid Glass tab lens (iOS 26): a glass capsule that glides to the
+  // active tab instead of a solid fill swapping between links.
+  const linksTrack = document.querySelector('.island-links');
+  const lens = document.querySelector('.island-lens');
+  const islandLinks = document.querySelectorAll('.island-link');
+
+  if (linksTrack && lens && islandLinks.length) {
+    const moveLens = (target, animate = true) => {
+      if (!target || linksTrack.offsetParent === null) {
+        lens.style.opacity = '0';
+        return;
+      }
+      if (!animate) lens.style.transition = 'none';
+      lens.style.width = `${target.offsetWidth}px`;
+      lens.style.transform = `translateX(${target.offsetLeft}px)`;
+      lens.style.opacity = '1';
+      if (!animate) {
+        void lens.offsetWidth;
+        lens.style.transition = '';
+      }
+    };
+
+    const lensToActive = (animate = true) =>
+      moveLens(linksTrack.querySelector('.island-link.active'), animate);
+
+    // Follow scrollspy / click changes of the active class
+    const lensObserver = new MutationObserver(() => lensToActive());
+    islandLinks.forEach((link) => {
+      lensObserver.observe(link, { attributes: true, attributeFilter: ['class'] });
+      // Preview on hover, settle back to the active tab on leave
+      link.addEventListener('mouseenter', () => moveLens(link));
+      link.addEventListener('click', () => moveLens(link));
+    });
+    linksTrack.addEventListener('mouseleave', () => lensToActive());
+
+    window.addEventListener('resize', () => lensToActive(false));
+    window.addEventListener('load', () => lensToActive(false));
+    requestAnimationFrame(() => lensToActive(false));
+    setTimeout(() => lensToActive(false), 350);
+  }
+
   // Mobile Menu Sheet Toggle
   if (mobileToggle && mobileSheet) {
     const toggleMenu = () => {
