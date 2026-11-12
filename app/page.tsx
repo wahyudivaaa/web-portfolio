@@ -683,30 +683,33 @@ export default function Home() {
                   <h3 className="project-title">Flash Agent</h3>
                   <p className="project-role">Personal project · Private repository</p>
                   <p className="project-text">
-                    Flash Agent is a self-hosted AI agent written in Go and
-                    shipped as a single binary that serves an HTTP API, a
-                    React dashboard, and a terminal UI. It gives the configured
-                    model more than 100 built-in tools across 16 toolsets that
-                    act on the machine it runs on — workspace files, a host
-                    shell, a Chromium browser driven over the DevTools
-                    protocol, SSH/SFTP access to saved servers, a fingerprinted
-                    HTTP client, and a MITM proxy — with an embedded SQLite
-                    database and no external services to operate.
+                    Flash Agent is a self-hosted AI hacking agent — an
+                    autonomous penetration-testing and exploitation operator
+                    written in Go and shipped as a
+                    single binary that serves an HTTP API, a React dashboard,
+                    and a terminal UI. It runs authorized engagements end to
+                    end: mapping a target's attack surface, hunting and
+                    proving vulnerabilities, and turning access into
+                    documented impact. A dedicated exploit harness, an
+                    engagement tracker that follows the phases of a test,
+                    and scope, evidence, and findings stores keep every step
+                    inside the authorized boundary — and fully recorded.
                   </p>
                   <p className="project-text">
-                    Its memory survives between sessions through in-process
-                    hybrid retrieval — HNSW vector search fused with full-text
-                    search, then reranked — plus RAG over documents, so the
-                    second session never starts from zero. Work also outlives a
-                    single turn: a built-in cron runner executes scheduled jobs
-                    unattended, standing goals are verified by a separate judge
-                    model before they count as done, and an autopilot queue
-                    keeps tasks moving. Twenty-five specialist roles, from
-                    engineering and writing to security research, can be
-                    delegated self-contained work inside isolated git
-                    worktrees, while a managed proxy pool and a ten-vendor
-                    challenge classifier keep the agent effective against
-                    real-world blocks.
+                    The security work is organized as craft, not prompts.
+                    Thirteen of its twenty-five specialist roles are
+                    offensive — an exploit operator, OSINT and intercept
+                    specialists, a reverse engineer, a threat modeler, and
+                    dedicated web-app, API, mobile, cloud, and
+                    internal-network testers — backed by a skill library of
+                    sixteen per-vulnerability exploitation playbooks (SQL
+                    injection, SSRF, SSTI, XXE, command injection,
+                    deserialization, JWT attacks, cloud metadata theft, and
+                    more) plus recon and reporting playbooks. Underneath sits
+                    the general platform: more than 100 tools across 16
+                    toolsets, hybrid HNSW + full-text memory with RAG, cron
+                    and autopilot, a managed proxy pool, and a ten-vendor
+                    challenge classifier.
                   </p>
                   <div className="project-stack-row">
                     <span className="stack-tag"><i className="fab fa-golang" aria-hidden="true"></i> Go</span>
@@ -714,7 +717,7 @@ export default function Home() {
                     <span className="stack-tag"><i className="fas fa-database" aria-hidden="true"></i> SQLite</span>
                     <span className="stack-tag"><i className="fab fa-chrome" aria-hidden="true"></i> Chromium CDP</span>
                     <span className="stack-tag"><i className="fas fa-terminal" aria-hidden="true"></i> SSH / SFTP</span>
-                    <span className="stack-tag"><i className="fas fa-clock" aria-hidden="true"></i> Cron &amp; Autopilot</span>
+                    <span className="stack-tag"><i className="fas fa-user-secret" aria-hidden="true"></i> Penetration Testing</span>
                   </div>
                   <p className="project-private-note">
                     <i className="fas fa-lock" aria-hidden="true"></i>
