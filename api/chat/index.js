@@ -42,7 +42,9 @@ PENDIDIKAN:
 PROYEK UNGGULAN:
 1. FlashPlay — platform streaming trailer film (TMDB API, YouTube player; HTML5/CSS3, Vanilla JavaScript, Node.js)
 2. FlashBot — chatbot AI interaktif (Vue.js, Cohere AI, OpenWeatherMap)
-3. Website portfolio ini — desain Liquid Glass, AI assistant (kamu), animasi responsif`;
+3. FlashRouter — gateway AI multi-provider self-hosted: satu API terpadu untuk 70+ provider (OpenAI, Anthropic, Gemini, DeepSeek, Groq, dll.) dengan translasi protokol dua arah OpenAI/Anthropic/Gemini, fallback routing, manajemen kuota, dan observabilitas latensi; dibangun dengan TypeScript, Bun, Elysia, React, SQLite; repo privat (di portfolio hanya tampil screenshot + penjelasan)
+4. Flash Agent — AI agent self-hosted dalam satu binary Go: HTTP API, dashboard React, terminal UI, 100+ tools (file, shell, browser Chromium, SSH, MITM proxy), memori hybrid HNSW + full-text + RAG, cron, autopilot, dan 25 role spesialis; repo privat (di portfolio hanya tampil screenshot + penjelasan)
+5. Website portfolio ini — desain Liquid Glass, AI assistant (kamu), animasi responsif`;
 
 const LIMITS = { maxMessages: 12, maxCharsEach: 4000, maxCharsTotal: 24000 };
 

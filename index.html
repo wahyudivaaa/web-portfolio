@@ -50,7 +50,7 @@
     />
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/style.css?v=redesign-v16" />
+    <link rel="stylesheet" href="css/style.css?v=redesign-v17" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
@@ -735,6 +735,164 @@
                 </div>
               </div>
             </article>
+
+            <!-- Project 3: FlashRouter -->
+            <article class="glass-panel project-card">
+              <div class="project-carousel-container">
+                <div class="project-carousel">
+                  <button class="carousel-nav prev" type="button" aria-label="Previous FlashRouter image">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                  </button>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="images/flashrouter1.svg" alt="FlashRouter console overview — traffic, endpoints, and system telemetry" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="carousel-item">
+                      <img src="images/flashrouter2.svg" alt="FlashRouter Model Lab — interactive model playground" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="carousel-item">
+                      <img src="images/flashrouter3.svg" alt="FlashRouter usage analytics and latency metrics" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="carousel-item">
+                      <img src="images/flashrouter4.svg" alt="FlashRouter combos and fallback routing configuration" loading="lazy" decoding="async" />
+                    </div>
+                  </div>
+                  <button class="carousel-nav next" type="button" aria-label="Next FlashRouter image">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                  </button>
+                  <div class="carousel-dots" role="tablist" aria-label="FlashRouter slides">
+                    <button class="carousel-dot active" type="button" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 3"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 4"></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-body">
+                <h3 class="project-title">FlashRouter</h3>
+                <p class="project-role">Personal project · Private repository</p>
+                <p class="project-text">
+                  FlashRouter is a self-hosted, multi-provider AI gateway that
+                  routes OpenAI-, Anthropic-, and Gemini-compatible client
+                  traffic across 70+ provider backends — including OpenAI,
+                  Anthropic, Gemini, DeepSeek, Groq, MiniMax, and Together —
+                  behind a single unified API. It performs real-time,
+                  bidirectional protocol translation between the OpenAI Chat,
+                  Anthropic Messages, and Google Gemini wire formats, so any
+                  client such as Claude Code, Cline, or the OpenAI SDK can
+                  talk to any backend without adapters, with full streaming
+                  (SSE) fidelity throughout.
+                </p>
+                <p class="project-text">
+                  Built on Bun and Elysia and shipped as one portable binary
+                  with an embedded React operator console and SQLite storage,
+                  it adds smart fallback combos, round-robin load balancing,
+                  circuit breaking with automatic cooldowns, per-account
+                  quota tracking across rolling 5-hour, daily, and weekly
+                  windows, dynamic token-cost accounting, and P50/P95/P99
+                  latency observability. It also includes token optimization
+                  through context pruning, proxy-pool and WireGuard egress
+                  control, a Model Lab playground, and one-click
+                  configuration injectors for 14+ coding agents — and it
+                  runs 24/7 in production as the backbone of my own AI
+                  tooling.
+                </p>
+
+                <div class="project-stack-row">
+                  <span class="stack-tag"><i class="fas fa-code" aria-hidden="true"></i> TypeScript</span>
+                  <span class="stack-tag"><i class="fas fa-bolt" aria-hidden="true"></i> Bun</span>
+                  <span class="stack-tag"><i class="fas fa-route" aria-hidden="true"></i> Elysia</span>
+                  <span class="stack-tag"><i class="fab fa-react" aria-hidden="true"></i> React</span>
+                  <span class="stack-tag"><i class="fas fa-database" aria-hidden="true"></i> SQLite</span>
+                  <span class="stack-tag"><i class="fas fa-plug" aria-hidden="true"></i> OpenAI · Anthropic · Gemini APIs</span>
+                </div>
+
+                <p class="project-private-note">
+                  <i class="fas fa-lock" aria-hidden="true"></i>
+                  <span>Private repository — shown as screenshots and description only.</span>
+                </p>
+              </div>
+            </article>
+
+            <!-- Project 4: Flash Agent -->
+            <article class="glass-panel project-card">
+              <div class="project-carousel-container">
+                <div class="project-carousel">
+                  <button class="carousel-nav prev" type="button" aria-label="Previous Flash Agent image">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                  </button>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="images/flashagent1.svg" alt="Flash Agent dashboard — chat workspace with tool results" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="carousel-item">
+                      <img src="images/flashagent2.svg" alt="Flash Agent specialist roles catalog" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="carousel-item">
+                      <img src="images/flashagent3.svg" alt="Flash Agent memory and RAG retrieval view" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="carousel-item">
+                      <img src="images/flashagent4.svg" alt="Flash Agent VPS management view" loading="lazy" decoding="async" />
+                    </div>
+                  </div>
+                  <button class="carousel-nav next" type="button" aria-label="Next Flash Agent image">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                  </button>
+                  <div class="carousel-dots" role="tablist" aria-label="Flash Agent slides">
+                    <button class="carousel-dot active" type="button" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 3"></button>
+                    <button class="carousel-dot" type="button" aria-label="Slide 4"></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-body">
+                <h3 class="project-title">Flash Agent</h3>
+                <p class="project-role">Personal project · Private repository</p>
+                <p class="project-text">
+                  Flash Agent is a self-hosted AI agent written in Go and
+                  shipped as a single binary that serves an HTTP API, a React
+                  dashboard, and a terminal UI. It gives the configured model
+                  more than 100 built-in tools across 16 toolsets that act on
+                  the machine it runs on — workspace files, a host shell, a
+                  Chromium browser driven over the DevTools protocol,
+                  SSH/SFTP access to saved servers, a fingerprinted HTTP
+                  client, and a MITM proxy — with an embedded SQLite database
+                  and no external services to operate.
+                </p>
+                <p class="project-text">
+                  Its memory survives between sessions through in-process
+                  hybrid retrieval — HNSW vector search fused with full-text
+                  search, then reranked — plus RAG over documents, so the
+                  second session never starts from zero. Work also outlives a
+                  single turn: a built-in cron runner executes scheduled jobs
+                  unattended, standing goals are verified by a separate judge
+                  model before they count as done, and an autopilot queue
+                  keeps tasks moving. Twenty-five specialist roles, from
+                  engineering and writing to security research, can be
+                  delegated self-contained work inside isolated git
+                  worktrees, while a managed proxy pool and a ten-vendor
+                  challenge classifier keep the agent effective against
+                  real-world blocks.
+                </p>
+
+                <div class="project-stack-row">
+                  <span class="stack-tag"><i class="fab fa-golang" aria-hidden="true"></i> Go</span>
+                  <span class="stack-tag"><i class="fab fa-react" aria-hidden="true"></i> React</span>
+                  <span class="stack-tag"><i class="fas fa-database" aria-hidden="true"></i> SQLite</span>
+                  <span class="stack-tag"><i class="fab fa-chrome" aria-hidden="true"></i> Chromium CDP</span>
+                  <span class="stack-tag"><i class="fas fa-terminal" aria-hidden="true"></i> SSH / SFTP</span>
+                  <span class="stack-tag"><i class="fas fa-clock" aria-hidden="true"></i> Cron &amp; Autopilot</span>
+                </div>
+
+                <p class="project-private-note">
+                  <i class="fas fa-lock" aria-hidden="true"></i>
+                  <span>Private repository — shown as screenshots and description only.</span>
+                </p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -866,11 +1024,11 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="js/main.js?v=redesign-v15"></script>
+    <script src="js/main.js?v=redesign-v17"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-    <script src="js/chatbot.js?v=redesign-v16"></script>
+    <script src="js/chatbot.js?v=redesign-v17"></script>
   </body>
 </html>

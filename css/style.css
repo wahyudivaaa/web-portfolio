@@ -3001,3 +3001,24 @@ html.has-refract[data-theme="dark"] .island-frost {
 .bot-message th { background-color: var(--glass-subtle); font-weight: 700; }
 .bot-message .katex { font-size: 1.02em; }
 .bot-message .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; margin: 6px 0; }
+
+/* ---------------------------------------------------------------------------
+   REDESIGN v17 — PRIVATE PROJECT NOTE (FlashRouter & Flash Agent, added at
+   Wahyu's request 2026-11-12: private repos are shown as screenshots and a
+   full description only, with a lock note instead of Live/Code buttons)
+   --------------------------------------------------------------------------- */
+.project-private-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.project-private-note i {
+  color: var(--text-secondary);
+}
+.project-body .project-text + .project-text {
+  flex-grow: 0;
+}
