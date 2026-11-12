@@ -3024,35 +3024,44 @@ html.has-refract[data-theme="dark"] .island-frost {
 }
 
 /* ---------------------------------------------------------------------------
-   REDESIGN v18 — PROJECT LOGO CHIP (Wahyu's request 2026-11-12: each private
-   project's original logo sits on its card screenshots, top-left over the
-   carousel viewport; FlashRouter & Flash Agent cards only)
+   REDESIGN v19 — PROJECT LOGO LOCKUP (replaces the v18 overlay chip: the chip
+   landed exactly on each app's own sidebar logo inside the screenshots and
+   covered it. The mark now sits OUTSIDE the image as an app-icon tile beside
+   the card title — the standard logo-lockup pattern; FlashRouter & Flash
+   Agent cards only)
    --------------------------------------------------------------------------- */
-.project-logo-chip {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 5;
-  display: inline-flex;
+.project-head {
+  display: flex;
   align-items: center;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+.project-head .project-title {
+  margin-bottom: 0;
+}
+.project-logo-tile {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   background-color: #0b1220;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(128, 140, 160, 0.35);
   border-radius: 12px;
-  padding: 6px 10px;
-  pointer-events: none;
   line-height: 0;
 }
-.project-logo-chip img {
+.project-logo-tile img {
   display: block;
-  height: 34px;
+  height: 28px;
   width: auto;
 }
 @media (max-width: 768px) {
-  .project-logo-chip {
-    top: 10px;
-    left: 10px;
+  .project-logo-tile {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
   }
-  .project-logo-chip img {
-    height: 28px;
+  .project-logo-tile img {
+    height: 24px;
   }
 }

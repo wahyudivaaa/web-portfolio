@@ -17,11 +17,9 @@ export type Slide = {
 export default function ProjectCarousel({
   name,
   slides,
-  logo,
 }: {
   name: string;
   slides: Slide[];
-  logo?: { src: string; alt: string };
 }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -98,12 +96,6 @@ export default function ProjectCarousel({
         >
           <i className="fas fa-chevron-right" aria-hidden="true"></i>
         </button>
-        {logo && (
-          <span className="project-logo-chip">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={logo.src} alt={logo.alt} />
-          </span>
-        )}
         <div
           className="carousel-dots"
           role="tablist"

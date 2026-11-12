@@ -631,9 +631,15 @@ export default function Home() {
 
               {/* Project 3: FlashRouter */}
               <article className="glass-panel project-card">
-                <ProjectCarousel name="FlashRouter" slides={flashRouterSlides} logo={{ src: "/images/logo-flashrouter.svg", alt: "Logo FlashRouter" }} />
+                <ProjectCarousel name="FlashRouter" slides={flashRouterSlides} />
                 <div className="project-body">
-                  <h3 className="project-title">FlashRouter</h3>
+                  <div className="project-head">
+                    <span className="project-logo-tile">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/images/logo-flashrouter.svg" alt="Logo FlashRouter" />
+                    </span>
+                    <h3 className="project-title">FlashRouter</h3>
+                  </div>
                   <p className="project-role">Personal project · Private repository</p>
                   <p className="project-text">
                     FlashRouter is a self-hosted, multi-provider AI gateway
@@ -678,9 +684,15 @@ export default function Home() {
 
               {/* Project 4: Flash Agent */}
               <article className="glass-panel project-card">
-                <ProjectCarousel name="Flash Agent" slides={flashAgentSlides} logo={{ src: "/images/logo-flashagent.svg", alt: "Logo Flash Agent" }} />
+                <ProjectCarousel name="Flash Agent" slides={flashAgentSlides} />
                 <div className="project-body">
-                  <h3 className="project-title">Flash Agent</h3>
+                  <div className="project-head">
+                    <span className="project-logo-tile">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/images/logo-flashagent.svg" alt="Logo Flash Agent" />
+                    </span>
+                    <h3 className="project-title">Flash Agent</h3>
+                  </div>
                   <p className="project-role">Personal project · Private repository</p>
                   <p className="project-text">
                     Flash Agent is a self-hosted AI hacking agent — an
