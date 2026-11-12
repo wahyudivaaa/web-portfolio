@@ -3213,7 +3213,7 @@ html.has-refract[data-theme="dark"] .island-frost {
 /* ==========================================================================
    21. Interaction redesign (2026-11-12): scroll progress, split-text
    entrances, tech marquee, scroll-scrub statement, spotlight cards,
-   timeline rail fill, sticky project stack, cursor label, contact
+   timeline rail fill, cursor label, contact
    finale. Liquid Glass material and the flat background are unchanged.
    ========================================================================== */
 
@@ -3452,37 +3452,6 @@ html.has-refract[data-theme="dark"] .island-frost {
 @media (max-width: 768px) {
   .timeline-fill {
     left: 19px;
-  }
-}
-
-/* --- Sticky project stack (wide screens) --- */
-:root {
-  --stack-card-bg: #ffffff;
-}
-[data-theme="dark"] {
-  --stack-card-bg: #17171c;
-}
-@media (min-width: 1024px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 44px;
-  }
-  .project-card {
-    position: sticky;
-    top: calc(96px + var(--i, 0) * 16px);
-    display: grid;
-    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
-    gap: 30px;
-    align-items: start;
-    /* Stacked cards overlap, so the translucent panel material would
-       show the card beneath — stacked cards use a solid surface. */
-    background-color: var(--stack-card-bg);
-    scale: var(--stack-scale, 1);
-    filter: brightness(calc(1 - var(--shade, 0) * 0.45));
-    transform-origin: top center;
-  }
-  .project-card .project-carousel-container {
-    margin-bottom: 0;
   }
 }
 

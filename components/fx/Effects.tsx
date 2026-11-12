@@ -6,8 +6,6 @@ import { useEffect, useRef } from "react";
 // scroll listener plus pointer handlers:
 //  - .scroll-progress bar scaleX (reading progress)
 //  - .timeline-fill scaleY (rail fill per Experience/Education timeline)
-//  - project stack: on wide screens each .project-card scales down
-//    slightly and dims as the next card sticks over it
 //  - .spotlight cards: --mx/--my for the cursor-tracking glow
 //  - cursor label pill for elements carrying [data-cursor]
 export default function Effects() {
@@ -21,9 +19,6 @@ export default function Effects() {
     const progress = document.querySelector<HTMLElement>(".scroll-progress");
     const timelines = [...document.querySelectorAll<HTMLElement>(".timeline")];
     const fills = timelines.map((t) => t.querySelector<HTMLElement>(".timeline-fill"));
-    const stackCards = [...document.querySelectorAll<HTMLElement>(".projects-grid .project-card")];
-    const stackMq = window.matchMedia("(min-width: 1024px)");
-
     let ticking = false;
     const update = () => {
       ticking = false;
@@ -40,21 +35,6 @@ export default function Effects() {
         const p = Math.min(1, Math.max(0, (vh * 0.62 - r.top) / r.height));
         fill.style.transform = `scaleY(${p.toFixed(4)})`;
       });
-      if (!reduced && stackMq.matches) {
-        stackCards.forEach((card, i) => {
-          const next = stackCards[i + 1];
-          if (!next) {
-            card.style.setProperty("--stack-scale", "1");
-            card.style.setProperty("--shade", "0");
-            return;
-          }
-          const base = 96 + i * 16;
-          const nextTop = next.getBoundingClientRect().top;
-          const p = Math.min(1, Math.max(0, 1 - (nextTop - base) / (vh - base)));
-          card.style.setProperty("--stack-scale", (1 - p * 0.05).toFixed(4));
-          card.style.setProperty("--shade", (p * 0.55).toFixed(3));
-        });
-      }
     };
     const onScroll = () => {
       if (!ticking) {

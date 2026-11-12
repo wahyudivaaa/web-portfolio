@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import Header from "@/components/Header";
 import RevealAnimations from "@/components/RevealAnimations";
 import RealGlass from "@/components/RealGlass";
@@ -577,7 +576,7 @@ export default function Home() {
 
             <div className="projects-grid">
               {/* Project 1: FlashPlay */}
-              <article className="glass-panel project-card" style={{ "--i": 0 } as CSSProperties}>
+              <article className="glass-panel project-card">
                 <ProjectCarousel name="FlashPlay" slides={flashPlaySlides} />
                 <div className="project-body">
                   <h3 className="project-title">FlashPlay</h3>
@@ -611,7 +610,7 @@ export default function Home() {
               </article>
 
               {/* Project 2: FlashBot */}
-              <article className="glass-panel project-card" style={{ "--i": 1 } as CSSProperties}>
+              <article className="glass-panel project-card">
                 <ProjectCarousel name="FlashBot" slides={flashBotSlides} />
                 <div className="project-body">
                   <h3 className="project-title">FlashBot</h3>
@@ -653,7 +652,7 @@ export default function Home() {
               </article>
 
               {/* Project 3: FlashRouter */}
-              <article className="glass-panel project-card" style={{ "--i": 2 } as CSSProperties}>
+              <article className="glass-panel project-card">
                 <ProjectCarousel name="FlashRouter" slides={flashRouterSlides} />
                 <div className="project-body">
                   <div className="project-head">
@@ -706,7 +705,7 @@ export default function Home() {
               </article>
 
               {/* Project 4: Flash Agent */}
-              <article className="glass-panel project-card" style={{ "--i": 3 } as CSSProperties}>
+              <article className="glass-panel project-card">
                 <ProjectCarousel name="Flash Agent" slides={flashAgentSlides} />
                 <div className="project-body">
                   <div className="project-head">
