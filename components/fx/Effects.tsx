@@ -6,6 +6,8 @@ import { useEffect, useRef } from "react";
 // scroll listener plus pointer handlers:
 //  - .scroll-progress bar scaleX (reading progress)
 //  - .timeline-fill scaleY (rail fill per Experience/Education timeline)
+//  - skill meters: bar fill + percentage count-up when a skill row
+//    scrolls into view (values from data-width / data-target)
 //  - .spotlight cards: --mx/--my for the cursor-tracking glow
 //  - cursor label pill for elements carrying [data-cursor]
 export default function Effects() {
@@ -49,6 +51,46 @@ export default function Effects() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     });
+
+    // Skill meters: fill the bar and count the percentage up once the
+    // row scrolls into view.
+    const skillItems = [...document.querySelectorAll<HTMLElement>(".skill-item")];
+    if (skillItems.length) {
+      const animateSkill = (item: HTMLElement) => {
+        const bar = item.querySelector<HTMLElement>(".skill-progress");
+        const label = item.querySelector<HTMLElement>(".skill-percentage");
+        const target = Number(bar?.dataset.width || label?.dataset.target || 0);
+        if (!target) return;
+        if (bar) bar.style.width = `${target}%`;
+        if (!label) return;
+        if (reduced) {
+          label.textContent = `${target}%`;
+          return;
+        }
+        const t0 = performance.now();
+        const dur = 1200;
+        const step = (now: number) => {
+          const p = Math.min(1, (now - t0) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          label.textContent = `${Math.round(target * eased)}%`;
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((en) => {
+            if (en.isIntersecting) {
+              animateSkill(en.target as HTMLElement);
+              io.unobserve(en.target);
+            }
+          });
+        },
+        { threshold: 0.4 }
+      );
+      skillItems.forEach((item) => io.observe(item));
+      cleanups.push(() => io.disconnect());
+    }
 
     // Spotlight glow tracking
     if (fine && !reduced) {

@@ -468,7 +468,10 @@ export default function Home() {
                         <i className="fab fa-css3-alt skill-brand-icon color-css" aria-hidden="true"></i>
                         <span className="skill-name">HTML/CSS</span>
                       </span>
-                      <span className="skill-level level-advanced">Advanced</span>
+                      <span className="skill-percentage" data-target="90">0%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" data-width="90" style={{ width: "0%" }}></div>
                     </div>
                   </div>
                   <div className="skill-item">
@@ -477,7 +480,10 @@ export default function Home() {
                         <i className="fab fa-js skill-brand-icon color-js" aria-hidden="true"></i>
                         <span className="skill-name">JavaScript</span>
                       </span>
-                      <span className="skill-level level-advanced">Advanced</span>
+                      <span className="skill-percentage" data-target="85">0%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" data-width="85" style={{ width: "0%" }}></div>
                     </div>
                   </div>
                   <div className="skill-item">
@@ -486,7 +492,10 @@ export default function Home() {
                         <i className="fab fa-react skill-brand-icon color-react" aria-hidden="true"></i>
                         <span className="skill-name">React</span>
                       </span>
-                      <span className="skill-level level-basic">Basic</span>
+                      <span className="skill-percentage" data-target="45">0%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" data-width="45" style={{ width: "0%" }}></div>
                     </div>
                   </div>
                 </div>
@@ -501,7 +510,10 @@ export default function Home() {
                         <i className="fab fa-node-js skill-brand-icon color-node" aria-hidden="true"></i>
                         <span className="skill-name">Node.js</span>
                       </span>
-                      <span className="skill-level level-basic">Basic</span>
+                      <span className="skill-percentage" data-target="50">0%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" data-width="50" style={{ width: "0%" }}></div>
                     </div>
                   </div>
                   <div className="skill-item">
@@ -510,7 +522,10 @@ export default function Home() {
                         <i className="fab fa-php skill-brand-icon color-php" aria-hidden="true"></i>
                         <span className="skill-name">PHP</span>
                       </span>
-                      <span className="skill-level level-advanced">Advanced</span>
+                      <span className="skill-percentage" data-target="80">0%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" data-width="80" style={{ width: "0%" }}></div>
                     </div>
                   </div>
                   <div className="skill-item">
@@ -519,7 +534,10 @@ export default function Home() {
                         <i className="fab fa-python skill-brand-icon color-python" aria-hidden="true"></i>
                         <span className="skill-name">Python</span>
                       </span>
-                      <span className="skill-level level-basic">Basic</span>
+                      <span className="skill-percentage" data-target="40">0%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" data-width="40" style={{ width: "0%" }}></div>
                     </div>
                   </div>
                 </div>
@@ -535,7 +553,10 @@ export default function Home() {
                         <img src="/images/mysql.svg" alt="MySQL" className="skill-img-brand" />
                         <span className="skill-name">MySQL</span>
                       </span>
-                      <span className="skill-level level-intermediate">Intermediate</span>
+                      <span className="skill-percentage" data-target="75">0%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" data-width="75" style={{ width: "0%" }}></div>
                     </div>
                   </div>
                   <div className="skill-item">
@@ -545,7 +566,10 @@ export default function Home() {
                         <img src="/images/sql-server.svg" alt="SQL Server" className="skill-img-brand" />
                         <span className="skill-name">SQL Server</span>
                       </span>
-                      <span className="skill-level level-intermediate">Intermediate</span>
+                      <span className="skill-percentage" data-target="60">0%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" data-width="60" style={{ width: "0%" }}></div>
                     </div>
                   </div>
                   <div className="skill-item">
@@ -554,7 +578,10 @@ export default function Home() {
                         <i className="fab fa-git-alt skill-brand-icon color-git" aria-hidden="true"></i>
                         <span className="skill-name">Git &amp; GitHub</span>
                       </span>
-                      <span className="skill-level level-advanced">Advanced</span>
+                      <span className="skill-percentage" data-target="85">0%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" data-width="85" style={{ width: "0%" }}></div>
                     </div>
                   </div>
                 </div>

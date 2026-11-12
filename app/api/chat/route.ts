@@ -37,9 +37,9 @@ Status: Open to collaborations
 Ringkasan: 50+ proyek selesai. Mendesain database, membangun backend, dan mengirim antarmuka responsif end to end.
 
 KEAHLIAN:
-- Advanced: HTML/CSS, JavaScript, PHP, Git & GitHub
-- Intermediate: MySQL, Microsoft SQL Server
-- Basic: React, Node.js, Python
+- HTML/CSS 90%, JavaScript 85%, PHP 80%, Git & GitHub 85%
+- MySQL 75%, Microsoft SQL Server 60%
+- React 45%, Node.js 50%, Python 40%
 
 PENDIDIKAN:
 - Primakara University — S1 Teknik Informatika (Sep 2022 – Jul 2026)
