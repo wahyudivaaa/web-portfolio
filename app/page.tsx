@@ -65,12 +65,6 @@ const flashAgentSlides: Slide[] = [
     height: 1000,
   },
   {
-    src: "/images/flashagent3.svg",
-    alt: "Flash Agent memory and RAG retrieval view",
-    width: 1600,
-    height: 1000,
-  },
-  {
     src: "/images/flashagent4.svg",
     alt: "Flash Agent VPS management view",
     width: 1600,
