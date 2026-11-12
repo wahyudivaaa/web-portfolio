@@ -1,0 +1,3058 @@
+/* ==========================================================================
+   Apple VisionOS & iOS Liquid Glass (Pure Neutral Material System)
+   Designed for Wahyu Diva Portfolio
+   Features:
+   - Zero Tacky Rainbow Gradients: Pure Apple Neutral Glass & Solid Accents
+   - Authentic VisionOS Frosted Glass Panels with 1px Specular Rim
+   - Clean, Confident Apple Typography & Unified Hero Showcase
+   - Smooth Animated Skill Progress Bars & Live Numeric Counter
+   - Dynamic Island Navigation & iOS Messages Chatbot
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design Tokens: Pure Apple Materials (No Rainbow Gradients)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Light Theme (Apple Ceramic Canvas & Pure White Glass) */
+  --bg-canvas: #f5f5f7;
+  
+  --glass-panel-bg: rgba(255, 255, 255, 0.78);
+  --glass-panel-hover: rgba(255, 255, 255, 0.9);
+  --glass-panel-border: rgba(0, 0, 0, 0.08);
+  --glass-panel-border-top: rgba(255, 255, 255, 0.95);
+  
+  --glass-subtle: rgba(0, 0, 0, 0.03);
+  --glass-control: rgba(255, 255, 255, 0.85);
+  --glass-chip: rgba(0, 0, 0, 0.03);
+  --glass-chip-hover: rgba(0, 0, 0, 0.06);
+  
+  --glass-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+                 inset 0 -1px 0 0 rgba(0, 0, 0, 0.04);
+  --glass-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.06),
+                  0 2px 8px -1px rgba(0, 0, 0, 0.03);
+  --glass-shadow-hover: 0 16px 40px -6px rgba(0, 0, 0, 0.1),
+                        0 4px 12px -2px rgba(0, 0, 0, 0.05);
+  --glass-shadow-island: 0 12px 36px -4px rgba(0, 0, 0, 0.08),
+                         0 2px 8px rgba(0, 0, 0, 0.04);
+
+  --text-primary: #1d1d1f;
+  --text-secondary: #515154;
+  --text-tertiary: #6e6e73;
+
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+  --accent-subtle: rgba(0, 113, 227, 0.08);
+
+  --meter-track: rgba(0, 0, 0, 0.06);
+  --meter-fill: #0071e3;
+
+  --chat-user-bg: #0071e3;
+  --chat-user-text: #ffffff;
+  --chat-bot-bg: rgba(0, 0, 0, 0.05);
+  --chat-bot-text: #1d1d1f;
+
+  --radius-card: 28px;
+  --radius-inner: 20px;
+  --radius-pill: 9999px;
+
+  --font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "SF Pro Display", "Inter", sans-serif;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+  /* Dark Theme (VisionOS Obsidian Glass & Deep True Black) */
+  --bg-canvas: #0a0a0c;
+
+  --glass-panel-bg: rgba(30, 30, 35, 0.72);
+  --glass-panel-hover: rgba(38, 38, 44, 0.82);
+  --glass-panel-border: rgba(255, 255, 255, 0.1);
+  --glass-panel-border-top: rgba(255, 255, 255, 0.25);
+
+  --glass-subtle: rgba(255, 255, 255, 0.04);
+  --glass-control: rgba(40, 40, 46, 0.75);
+  --glass-chip: rgba(255, 255, 255, 0.045);
+  --glass-chip-hover: rgba(255, 255, 255, 0.08);
+
+  --glass-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.18),
+                 inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
+  --glass-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.6),
+                  0 4px 14px -2px rgba(0, 0, 0, 0.4);
+  --glass-shadow-hover: 0 24px 56px -10px rgba(0, 0, 0, 0.8),
+                        0 6px 18px -2px rgba(0, 0, 0, 0.5);
+  --glass-shadow-island: 0 16px 44px -6px rgba(0, 0, 0, 0.75),
+                         0 0 1px rgba(255, 255, 255, 0.2);
+
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1a6;
+  --text-tertiary: #8e8e93;
+
+  --accent: #2997ff;
+  --accent-hover: #52aaff;
+  --accent-subtle: rgba(41, 151, 255, 0.15);
+
+  --meter-track: rgba(255, 255, 255, 0.08);
+  --meter-fill: #2997ff;
+
+  --chat-user-bg: #2997ff;
+  --chat-user-text: #ffffff;
+  --chat-bot-bg: rgba(255, 255, 255, 0.08);
+  --chat-bot-text: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Document Setup
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  transition: background-color 0.3s var(--ease-smooth), color 0.3s var(--ease-smooth);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s var(--ease-smooth);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Container & VisionOS Glass Panel
+   -------------------------------------------------------------------------- */
+.app-container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.glass-panel {
+  background-color: var(--glass-panel-bg);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid var(--glass-panel-border);
+  border-top-color: var(--glass-panel-border-top);
+  border-radius: var(--radius-card);
+  box-shadow: var(--glass-bevel), var(--glass-shadow);
+  transition: box-shadow 0.35s var(--ease-smooth),
+              background-color 0.35s var(--ease-smooth),
+              border-color 0.35s var(--ease-smooth);
+}
+
+.glass-panel:hover {
+  background-color: var(--glass-panel-hover);
+  box-shadow: var(--glass-bevel), var(--glass-shadow-hover);
+}
+
+/* --------------------------------------------------------------------------
+   4. Dynamic Island Navigation (Apple VisionOS Pill)
+   -------------------------------------------------------------------------- */
+.dynamic-island-wrapper {
+  position: fixed;
+  top: 18px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+.dynamic-island {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--glass-panel-bg);
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  border: 1px solid var(--glass-panel-border);
+  border-top-color: var(--glass-panel-border-top);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--glass-bevel), var(--glass-shadow-island);
+  padding: 8px 12px 8px 16px;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.island-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.brand-avatar-bubble {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--glass-subtle);
+  border: 1px solid var(--glass-panel-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-avatar-bubble img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+.island-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--glass-subtle);
+  padding: 4px;
+  border-radius: var(--radius-pill);
+}
+
+.island-link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  transition: all 0.2s var(--ease-smooth);
+}
+
+.island-link:hover {
+  color: var(--text-primary);
+}
+
+.island-link.active {
+  color: #ffffff;
+  background-color: var(--accent);
+}
+
+.island-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.island-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
+  font-weight: 700;
+  background-color: var(--glass-control);
+  border: 1px solid var(--glass-panel-border);
+  color: var(--text-primary);
+  padding: 0 12px;
+  transition: all 0.2s var(--ease-spring);
+}
+
+.island-btn:hover {
+  transform: scale(1.04);
+}
+
+.island-btn:active {
+  transform: scale(0.96);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  width: 36px;
+  padding: 0;
+  position: relative;
+}
+
+.theme-icon-sun,
+.theme-icon-moon {
+  font-size: 0.95rem;
+  transition: transform 0.3s var(--ease-spring);
+}
+
+[data-theme="dark"] .theme-icon-sun {
+  display: inline-block;
+  color: #ffb703;
+}
+
+[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon-sun {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon-moon {
+  display: inline-block;
+  color: var(--accent);
+}
+
+/* AI Assistant Pill in Nav */
+.chat-trigger-btn {
+  gap: 6px;
+  background-color: var(--accent-subtle);
+  border-color: rgba(0, 113, 227, 0.25);
+  color: var(--accent);
+}
+
+.chat-trigger-btn:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.mobile-menu-btn {
+  display: none;
+  width: 36px;
+  padding: 0;
+}
+
+.mobile-menu-btn .icon-close {
+  display: none;
+}
+
+.mobile-menu-btn.active .icon-open {
+  display: none;
+}
+
+.mobile-menu-btn.active .icon-close {
+  display: inline-block;
+}
+
+/* Mobile Dropdown Sheet */
+.mobile-bubble-sheet {
+  position: fixed;
+  top: 74px;
+  left: 16px;
+  right: 16px;
+  background-color: var(--glass-panel-bg);
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  border: 1px solid var(--glass-panel-border);
+  border-radius: var(--radius-inner);
+  box-shadow: var(--glass-shadow);
+  padding: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.98);
+  transition: all 0.25s var(--ease-smooth);
+  pointer-events: none;
+}
+
+.mobile-bubble-sheet.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.sheet-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sheet-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: background-color 0.2s var(--ease-smooth);
+}
+
+.sheet-link:hover,
+.sheet-link.active {
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero Section (Unified, Apple Centered Presentation)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding-top: 130px;
+  padding-bottom: 60px;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-unified-card {
+  padding: 56px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-avatar-bubble {
+  width: 120px;
+  height: 120px;
+  border-radius: 36px;
+  overflow: hidden;
+  background-color: var(--glass-subtle);
+  border: 2px solid var(--glass-panel-border-top);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+  margin-bottom: 24px;
+}
+
+.hero-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.hero-avatar-bubble:hover .hero-profile-img {
+  transform: scale(1.05);
+}
+
+.hero-headline {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+/* Solid accent highlight - NO gradient text */
+.highlight {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.typing-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.cyber-subtitle {
+  color: var(--text-secondary);
+}
+
+#typing-text {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.cyber-text {
+  font-size: 1.1rem;
+  color: var(--text-tertiary);
+  max-width: 520px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+/* Clean Apple Buttons */
+.btn-apple-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 32px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+  color: #ffffff;
+  font-size: 0.98rem;
+  font-weight: 700;
+  min-height: 48px;
+  box-shadow: 0 6px 20px -2px rgba(0, 113, 227, 0.35);
+  transition: all 0.25s var(--ease-spring);
+  user-select: none;
+}
+
+.btn-apple-primary:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px) scale(1.02);
+  color: #ffffff;
+}
+
+.btn-apple-primary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-apple-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: var(--radius-pill);
+  background-color: var(--glass-control);
+  border: 1px solid var(--glass-panel-border);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  min-height: 48px;
+  transition: all 0.25s var(--ease-spring);
+}
+
+.btn-apple-secondary:hover {
+  background-color: var(--glass-panel-hover);
+  transform: translateY(-2px);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-tertiary);
+  transition: color 0.2s ease;
+}
+
+.scroll-indicator:hover {
+  color: var(--text-primary);
+}
+
+.mouse {
+  width: 22px;
+  height: 36px;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-pill);
+  display: flex;
+  justify-content: center;
+}
+
+.wheel {
+  width: 4px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background-color: currentColor;
+  margin-top: 6px;
+  animation: mouseWheel 1.8s infinite ease-in-out;
+}
+
+@keyframes mouseWheel {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.2;
+  }
+}
+
+.scroll-text {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   6. Section Header
+   -------------------------------------------------------------------------- */
+section[id] {
+  scroll-margin-top: 100px;
+}
+
+.section-wrapper {
+  padding: 85px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 3.8vw, 2.7rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+/* 7. About Section */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.about-bio-card {
+  padding: 42px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.greeting-text {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.about-bio-card p {
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.about-bio-card p:last-of-type {
+  margin-bottom: 0;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--glass-panel-border);
+}
+
+.stat-bubble-card,
+.stat-item {
+  padding: 20px 14px;
+  border-radius: var(--radius-inner);
+  background-color: var(--glass-chip);
+  border: 1px solid var(--glass-panel-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.stat-bubble-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-number {
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.about-cards-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.about-subcard {
+  padding: 26px 28px;
+  border-radius: var(--radius-inner);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 110px;
+}
+
+.subcard-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.subcard-content h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.subcard-content p {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   8. Skills Section (Clean Apple Solid Blue Bars & Counters)
+   -------------------------------------------------------------------------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.skill-group-card {
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.group-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--glass-panel-border);
+}
+
+.skill-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: var(--radius-inner);
+  background-color: var(--glass-chip);
+  border: 1px solid var(--glass-panel-border);
+  transition: all 0.2s var(--ease-smooth);
+}
+
+.skill-item:hover {
+  background-color: var(--glass-chip-hover);
+  transform: translateY(-2px);
+}
+
+.skill-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skill-icon-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.skill-brand-icon {
+  font-size: 1.2rem;
+}
+
+.skill-img-brand {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.color-html { color: #e34f26; }
+.color-css { color: #264de4; }
+.color-js { color: #f7df1e; }
+.color-react { color: #61dafb; }
+.color-php { color: #777bb4; }
+.color-node { color: #339933; }
+.color-python { color: #3776ab; }
+.color-git { color: #f05032; }
+
+.skill-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.skill-percentage {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.skill-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--meter-track);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Solid Apple Blue Progress Bar - NO multi-color gradient */
+.skill-progress {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background-color: var(--meter-fill);
+  transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --------------------------------------------------------------------------
+   9. Projects Section (Showcase Windows & Carousel)
+   -------------------------------------------------------------------------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.project-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-carousel-container {
+  width: 100%;
+  position: relative;
+  border-radius: var(--radius-inner);
+  overflow: hidden;
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--glass-panel-border);
+  margin-bottom: 22px;
+}
+
+.project-carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.carousel-item {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease-smooth);
+}
+
+.carousel-item.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--glass-control);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--text-primary);
+  border: 1px solid var(--glass-panel-border);
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s var(--ease-spring);
+}
+
+.carousel-nav:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-nav.prev { left: 10px; }
+.carousel-nav.next { right: 10px; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  z-index: 10;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.carousel-dot.active {
+  width: 16px;
+  border-radius: var(--radius-pill);
+  background-color: #ffffff;
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.project-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.project-stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.stack-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background-color: var(--glass-chip);
+  border: 1px solid var(--glass-panel-border);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.project-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   10. Footer
+   -------------------------------------------------------------------------- */
+.footer-wrapper {
+  padding: 30px 0 60px;
+}
+
+.footer-panel {
+  padding: 24px 30px;
+  border-radius: var(--radius-pill);
+}
+
+.footer-brand-text {
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.footer-copy-text {
+  font-size: 0.84rem;
+  color: var(--text-tertiary);
+}
+
+.text-danger {
+  color: #ff3b30;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   11. iOS Messages Style AI Chatbot
+   -------------------------------------------------------------------------- */
+.chatbot-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1050;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 113, 227, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-spring);
+}
+
+.chatbot-toggle:hover {
+  transform: scale(1.08) translateY(-2px);
+}
+
+.chatbot-toggle:active {
+  transform: scale(0.94);
+}
+
+.chatbot-toggle .launcher-icon {
+  font-size: 1.35rem;
+}
+
+.chatbot-toggle .launcher-close-icon {
+  font-size: 1.35rem;
+  display: none;
+}
+
+.chatbot-toggle.active .launcher-icon {
+  display: none;
+}
+
+.chatbot-toggle.active .launcher-close-icon {
+  display: inline-block;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #34c759;
+}
+
+.chatbot-container {
+  position: fixed;
+  bottom: 92px;
+  right: 24px;
+  width: min(380px, calc(100vw - 32px));
+  height: min(560px, calc(100vh - 120px));
+  background-color: var(--glass-panel-bg);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid var(--glass-panel-border);
+  border-top-color: var(--glass-panel-border-top);
+  border-radius: var(--radius-card);
+  box-shadow: var(--glass-bevel), var(--glass-shadow-hover);
+  display: flex;
+  flex-direction: column;
+  z-index: 1040;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.97);
+  transform-origin: bottom right;
+  transition: all 0.3s var(--ease-spring);
+  overflow: hidden;
+}
+
+.chatbot-container.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.chatbot-header {
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--glass-panel-border);
+  background-color: var(--glass-subtle);
+}
+
+.bot-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bot-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.bot-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.bot-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.close-chat {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--glass-chip);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.close-chat:hover {
+  color: var(--text-primary);
+}
+
+/* Suggestion Chips */
+.chat-quick-suggestions {
+  display: flex;
+  gap: 6px;
+  padding: 8px 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--glass-panel-border);
+  flex-shrink: 0;
+}
+
+.chat-quick-suggestions::-webkit-scrollbar {
+  display: none;
+}
+
+.suggestion-chip {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background-color: var(--glass-chip);
+  border: 1px solid var(--glass-panel-border);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.suggestion-chip:hover {
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+}
+
+/* Chat Messages */
+.chatbot-messages {
+  flex-grow: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.message {
+  max-width: 82%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  word-break: break-word;
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: var(--chat-user-bg);
+  color: var(--chat-user-text);
+  border-bottom-right-radius: 4px;
+}
+
+.bot-message {
+  align-self: flex-start;
+  background-color: var(--chat-bot-bg);
+  color: var(--chat-bot-text);
+  border: 1px solid var(--glass-panel-border);
+  border-bottom-left-radius: 4px;
+}
+
+.typing-indicator {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  border-bottom-left-radius: 4px;
+  background-color: var(--chat-bot-bg);
+  border: 1px solid var(--glass-panel-border);
+  width: fit-content;
+}
+
+.typing-indicator span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--text-tertiary);
+  animation: typingDot 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingDot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* Chat Input */
+.chatbot-input {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--glass-panel-border);
+  background-color: var(--glass-subtle);
+}
+
+.chatbot-input input {
+  flex-grow: 1;
+  padding: 9px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--glass-panel-border);
+  background-color: var(--glass-control);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.chatbot-input input:focus {
+  border-color: var(--accent);
+}
+
+.send-message {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  transition: all 0.2s var(--ease-spring);
+}
+
+.send-message:hover {
+  background-color: var(--accent-hover);
+  transform: scale(1.06);
+}
+
+/* --------------------------------------------------------------------------
+   12. Responsive Refinements
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-cards-column {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .about-subcard {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 18px;
+    gap: 12px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .island-links {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+  }
+
+  .chat-btn-label {
+    display: none;
+  }
+
+  .hero-section {
+    padding-top: 110px;
+    padding-bottom: 45px;
+  }
+
+  .hero-unified-card {
+    padding: 36px 20px;
+  }
+
+  .hero-avatar-bubble {
+    width: 100px;
+    height: 100px;
+    border-radius: 30px;
+  }
+
+  .hero-headline {
+    font-size: 2.1rem;
+  }
+
+  .about-grid {
+    gap: 24px;
+  }
+
+  .about-bio-card {
+    padding: 28px 20px;
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 18px;
+  }
+
+  .stat-bubble-card,
+  .stat-item {
+    padding: 14px 18px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .stat-number {
+    font-size: 1.6rem;
+  }
+
+  .about-cards-column {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .about-subcard {
+    flex-direction: row;
+    text-align: left;
+    padding: 18px 20px;
+    gap: 16px;
+  }
+
+  .skill-group-card {
+    padding: 24px 20px;
+  }
+
+  .project-card {
+    padding: 18px;
+  }
+
+  .project-buttons {
+    flex-direction: column;
+  }
+
+  .project-buttons .btn-apple-primary,
+  .project-buttons .btn-apple-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .chatbot-container {
+    right: 16px;
+    bottom: 84px;
+    width: calc(100vw - 32px);
+    height: calc(100vh - 105px);
+  }
+
+  .chatbot-toggle {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+/* ==========================================================================
+   Small phones (<=360px): keep the island brand on one line and stop the
+   hero typing line from splitting mid-phrase (seen at 320px).
+   ========================================================================== */
+@media (max-width: 360px) {
+  .dynamic-island {
+    padding-left: 10px;
+    gap: 6px;
+  }
+
+  .brand-name {
+    white-space: nowrap;
+    font-size: 0.82rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-title {
+    font-size: 1.38rem;
+  }
+
+  .typing-wrapper {
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+}
+
+/* ==========================================================================
+   13. Redesign v9 (2026-11-11): section eyebrows, hero availability badge
+   + socials, Experience & Education timelines, footer socials.
+   NOTE: .glass-panel must never receive a transform transition (GSAP
+   collision) — hover motion lives on non-panel elements.
+   Background stays flat per Wahyu's instruction (no color gradients).
+   ========================================================================== */
+
+/* Section eyebrow labels */
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background-color: var(--accent-subtle);
+  border: 1px solid var(--glass-panel-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 14px;
+}
+
+/* Hero availability badge */
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background-color: var(--glass-chip);
+  border: 1px solid var(--glass-panel-border);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 22px;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #30d158;
+  flex-shrink: 0;
+  animation: statusPulse 2.2s infinite;
+}
+
+@keyframes statusPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(48, 209, 88, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(48, 209, 88, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(48, 209, 88, 0);
+  }
+}
+
+/* Hero location + socials */
+.hero-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: -14px;
+  margin-bottom: 26px;
+}
+
+.hero-location i {
+  color: var(--accent);
+}
+
+.hero-buttons {
+  margin-bottom: 24px;
+}
+
+.hero-socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.hero-social-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--glass-control);
+  border: 1px solid var(--glass-panel-border);
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  transition: all 0.22s var(--ease-spring);
+}
+
+.hero-social-btn:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+  transform: translateY(-3px);
+  border-color: transparent;
+}
+
+.footer-socials {
+  margin: 18px 0 6px;
+}
+
+/* Experience & Education timelines */
+.timeline {
+  position: relative;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 6px 0 2px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background-color: var(--glass-panel-border);
+  border-radius: var(--radius-pill);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 68px;
+  margin-bottom: 26px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--accent-subtle);
+  border: 1px solid var(--glass-panel-border);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  z-index: 1;
+}
+
+.timeline-card {
+  padding: 28px 30px;
+}
+
+.timeline-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.timeline-role {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.timeline-org {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.timeline-period {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  background-color: var(--glass-chip);
+  border: 1px solid var(--glass-panel-border);
+  padding: 6px 13px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.timeline-desc {
+  font-size: 0.97rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Redesign responsive adjustments */
+@media (max-width: 1120px) {
+  .island-link {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .brand-name {
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 880px) and (min-width: 769px) {
+  .chat-btn-label {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline-item {
+    padding-left: 58px;
+  }
+
+  .timeline::before {
+    left: 19px;
+  }
+
+  .timeline-dot {
+    width: 40px;
+    height: 40px;
+    font-size: 0.92rem;
+    top: 20px;
+  }
+
+  .timeline-card {
+    padding: 22px 20px;
+  }
+
+  .timeline-head {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-socials {
+    margin-bottom: 28px;
+  }
+
+  .hero-buttons {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 360px) {
+  .availability-badge {
+    font-size: 0.78rem;
+    padding: 7px 12px;
+  }
+}
+
+/* ==========================================================================
+   14. Redesign v10 (2026-11-11): Liquid Glass discipline + antislop pass.
+   Research basis: UI UX Pro Max rules, Apple iOS 26 Liquid Glass HIG,
+   anti-AI-slop audit. Key moves:
+   - Glass is DEMOTED to the functional layer only (island nav, mobile
+     sheet, chatbot, carousel controls, hero bubbles). Content panels are
+     solid material now: on this flat canvas they look identical, but the
+     page no longer pays a backdrop blur for every card (mobile perf).
+   - Hero is asymmetric (copy left, visual right) with real glass bubbles.
+   - Skill bars replaced by level labels; mono type for labels/metrics.
+   - iOS motion tokens, press states, >=44px targets, reduced-motion and
+     reduced-transparency support. Background stays flat (Wahyu's rule).
+   ========================================================================== */
+
+:root {
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --glass-solid: #ffffff;
+}
+
+[data-theme="dark"] {
+  --glass-solid: #1c1c21;
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: -120px;
+  left: 16px;
+  z-index: 2000;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: top 0.2s var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 12px;
+  color: #ffffff;
+}
+
+/* Content layer: solid material, no backdrop blur */
+.glass-panel {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Functional glass: lighter, tokenised blur + specular sheen on the island */
+.dynamic-island {
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  position: relative;
+  overflow: hidden;
+}
+
+.dynamic-island::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05) 45%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0.45;
+}
+
+.chatbot-container {
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+/* Island compacts while scrolling down, expands on scroll up (iOS tab bar) */
+.dynamic-island.island-compact {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  transform: translateY(-3px) scale(0.98);
+  box-shadow: var(--glass-bevel), var(--glass-shadow-hover);
+}
+
+/* Mono labels & metrics (editorial detail, SF Mono voice) */
+.section-eyebrow,
+.stack-tag,
+.timeline-period,
+.stat-label,
+.skill-level {
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+/* Press feedback on everything tappable (iOS: scale 0.97) */
+.island-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+}
+
+.island-link:active {
+  transform: scale(0.97);
+}
+
+.sheet-link:active,
+.suggestion-chip:active {
+  transform: scale(0.97);
+}
+
+.hero-social-btn:active {
+  transform: scale(0.94);
+}
+
+.carousel-nav:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.send-message:active,
+.close-chat:active {
+  transform: scale(0.94);
+}
+
+/* --- Hero v10: asymmetric layout --------------------------------------- */
+.hero-section {
+  min-height: auto;
+}
+
+.hero-unified-card {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+  padding: 56px 48px;
+  text-align: left;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-copy .availability-badge {
+  margin-bottom: 20px;
+}
+
+.hero-headline {
+  font-size: clamp(2.7rem, 5.2vw, 4rem);
+  margin-bottom: 12px;
+}
+
+.hero-role {
+  font-size: clamp(1.2rem, 2.1vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.hero-copy .cyber-text {
+  max-width: 480px;
+  margin-bottom: 18px;
+}
+
+.hero-copy .hero-location {
+  margin: 0 0 28px;
+}
+
+.hero-copy .hero-buttons {
+  justify-content: flex-start;
+  margin-bottom: 26px;
+}
+
+.hero-copy .hero-socials {
+  justify-content: flex-start;
+  margin-bottom: 0;
+}
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 18px 8px;
+}
+
+.hero-visual .hero-avatar-bubble {
+  width: 250px;
+  height: 250px;
+  border-radius: 52px;
+  margin-bottom: 0;
+}
+
+/* Real glass bubbles floating over the hero visual (functional glass) */
+.hero-bubble {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 16px 11px 12px;
+  border-radius: 20px;
+  background-color: var(--glass-panel-bg);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--glass-panel-border);
+  border-top-color: var(--glass-panel-border-top);
+  box-shadow: var(--glass-bevel), var(--glass-shadow-island);
+  animation: bubbleFloat 6s ease-in-out infinite alternate;
+  z-index: 2;
+}
+
+.bubble-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.bubble-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.bubble-text strong {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.bubble-text small {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.bubble-exp {
+  top: 2%;
+  left: 0;
+}
+
+.bubble-projects {
+  bottom: 6%;
+  right: 0;
+  animation-delay: -2s;
+}
+
+.bubble-stack {
+  bottom: -2%;
+  left: 6%;
+  animation-delay: -4s;
+}
+
+@keyframes bubbleFloat {
+  from {
+    transform: translateY(-4px);
+  }
+  to {
+    transform: translateY(6px);
+  }
+}
+
+/* --- Skills v10: level labels instead of percentage bars ---------------- */
+.skill-level {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--glass-panel-border);
+  background-color: var(--glass-chip);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.skill-level.level-advanced {
+  color: var(--accent);
+  background-color: var(--accent-subtle);
+}
+
+.skill-item {
+  padding: 14px 16px;
+}
+
+/* --- Projects v10: role line + 44px carousel targets -------------------- */
+.project-role {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 12px;
+}
+
+.project-title {
+  margin-bottom: 6px;
+}
+
+.carousel-nav {
+  width: 44px;
+  height: 44px;
+}
+
+.carousel-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: transparent;
+  position: relative;
+}
+
+.carousel-dot::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: all 0.2s var(--ease-out);
+}
+
+.carousel-dot.active {
+  width: 24px;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.carousel-dot.active::before {
+  width: 16px;
+  border-radius: var(--radius-pill);
+  background-color: #ffffff;
+}
+
+/* --- Accessibility: reduced transparency / no backdrop-filter ----------- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .dynamic-island,
+  .mobile-bubble-sheet,
+  .chatbot-container,
+  .hero-bubble {
+    background-color: var(--glass-solid);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .dynamic-island,
+  .mobile-bubble-sheet,
+  .chatbot-container,
+  .hero-bubble,
+  .carousel-nav,
+  .carousel-dots {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background-color: var(--glass-solid);
+  }
+}
+
+@media (prefers-contrast: more) {
+  .glass-panel,
+  .dynamic-island,
+  .hero-bubble {
+    border-color: var(--text-tertiary);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* --- Hero responsive ----------------------------------------------------- */
+@media (max-width: 992px) {
+  .hero-unified-card {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 44px 32px;
+  }
+
+  .hero-copy {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-copy .hero-buttons,
+  .hero-copy .hero-socials {
+    justify-content: center;
+  }
+
+  .hero-visual .hero-avatar-bubble {
+    width: 210px;
+    height: 210px;
+    border-radius: 46px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-unified-card {
+    padding: 36px 20px;
+    gap: 34px;
+  }
+
+  .hero-visual {
+    padding: 14px 4px;
+  }
+
+  .hero-visual .hero-avatar-bubble {
+    width: 168px;
+    height: 168px;
+    border-radius: 38px;
+  }
+
+  .hero-bubble {
+    padding: 9px 13px 9px 10px;
+    border-radius: 16px;
+  }
+
+  .bubble-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.82rem;
+  }
+
+  .bubble-text strong {
+    font-size: 0.84rem;
+  }
+
+  .bubble-text small {
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .bubble-projects {
+    right: -4px;
+  }
+
+  .bubble-exp {
+    left: -4px;
+  }
+}
+
+/* ==========================================================================
+   REDESIGN v11 — Header & Footer in Apple Liquid Glass (iOS 26)
+   - The island becomes a true glass capsule: translucent fill, specular rim.
+   - The active tab is a glass LENS that glides between tabs (like the iOS 26
+     tab bar selection capsule) — no more solid accent pill.
+   - Footer rebuilt as a structured panel: brand + nav on top, hairline,
+     glass social buttons + glass back-to-top button below.
+   Glass stays in the functional layer only; the page background stays flat.
+   ========================================================================== */
+:root {
+  --lens-bg: rgba(255, 255, 255, 0.72);
+  --lens-border: rgba(0, 0, 0, 0.06);
+  --lens-highlight: rgba(255, 255, 255, 0.95);
+  --lens-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.18),
+                 0 1px 4px rgba(0, 0, 0, 0.08);
+  --glass-btn-fill: rgba(255, 255, 255, 0.55);
+  --glass-btn-rim: rgba(255, 255, 255, 0.7);
+  --ease-glass: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-glass-spring: cubic-bezier(0.34, 1.3, 0.4, 1);
+}
+
+[data-theme="dark"] {
+  --lens-bg: rgba(255, 255, 255, 0.13);
+  --lens-border: rgba(255, 255, 255, 0.2);
+  --lens-highlight: rgba(255, 255, 255, 0.38);
+  --lens-shadow: 0 8px 22px -6px rgba(0, 0, 0, 0.65),
+                 0 1px 4px rgba(0, 0, 0, 0.4);
+  --glass-btn-fill: rgba(255, 255, 255, 0.08);
+  --glass-btn-rim: rgba(255, 255, 255, 0.22);
+}
+
+/* --- Island: richer liquid-glass material ------------------------------- */
+.dynamic-island {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.04) 52%,
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: var(--glass-bevel), var(--glass-shadow-island),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.dynamic-island::after {
+  opacity: 0.35;
+}
+
+.brand-avatar-bubble {
+  box-shadow: inset 0 1px 0 0 var(--glass-btn-rim),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Tab track + sliding glass lens ------------------------------------- */
+.island-links {
+  position: relative;
+  isolation: isolate;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.07),
+    inset 0 0 0 1px var(--glass-panel-border);
+}
+
+.island-lens {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  z-index: 0;
+  height: calc(100% - 8px);
+  width: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--lens-bg);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.06) 55%,
+    rgba(255, 255, 255, 0)
+  );
+  border: 1px solid var(--lens-border);
+  box-shadow: inset 0 1px 0 0 var(--lens-highlight), var(--lens-shadow);
+  backdrop-filter: blur(10px) saturate(170%);
+  -webkit-backdrop-filter: blur(10px) saturate(170%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.5s var(--ease-glass-spring),
+    width 0.5s var(--ease-glass-spring), opacity 0.25s var(--ease-glass);
+}
+
+.island-link {
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+  transition: color 0.25s var(--ease-glass), transform 0.15s var(--ease-out);
+}
+
+/* The lens marks the active tab now — no solid fill on the link itself */
+.island-link.active {
+  color: var(--text-primary);
+  background-color: transparent;
+  font-weight: 800;
+}
+
+/* --- Island action buttons: liquid glass discs --------------------------- */
+.island-btn {
+  background-color: var(--glass-btn-fill);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.03) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  border-color: var(--lens-border);
+  box-shadow: inset 0 1px 0 0 var(--lens-highlight),
+    0 3px 8px -2px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  transition: transform 0.25s var(--ease-glass-spring),
+    background-color 0.25s var(--ease-glass), color 0.25s var(--ease-glass);
+}
+
+.chat-trigger-btn {
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+}
+
+.chat-trigger-btn:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+  transform: scale(1.04);
+}
+
+/* --- Mobile sheet: active row becomes a glass pill ----------------------- */
+.sheet-link.active {
+  background-color: var(--lens-bg);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.04) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: inset 0 1px 0 0 var(--lens-highlight),
+    inset 0 0 0 1px var(--lens-border);
+  color: var(--text-primary);
+}
+
+.sheet-link.active i {
+  color: var(--accent);
+}
+
+/* --- Footer v11 ------------------------------------------------------------ */
+.footer-wrapper {
+  padding: 16px 0 56px;
+}
+
+.footer-panel {
+  background-color: var(--glass-panel-bg);
+  border: 1px solid var(--glass-panel-border);
+  border-top-color: var(--glass-panel-border-top);
+  border-radius: var(--radius-card);
+  box-shadow: var(--glass-bevel), var(--glass-shadow);
+  padding: 28px 32px 24px;
+  text-align: left;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 28px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--glass-panel-border);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+}
+
+.footer-brand .brand-avatar-bubble {
+  width: 38px;
+  height: 38px;
+}
+
+.footer-brand-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.footer-brand-name {
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+.footer-brand-role {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.footer-nav a {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  transition: color 0.2s var(--ease-glass),
+    background-color 0.2s var(--ease-glass), transform 0.15s var(--ease-out);
+}
+
+.footer-nav a:hover {
+  color: var(--text-primary);
+  background-color: var(--glass-chip-hover);
+}
+
+.footer-nav a:active {
+  transform: scale(0.97);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+}
+
+.footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-socials {
+  margin: 0;
+}
+
+.footer-socials .hero-social-btn {
+  width: 42px;
+  height: 42px;
+  background-color: var(--glass-btn-fill);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.03) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  border-color: var(--lens-border);
+  box-shadow: inset 0 1px 0 0 var(--lens-highlight),
+    0 3px 8px -2px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+}
+
+.footer-socials .hero-social-btn:hover {
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+  border-color: var(--lens-border);
+  transform: translateY(-3px);
+}
+
+.to-top-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background-color: var(--glass-btn-fill);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.03) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  border: 1px solid var(--lens-border);
+  box-shadow: inset 0 1px 0 0 var(--lens-highlight),
+    0 3px 8px -2px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  transition: transform 0.25s var(--ease-glass-spring),
+    background-color 0.25s var(--ease-glass);
+}
+
+.to-top-btn:hover {
+  transform: translateY(-3px);
+}
+
+.to-top-btn:active {
+  transform: scale(0.94);
+}
+
+@media (max-width: 768px) {
+  .footer-panel {
+    padding: 24px 20px 20px;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .island-lens,
+  .island-btn,
+  .footer-socials .hero-social-btn,
+  .to-top-btn {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background-color: var(--glass-solid);
+  }
+}
+
+/* ==========================================================================
+   REDESIGN v12 — Full-screen fluid layout (owner request 2026-11-11)
+   - The old 1080px column is gone: every section now spans the full
+     viewport width with fluid side padding that scales with the screen.
+   - The hero fills the whole first screen (100svh).
+   - Grids breathe wider on large screens; timelines widen but stay
+     readable. Mobile keeps compact padding and the same stacking.
+   ========================================================================== */
+.app-container {
+  max-width: none;
+  width: 100%;
+  padding-left: clamp(20px, 4.5vw, 72px);
+  padding-right: clamp(20px, 4.5vw, 72px);
+}
+
+/* Hero = one full screen */
+.hero-section {
+  min-height: 100svh;
+  padding-top: 118px;
+  padding-bottom: 48px;
+}
+
+.hero-unified-card {
+  padding: clamp(40px, 4.5vw, 68px) clamp(28px, 4vw, 64px);
+}
+
+/* Sections get airier vertical rhythm on big screens */
+.section-wrapper {
+  padding-top: clamp(72px, 8vw, 118px);
+  padding-bottom: clamp(72px, 8vw, 118px);
+}
+
+/* Timelines widen with the layout (kept centered for readability) */
+.timeline {
+  max-width: 1080px;
+}
+
+@media (min-width: 1500px) {
+  .skills-grid {
+    gap: 28px;
+  }
+
+  .projects-grid {
+    gap: 32px;
+  }
+
+  .project-card {
+    padding: 32px;
+  }
+
+  .about-grid {
+    gap: 36px;
+  }
+
+  .hero-visual .hero-avatar-bubble {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 100svh;
+    padding-top: 104px;
+    padding-bottom: 36px;
+  }
+}
+
+/* ==========================================================================
+   REDESIGN v13 — REAL GLASS prototype (research 2026-11-11)
+   True optical refraction via SVG feDisplacementMap in backdrop-filter,
+   Chromium only, enabled by JS adding .has-refract to <html> (positive
+   Chromium detection + fine pointer + desktop width). Everywhere else the
+   v11/v12 frost stays untouched.
+   - The island's frost moves to a sibling layer (.island-frost, injected
+     by JS) so the lens's backdrop is NOT trapped by an ancestor filter.
+   - The lens and the island buttons get per-element displacement maps
+     generated on canvas at their exact size (flat centre, bent rim).
+   - A pointer-reactive specular sheen rides on the island (::after).
+   ========================================================================== */
+html.has-refract .dynamic-island {
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.island-frost {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background-color: var(--glass-panel-bg);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.04) 52%,
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  pointer-events: none;
+}
+
+html.has-refract .dynamic-island > *:not(.island-frost) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pointer-reactive specular: a soft light that follows the cursor along
+   the island, layered over the static top sheen */
+.dynamic-island::after {
+  background:
+    radial-gradient(
+      170px 74px at var(--light-x, 50%) -12%,
+      rgba(255, 255, 255, 0.38),
+      rgba(255, 255, 255, 0) 70%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.22),
+      rgba(255, 255, 255, 0.05) 45%,
+      rgba(255, 255, 255, 0) 70%
+    );
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  html.has-refract .dynamic-island {
+    background-color: var(--glass-solid);
+  }
+
+  .island-frost {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background-color: var(--glass-solid);
+  }
+}
+
+/* v13.1 clarity tuning (owner chose real refraction, 2026-11-11): in
+   refract mode the island frost gets lighter and sharper so the page
+   behind the header keeps enough contrast for the lens to bend visibly.
+   Non-refract browsers keep the exact v11/v12 frost above. */
+html.has-refract .island-frost {
+  background-color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px) saturate(170%);
+  -webkit-backdrop-filter: blur(12px) saturate(170%);
+}
+
+html.has-refract[data-theme="dark"] .island-frost {
+  background-color: rgba(30, 30, 35, 0.45);
+}
+
+/* ================================================================
+   REDESIGN v14 — SITE-WIDE LIQUID GLASS HARMONIZATION
+   Basis: Apple HIG/WWDC25 (glass ONLY in the functional layer) +
+   site-wide harmonization research 2026-11-11. One glass family:
+   shared tint tokens, shared rim light, shared blur language.
+   Content (cards, timelines, static tags, form wells) stays solid.
+   ================================================================ */
+
+/* Primary action = tinted glass (glassProminent) */
+.btn-apple-primary {
+  background-color: color-mix(in srgb, var(--accent) 84%, transparent);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.45),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.15),
+    0 8px 24px -6px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.btn-apple-primary:hover {
+  background-color: color-mix(in srgb, var(--accent) 94%, transparent);
+}
+
+/* Secondary actions + chatbot suggestion chips = clear glass */
+.btn-apple-secondary,
+.suggestion-chip {
+  background-color: var(--glass-btn-fill);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid var(--lens-border);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.12),
+    0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Carousel controls float over photos: clear glass + dimming */
+.carousel-nav {
+  background-color: rgba(18, 18, 24, 0.32);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.45),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.15),
+    0 6px 18px rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+}
+
+/* Social buttons grouped under ONE glass pill (no glass-on-glass:
+   the buttons inside become plain fills on the shared material) */
+.hero-socials {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  background-color: var(--glass-btn-fill);
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  border: 1px solid var(--glass-panel-border);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    0 6px 18px rgba(0, 0, 0, 0.1);
+  align-self: flex-start;
+}
+
+.hero-socials .hero-social-btn {
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.hero-socials .hero-social-btn:hover {
+  background-color: var(--glass-panel-hover);
+}
+
+/* Hero bubbles join the same blur language */
+.hero-bubble {
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+}
+
+/* Chatbot: panel = Regular glass aligned to the family;
+   toggle = tinted glass (refracted in Chromium via JS) */
+.chatbot-container {
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+.chatbot-toggle {
+  background-color: color-mix(in srgb, var(--accent) 88%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.15),
+    0 10px 28px -6px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .btn-apple-secondary,
+  .suggestion-chip,
+  .hero-socials,
+  .carousel-nav,
+  .chatbot-container {
+    background-color: var(--glass-solid);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .btn-apple-primary,
+  .chatbot-toggle {
+    background-color: var(--accent);
+  }
+}
+
+/* ============================================================
+   REDESIGN v15 — FOOTER CONTENT (nav links removed at Wahyu's
+   order: a footer repeats the header when it only holds the
+   same menu. Replaced with footer-grade info: status, location,
+   live local time, and a one-line tagline.)
+   ============================================================ */
+.footer-tagline {
+  margin: 14px 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 460px;
+}
+.footer-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 36px;
+  align-items: flex-start;
+}
+.footer-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.footer-info-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.footer-info-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #30d158;
+  box-shadow: 0 0 0 3px rgba(48, 209, 88, 0.18);
+  flex: none;
+}
+.footer-clock {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.84rem;
+}
+@media (max-width: 768px) {
+  .footer-info { gap: 14px 24px; }
+  .footer-tagline { max-width: none; }
+}
+
+/* ============================================================
+   REDESIGN v16 — MARKDOWN CONTENT INSIDE CHAT BUBBLES
+   Bot replies are rendered Markdown now (marked + DOMPurify);
+   these rules style every format an AI answer can contain so
+   nothing shows up as raw symbols: headings, lists, tables,
+   code blocks (with a copy bar), quotes, links, math.
+   ============================================================ */
+.bot-message > *:first-child { margin-top: 0; }
+.bot-message > *:last-child { margin-bottom: 0; }
+.bot-message p { margin: 0 0 8px; }
+.bot-message h1, .bot-message h2, .bot-message h3,
+.bot-message h4, .bot-message h5, .bot-message h6 {
+  margin: 12px 0 6px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.bot-message h1 { font-size: 1.06rem; }
+.bot-message h2 { font-size: 1.0rem; }
+.bot-message h3 { font-size: 0.94rem; }
+.bot-message h4, .bot-message h5, .bot-message h6 { font-size: 0.88rem; }
+.bot-message ul, .bot-message ol { margin: 4px 0 8px; padding-left: 20px; }
+.bot-message li { margin: 2px 0; }
+.bot-message li > p { margin: 0; }
+.bot-message a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.bot-message strong { font-weight: 700; }
+.bot-message blockquote {
+  margin: 8px 0;
+  padding: 6px 12px;
+  border-left: 3px solid var(--accent);
+  background-color: var(--glass-subtle);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-muted);
+}
+.bot-message blockquote p { margin: 0; }
+.bot-message hr { border: none; border-top: 1px solid var(--glass-panel-border); margin: 10px 0; }
+.bot-message img { max-width: 100%; border-radius: 10px; }
+.bot-message code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  background-color: var(--glass-subtle);
+  border: 1px solid var(--glass-panel-border);
+  padding: 1px 5px;
+  border-radius: 6px;
+  word-break: break-word;
+}
+.bot-message pre {
+  margin: 0 0 8px;
+  padding: 12px;
+  background-color: #0d1117;
+  color: #e6edf3;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+.bot-message pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  word-break: normal;
+}
+.bot-message pre.has-code-bar { border-radius: 0 0 10px 10px; margin-top: 0; }
+.bot-message .code-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  margin-top: 8px;
+  background-color: #161b22;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.bot-message .code-lang {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8b949e;
+}
+.bot-message .code-copy {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: #e6edf3;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+.bot-message .code-copy:hover { background: rgba(255, 255, 255, 0.16); }
+.bot-message .md-table-wrap { overflow-x: auto; margin: 0 0 8px; border-radius: 8px; }
+.bot-message table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.8rem;
+}
+.bot-message th, .bot-message td {
+  border: 1px solid var(--glass-panel-border);
+  padding: 5px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+.bot-message th { background-color: var(--glass-subtle); font-weight: 700; }
+.bot-message .katex { font-size: 1.02em; }
+.bot-message .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; margin: 6px 0; }
+
+/* ---------------------------------------------------------------------------
+   REDESIGN v17 — PRIVATE PROJECT NOTE (FlashRouter & Flash Agent, added at
+   Wahyu's request 2026-11-12: private repos are shown as screenshots and a
+   full description only, with a lock note instead of Live/Code buttons)
+   --------------------------------------------------------------------------- */
+.project-private-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.project-private-note i {
+  color: var(--text-secondary);
+}
+.project-body .project-text + .project-text {
+  flex-grow: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   REDESIGN v18 — PROJECT LOGO CHIP (Wahyu's request 2026-11-12: each private
+   project's original logo sits on its card screenshots, top-left over the
+   carousel viewport; FlashRouter & Flash Agent cards only)
+   --------------------------------------------------------------------------- */
+.project-logo-chip {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  background-color: #0b1220;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 6px 10px;
+  pointer-events: none;
+  line-height: 0;
+}
+.project-logo-chip img {
+  display: block;
+  height: 34px;
+  width: auto;
+}
+@media (max-width: 768px) {
+  .project-logo-chip {
+    top: 10px;
+    left: 10px;
+  }
+  .project-logo-chip img {
+    height: 28px;
+  }
+}

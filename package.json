@@ -1,14 +1,33 @@
 {
-  "name": "portfolio-website",
-  "version": "1.0.0",
-  "description": "Personal portfolio website",
+  "name": "nextjs",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "echo 'No build required'",
-    "start": "echo 'Use Vercel to deploy'"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
   "dependencies": {
-    "@vercel/node": "^3.0.0",
-    "@vercel/analytics": "^1.1.1"
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "@gsap/react": "^2.1.2",
+    "@vercel/analytics": "^2.0.1",
+    "dompurify": "^3.1.6",
+    "gsap": "^3.12.5",
+    "katex": "^0.16.11",
+    "marked": "^12.0.2",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.0.5",
+    "@types/katex": "^0.16.8",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "typescript": "^5"
   }
 }
