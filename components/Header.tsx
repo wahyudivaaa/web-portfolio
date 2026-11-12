@@ -6,6 +6,7 @@ import NavigationEffects from "./NavigationEffects";
 export default function Header() {
   return (
     <header className="dynamic-island-wrapper">
+      <span className="scroll-progress" aria-hidden="true"></span>
       <nav className="dynamic-island" aria-label="Primary Navigation">
         <a href="#home" className="island-brand" aria-label="Wahyu Diva home">
           <span className="brand-avatar-bubble">

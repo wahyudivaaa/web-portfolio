@@ -3209,3 +3209,403 @@ html.has-refract[data-theme="dark"] .island-frost {
     right: 12px;
   }
 }
+
+/* ==========================================================================
+   21. Interaction redesign (2026-11-12): scroll progress, split-text
+   entrances, tech marquee, scroll-scrub statement, spotlight cards,
+   timeline rail fill, sticky project stack, cursor label, contact
+   finale. Liquid Glass material and the flat background are unchanged.
+   ========================================================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Reading progress (top edge, accent) --- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1300;
+  background-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+/* --- Split-text entrance --- */
+.split__w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  margin: -0.1em -0.07em -0.18em;
+  padding: 0.1em 0.07em 0.18em;
+}
+.split__word {
+  display: inline-block;
+  white-space: nowrap;
+}
+.split__i {
+  display: inline-block;
+  animation: split-rise 0.9s cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-delay: var(--d, 0s);
+  will-change: transform;
+}
+@keyframes split-rise {
+  from {
+    transform: translateY(115%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* --- Magnetic wrappers --- */
+.magnetic {
+  display: inline-flex;
+  will-change: transform;
+}
+
+/* --- Button press feedback --- */
+.btn-apple-primary,
+.btn-apple-secondary {
+  transition: transform 0.16s cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+}
+.btn-apple-primary:active,
+.btn-apple-secondary:active {
+  transform: scale(0.97);
+}
+
+/* --- Section index inside the eyebrow pill --- */
+.section-index {
+  opacity: 0.65;
+  margin-right: 9px;
+  padding-right: 9px;
+  border-right: 1px solid currentColor;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Tech marquee under the hero --- */
+.tech-marquee {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 74px;
+  border-block: 1px solid var(--glass-panel-border);
+  background-color: var(--glass-subtle);
+  overflow: hidden;
+}
+.tech-marquee__viewport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 80px calc(100% - 140px),
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 80px calc(100% - 140px),
+    transparent
+  );
+}
+.tech-marquee__track {
+  display: flex;
+  width: max-content;
+  list-style: none;
+  animation: marquee-scroll 32s linear infinite;
+  will-change: transform;
+}
+.tech-marquee:hover .tech-marquee__track,
+.tech-marquee.is-paused .tech-marquee__track {
+  animation-play-state: paused;
+}
+.tech-marquee__half {
+  display: flex;
+  align-items: center;
+}
+.tech-marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding-inline: 28px;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-secondary);
+}
+.tech-marquee__item i {
+  font-size: 1.25rem;
+  color: var(--text-tertiary);
+}
+.tech-marquee__item::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  opacity: 0.7;
+  margin-left: 45px;
+  margin-right: -31px;
+}
+.tech-marquee__img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+.tech-marquee__toggle {
+  position: absolute;
+  top: 50%;
+  right: max(10px, 2vw);
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-panel-border);
+  background-color: var(--glass-control);
+  color: var(--text-tertiary);
+  font-size: 0.62rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  z-index: 1;
+}
+.tech-marquee__toggle:hover {
+  color: var(--text-primary);
+}
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* --- Scroll-scrub statement (About) --- */
+.about-bio-card p.about-scrub {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+.scrub__w {
+  opacity: 0.16;
+  transition: opacity 0.35s ease;
+}
+.scrub__w.is-lit {
+  opacity: 1;
+}
+
+/* --- Spotlight hover glow on cards --- */
+.spotlight {
+  position: relative;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    var(--accent-subtle),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* --- Timeline rail fill --- */
+.timeline-fill {
+  position: absolute;
+  left: 23px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  .timeline-fill {
+    left: 19px;
+  }
+}
+
+/* --- Sticky project stack (wide screens) --- */
+:root {
+  --stack-card-bg: #ffffff;
+}
+[data-theme="dark"] {
+  --stack-card-bg: #17171c;
+}
+@media (min-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  .project-card {
+    position: sticky;
+    top: calc(96px + var(--i, 0) * 16px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+    gap: 30px;
+    align-items: start;
+    /* Stacked cards overlap, so the translucent panel material would
+       show the card beneath — stacked cards use a solid surface. */
+    background-color: var(--stack-card-bg);
+    scale: var(--stack-scale, 1);
+    filter: brightness(calc(1 - var(--shade, 0) * 0.45));
+    transform-origin: top center;
+  }
+  .project-card .project-carousel-container {
+    margin-bottom: 0;
+  }
+}
+
+/* --- Cursor label pill --- */
+.cursor-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  will-change: transform;
+}
+.cursor-label__text {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: block;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background-color: var(--text-primary);
+  color: var(--bg-canvas);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0.9);
+  transform-origin: 0 0;
+  transition: opacity 0.18s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.18s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.cursor-label.is-visible .cursor-label__text {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Serif accent (Instrument Serif italic) --- */
+.serif-accent {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+/* --- Contact finale --- */
+.contact-panel {
+  padding: clamp(44px, 6vw, 76px) clamp(24px, 5vw, 64px);
+  text-align: center;
+}
+.contact-panel .section-header {
+  margin-bottom: 20px;
+}
+.contact-title {
+  font-size: clamp(2.5rem, 6vw, 4.4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  color: var(--text-primary);
+}
+.contact-title .serif-accent {
+  display: block;
+  font-size: 1.06em;
+}
+.contact-desc {
+  max-width: 34em;
+  margin: 0 auto;
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 1.4vw, 1.13rem);
+  line-height: 1.65;
+}
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 34px;
+}
+.contact-email-btn {
+  min-height: 58px;
+  padding: 0 30px;
+  font-size: 1.05rem;
+}
+.contact-copy-btn {
+  min-height: 58px;
+}
+@media (max-width: 520px) {
+  .contact-actions,
+  .contact-actions .magnetic,
+  .contact-actions .btn-apple-primary,
+  .contact-actions .btn-apple-secondary {
+    width: 100%;
+  }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .split__i {
+    animation: none;
+  }
+  .tech-marquee__track {
+    animation: none;
+  }
+  .tech-marquee__viewport {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .tech-marquee__toggle {
+    display: none;
+  }
+  .scrub__w {
+    opacity: 1;
+    transition: none;
+  }
+  .btn-apple-primary:active,
+  .btn-apple-secondary:active {
+    transform: none;
+  }
+  .project-card {
+    scale: none;
+    filter: none;
+  }
+}

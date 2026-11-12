@@ -65,7 +65,7 @@ export default function ProjectCarousel({
 
   return (
     <>
-    <div className="project-carousel-container">
+    <div className="project-carousel-container" data-cursor="View">
       <div
         className="project-carousel"
         onMouseEnter={() => setPaused(true)}

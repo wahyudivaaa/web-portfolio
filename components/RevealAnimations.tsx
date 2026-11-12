@@ -32,6 +32,20 @@ export default function RevealAnimations({ children }: { children: ReactNode }) 
         ease: "power3.out",
       });
 
+      // Hero Parallax Exit: the unified card drifts down and fades as it
+      // scrolls out, so the hero feels attached to the scroll itself.
+      gsap.to(".hero-unified-card", {
+        scrollTrigger: {
+          trigger: ".hero-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: 0.4,
+        },
+        y: 56,
+        opacity: 0.35,
+        ease: "none",
+      });
+
       // Section Headers
       gsap.utils.toArray<HTMLElement>(".section-header").forEach((header) => {
         gsap.from(header, {

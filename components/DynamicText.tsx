@@ -29,17 +29,52 @@ export function AgeText() {
 
 export function ExperienceYears() {
   // Static HTML shipped "2+"; main.js calculateExperience() replaces it.
-  const [text, setText] = useState("2+");
+  // Now counts up to the computed value when the stat scrolls into view.
+  const ref = useRef<HTMLSpanElement>(null);
+  const [years, setYears] = useState(2);
   useEffect(() => {
     const startDate = new Date("2022-06-01");
     const currentDate = new Date();
-    let years = currentDate.getFullYear() - startDate.getFullYear();
+    let y = currentDate.getFullYear() - startDate.getFullYear();
     const months = currentDate.getMonth() - startDate.getMonth();
-    if (months < 0) years -= 1;
+    if (months < 0) y -= 1;
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time post-mount fill-in over the static placeholder, mirroring main.js
-    setText(`${years}+`);
+    setYears(y);
   }, []);
-  return <span className="stat-number">{text}</span>;
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.textContent = `${years}+`;
+      return;
+    }
+    let raf = 0;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        const t0 = performance.now();
+        const tick = (now: number) => {
+          const p = Math.min((now - t0) / 1400, 1);
+          const eased = 1 - Math.pow(1 - p, 4);
+          el.textContent = `${Math.round(years * eased)}+`;
+          if (p < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+    };
+  }, [years]);
+  return (
+    <span className="stat-number" ref={ref}>
+      {years}+
+    </span>
+  );
 }
 
 export function FooterYear() {

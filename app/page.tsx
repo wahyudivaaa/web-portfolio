@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Header from "@/components/Header";
 import RevealAnimations from "@/components/RevealAnimations";
 import RealGlass from "@/components/RealGlass";
@@ -5,6 +6,13 @@ import ProjectCarousel, { type Slide } from "@/components/ProjectCarousel";
 import { AgeText, ExperienceYears, FooterYear } from "@/components/DynamicText";
 import FooterClock from "@/components/FooterClock";
 import ChatWidgetLoader from "@/components/chat/ChatWidgetLoader";
+import SplitText from "@/components/fx/SplitText";
+import Magnetic from "@/components/fx/Magnetic";
+import CountUp from "@/components/fx/CountUp";
+import ScrubText from "@/components/fx/ScrubText";
+import Effects from "@/components/fx/Effects";
+import TechMarquee from "@/components/TechMarquee";
+import ContactSection from "@/components/ContactSection";
 
 // All markup, class names and copy ported verbatim from the pre-migration
 // static index.html (v17 state). Behaviour islands: RevealAnimations (GSAP),
@@ -125,7 +133,9 @@ export default function Home() {
                   <span>Open to collaborations &amp; new projects</span>
                 </div>
 
-                <h1 className="hero-headline">Wahyu Diva</h1>
+                <h1 className="hero-headline">
+                  <SplitText text="Wahyu Diva" by="chars" delay={80} />
+                </h1>
 
                 <p className="hero-role">
                   Full Stack Developer building production web apps with{" "}
@@ -144,13 +154,12 @@ export default function Home() {
                 </p>
 
                 <div className="hero-buttons">
-                  <a href="#projects" className="btn-apple-primary">
-                    View Work
-                  </a>
-                  <a
-                    href="mailto:wahyudiva2004@gmail.com"
-                    className="btn-apple-secondary"
-                  >
+                  <Magnetic>
+                    <a href="#projects" className="btn-apple-primary">
+                      View Work
+                    </a>
+                  </Magnetic>
+                  <a href="#contact" className="btn-apple-secondary">
                     <i className="fas fa-envelope" aria-hidden="true"></i>
                     <span>Contact Me</span>
                   </a>
@@ -209,11 +218,16 @@ export default function Home() {
           </div>
         </section>
 
+        <TechMarquee />
+
         {/* About Section */}
         <section id="about" className="section-wrapper">
           <div className="app-container">
             <div className="section-header">
-              <span className="section-eyebrow">Get to Know</span>
+              <span className="section-eyebrow">
+                <span className="section-index">01</span>
+                Get to Know
+              </span>
               <h2 className="section-title">About Me</h2>
             </div>
 
@@ -227,13 +241,14 @@ export default function Home() {
                   Informatics Engineering while working as a Full Stack
                   Developer.
                 </p>
+                <ScrubText
+                  className="about-scrub"
+                  text="My day-to-day work is web development — designing database schemas, building PHP backends, and shipping interfaces that people actually use — and I keep expanding that craft through personal projects."
+                />
                 <p>
-                  My day-to-day work is web development — designing database
-                  schemas, building PHP backends, and shipping interfaces that
-                  people actually use — and I keep expanding that craft through
-                  personal projects. My professional and academic journey has
-                  shaped me into an honest, collaborative, and respectful
-                  individual who thrives in team environments.
+                  My professional and academic journey has shaped me into an
+                  honest, collaborative, and respectful individual who thrives
+                  in team environments.
                 </p>
                 <p>
                   Outside of work and studies, I enjoy coding personal projects
@@ -247,18 +262,18 @@ export default function Home() {
                     <span className="stat-label">Years Experience</span>
                   </div>
                   <div className="stat-bubble-card stat-item">
-                    <span className="stat-number">50+</span>
+                    <CountUp to={50} suffix="+" delay={120} className="stat-number" />
                     <span className="stat-label">Projects Completed</span>
                   </div>
                   <div className="stat-bubble-card stat-item">
-                    <span className="stat-number">30+</span>
+                    <CountUp to={30} suffix="+" delay={240} className="stat-number" />
                     <span className="stat-label">Happy Clients</span>
                   </div>
                 </div>
               </div>
 
               <div className="about-cards-column">
-                <div className="glass-panel about-subcard">
+                <div className="glass-panel about-subcard spotlight">
                   <div className="subcard-icon">
                     <i className="fas fa-server" aria-hidden="true"></i>
                   </div>
@@ -267,7 +282,7 @@ export default function Home() {
                     <p>Building robust and scalable server-side applications.</p>
                   </div>
                 </div>
-                <div className="glass-panel about-subcard">
+                <div className="glass-panel about-subcard spotlight">
                   <div className="subcard-icon">
                     <i className="fas fa-desktop" aria-hidden="true"></i>
                   </div>
@@ -276,7 +291,7 @@ export default function Home() {
                     <p>Creating responsive and interactive user interfaces.</p>
                   </div>
                 </div>
-                <div className="glass-panel about-subcard">
+                <div className="glass-panel about-subcard spotlight">
                   <div className="subcard-icon">
                     <i className="fas fa-database" aria-hidden="true"></i>
                   </div>
@@ -294,11 +309,15 @@ export default function Home() {
         <section id="experience" className="section-wrapper">
           <div className="app-container">
             <div className="section-header">
-              <span className="section-eyebrow">Career Path</span>
+              <span className="section-eyebrow">
+                <span className="section-index">02</span>
+                Career Path
+              </span>
               <h2 className="section-title">Experience</h2>
             </div>
 
             <div className="timeline">
+              <span className="timeline-fill" aria-hidden="true"></span>
               <div className="timeline-item">
                 <div className="timeline-dot">
                   <i className="fas fa-briefcase" aria-hidden="true"></i>
@@ -345,11 +364,15 @@ export default function Home() {
         <section id="education" className="section-wrapper">
           <div className="app-container">
             <div className="section-header">
-              <span className="section-eyebrow">Background</span>
+              <span className="section-eyebrow">
+                <span className="section-index">03</span>
+                Background
+              </span>
               <h2 className="section-title">Education</h2>
             </div>
 
             <div className="timeline">
+              <span className="timeline-fill" aria-hidden="true"></span>
               <div className="timeline-item">
                 <div className="timeline-dot">
                   <i className="fas fa-graduation-cap" aria-hidden="true"></i>
@@ -428,12 +451,15 @@ export default function Home() {
         <section id="skills" className="section-wrapper">
           <div className="app-container">
             <div className="section-header">
-              <span className="section-eyebrow">What I Do</span>
+              <span className="section-eyebrow">
+                <span className="section-index">04</span>
+                What I Do
+              </span>
               <h2 className="section-title">Skills</h2>
             </div>
 
             <div className="skills-grid">
-              <div className="glass-panel skill-group-card">
+              <div className="glass-panel skill-group-card spotlight">
                 <h3 className="group-title">Frontend</h3>
                 <div className="skill-items-list">
                   <div className="skill-item">
@@ -467,7 +493,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="glass-panel skill-group-card">
+              <div className="glass-panel skill-group-card spotlight">
                 <h3 className="group-title">Backend</h3>
                 <div className="skill-items-list">
                   <div className="skill-item">
@@ -500,7 +526,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="glass-panel skill-group-card">
+              <div className="glass-panel skill-group-card spotlight">
                 <h3 className="group-title">Database &amp; Tools</h3>
                 <div className="skill-items-list">
                   <div className="skill-item">
@@ -542,13 +568,16 @@ export default function Home() {
         <section id="projects" className="section-wrapper">
           <div className="app-container">
             <div className="section-header">
-              <span className="section-eyebrow">Featured Work</span>
+              <span className="section-eyebrow">
+                <span className="section-index">05</span>
+                Featured Work
+              </span>
               <h2 className="section-title">Projects</h2>
             </div>
 
             <div className="projects-grid">
               {/* Project 1: FlashPlay */}
-              <article className="glass-panel project-card">
+              <article className="glass-panel project-card" style={{ "--i": 0 } as CSSProperties}>
                 <ProjectCarousel name="FlashPlay" slides={flashPlaySlides} />
                 <div className="project-body">
                   <h3 className="project-title">FlashPlay</h3>
@@ -582,7 +611,7 @@ export default function Home() {
               </article>
 
               {/* Project 2: FlashBot */}
-              <article className="glass-panel project-card">
+              <article className="glass-panel project-card" style={{ "--i": 1 } as CSSProperties}>
                 <ProjectCarousel name="FlashBot" slides={flashBotSlides} />
                 <div className="project-body">
                   <h3 className="project-title">FlashBot</h3>
@@ -624,7 +653,7 @@ export default function Home() {
               </article>
 
               {/* Project 3: FlashRouter */}
-              <article className="glass-panel project-card">
+              <article className="glass-panel project-card" style={{ "--i": 2 } as CSSProperties}>
                 <ProjectCarousel name="FlashRouter" slides={flashRouterSlides} />
                 <div className="project-body">
                   <div className="project-head">
@@ -677,7 +706,7 @@ export default function Home() {
               </article>
 
               {/* Project 4: Flash Agent */}
-              <article className="glass-panel project-card">
+              <article className="glass-panel project-card" style={{ "--i": 3 } as CSSProperties}>
                 <ProjectCarousel name="Flash Agent" slides={flashAgentSlides} />
                 <div className="project-body">
                   <div className="project-head">
@@ -734,6 +763,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <ContactSection />
       </RevealAnimations>
 
       {/* Footer */}
@@ -792,6 +823,7 @@ export default function Home() {
         </div>
       </footer>
 
+      <Effects />
       <ChatWidgetLoader />
     </>
   );
