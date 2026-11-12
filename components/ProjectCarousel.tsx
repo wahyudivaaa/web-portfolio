@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 export type Slide = {
   src: string;
@@ -23,22 +24,47 @@ export default function ProjectCarousel({
 }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [lightbox, setLightbox] = useState<number | null>(null);
   const touchStartX = useRef(0);
   const count = slides.length;
 
   useEffect(() => {
-    if (paused || count <= 1) return;
+    if (paused || lightbox !== null || count <= 1) return;
     const id = setInterval(
       () => setIndex((i) => (i + 1) % count),
       4000
     );
     return () => clearInterval(id);
-  }, [paused, index, count]);
+  }, [paused, index, count, lightbox]);
+
+  // Lightbox: keyboard navigation (Esc / arrows) + page scroll lock.
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+      if (e.key === "ArrowRight")
+        setLightbox((v) => (v === null ? v : (v + 1) % count));
+      if (e.key === "ArrowLeft")
+        setLightbox((v) => (v === null ? v : (v - 1 + count) % count));
+    };
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.documentElement.style.overflow = prevOverflow;
+    };
+  }, [lightbox, count]);
 
   const next = () => setIndex((i) => (i + 1) % count);
   const prev = () => setIndex((i) => (i - 1 + count) % count);
+  const openLightbox = (i: number) => {
+    setLightbox(i);
+    setPaused(true);
+  };
 
   return (
+    <>
     <div className="project-carousel-container">
       <div
         className="project-carousel"
@@ -81,6 +107,7 @@ export default function ProjectCarousel({
                 width={s.width}
                 height={s.height}
                 loading="lazy"
+                onClick={() => openLightbox(i)}
               />
             </div>
           ))}
@@ -95,6 +122,17 @@ export default function ProjectCarousel({
           }}
         >
           <i className="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+        <button
+          className="carousel-expand"
+          type="button"
+          aria-label={`Enlarge ${name} image`}
+          onClick={(e) => {
+            e.stopPropagation();
+            openLightbox(index);
+          }}
+        >
+          <i className="fas fa-expand" aria-hidden="true"></i>
         </button>
         <div
           className="carousel-dots"
@@ -116,5 +154,59 @@ export default function ProjectCarousel({
         </div>
       </div>
     </div>
+    {lightbox !== null &&
+      createPortal(
+        <div
+          className="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${name} screenshot preview`}
+        onClick={() => setLightbox(null)}
+      >
+        <button
+          className="lightbox-close"
+          type="button"
+          aria-label="Close preview"
+          autoFocus
+          onClick={() => setLightbox(null)}
+        >
+          <i className="fas fa-xmark" aria-hidden="true"></i>
+        </button>
+        <button
+          className="lightbox-nav prev"
+          type="button"
+          aria-label="Previous image"
+          onClick={(e) => {
+            e.stopPropagation();
+            setLightbox((lightbox - 1 + count) % count);
+          }}
+        >
+          <i className="fas fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <figure
+          className="lightbox-stage"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={slides[lightbox].src} alt={slides[lightbox].alt} />
+          <figcaption>
+            {slides[lightbox].alt} · {lightbox + 1} / {count}
+          </figcaption>
+        </figure>
+        <button
+          className="lightbox-nav next"
+          type="button"
+          aria-label="Next image"
+          onClick={(e) => {
+            e.stopPropagation();
+            setLightbox((lightbox + 1) % count);
+          }}
+        >
+          <i className="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+        </div>,
+        document.body
+      )}
+    </>
   );
 }
