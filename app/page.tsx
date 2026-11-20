@@ -162,6 +162,10 @@ export default function Home() {
                     <i className="fas fa-envelope" aria-hidden="true"></i>
                     <span>Contact Me</span>
                   </a>
+                  <a href="/cv" className="btn-apple-secondary">
+                    <i className="fas fa-file-arrow-down" aria-hidden="true"></i>
+                    <span>Download CV</span>
+                  </a>
                 </div>
 
                 <div className="hero-socials">
