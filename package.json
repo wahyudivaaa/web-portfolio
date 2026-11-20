@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run generate:cv && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:cv": "tsc scripts/generate-cv-pdf.tsx components/pdf/CvDocument.tsx lib/cv-data.ts --outDir .cv-build --module nodenext --moduleResolution nodenext --target es2022 --jsx react-jsx --esModuleInterop --skipLibCheck && node .cv-build/scripts/generate-cv-pdf.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@gsap/react": "^2.1.2",
+    "@react-pdf/renderer": "^4.9.0",
     "@vercel/analytics": "^2.0.1",
     "dompurify": "^3.1.6",
     "gsap": "^3.12.5",
@@ -28,6 +30,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }
