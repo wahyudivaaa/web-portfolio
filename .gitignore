@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.cv-build/
+
+# generated CV PDF (regenerated at build time by npm run generate:cv)
+/public/cv/
