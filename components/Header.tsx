@@ -36,6 +36,9 @@ export default function Header() {
           <a href="#projects" className="island-link">
             PROJECTS
           </a>
+          <a href="/cv" className="island-link">
+            CV
+          </a>
         </div>
 
         <div className="island-actions">
@@ -89,6 +92,10 @@ export default function Header() {
           <a href="#projects" className="sheet-link">
             <i className="fas fa-box-archive" aria-hidden="true"></i>
             <span>PROJECTS</span>
+          </a>
+          <a href="/cv" className="sheet-link">
+            <i className="fas fa-file-lines" aria-hidden="true"></i>
+            <span>CV</span>
           </a>
         </div>
       </div>
