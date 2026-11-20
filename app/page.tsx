@@ -137,9 +137,9 @@ export default function Home() {
                 </h1>
 
                 <p className="hero-role">
-                  Full Stack Developer building production web apps with{" "}
-                  <span className="highlight">PHP</span>, SQL Server &amp;
-                  JavaScript.
+                  Full Stack Developer &amp;{" "}
+                  <span className="highlight">AI enthusiast</span> building
+                  production web apps with PHP, SQL Server &amp; JavaScript.
                 </p>
 
                 <p className="cyber-text">
@@ -249,6 +249,13 @@ export default function Home() {
                   text="My day-to-day work is web development — designing database schemas, building PHP backends, and shipping interfaces that people actually use — and I keep expanding that craft through personal projects."
                 />
                 <p>
+                  I am also an AI enthusiast. I actively explore and research
+                  the latest AI developments — new models, agent frameworks,
+                  and tooling — and turn that curiosity into personal projects
+                  such as FlashRouter, my multi-provider AI gateway, and Flash
+                  Agent, an autonomous agent built in Go.
+                </p>
+                <p>
                   My professional and academic journey has shaped me into an
                   honest, collaborative, and respectful individual who thrives
                   in team environments.
@@ -301,6 +308,18 @@ export default function Home() {
                   <div className="subcard-content">
                     <h3>Database Design</h3>
                     <p>Designing efficient and secure database structures.</p>
+                  </div>
+                </div>
+                <div className="glass-panel about-subcard spotlight">
+                  <div className="subcard-icon">
+                    <i className="fas fa-brain" aria-hidden="true"></i>
+                  </div>
+                  <div className="subcard-content">
+                    <h3>AI Exploration &amp; Research</h3>
+                    <p>
+                      Following, testing, and building with the latest AI
+                      models and agents.
+                    </p>
                   </div>
                 </div>
               </div>
