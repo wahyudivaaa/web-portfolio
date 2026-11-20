@@ -79,7 +79,7 @@ export const cvData: CvData = {
     },
   ],
   summary:
-    "Full Stack Developer with 4+ years of full-time experience at Sanata System in Bali, building production web applications end to end — database design (Microsoft SQL Server, MySQL), PHP backends, and responsive JavaScript frontends. Shipped 50+ projects for 30+ clients, and builds independent AI tooling in TypeScript and Go, including a multi-provider AI gateway running 24/7 in production. Final-year B.Sc. Informatics Engineering student at Primakara University.",
+    "Full Stack Developer with 4+ years of full-time experience at Sanata System in Bali, building production web applications end to end — database design (Microsoft SQL Server, MySQL), PHP backends, and responsive JavaScript frontends. Shipped 50+ projects for 30+ clients, and builds independent AI tooling in TypeScript and Go, including a multi-provider AI gateway running 24/7 in production. An active AI enthusiast who continuously explores and researches the latest AI developments — new models, agents, and tooling — and applies them in his own projects. Final-year B.Sc. Informatics Engineering student at Primakara University.",
   skills: [
     {
       label: "Languages",
