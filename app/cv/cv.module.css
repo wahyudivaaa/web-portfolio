@@ -1,0 +1,243 @@
+/* Scoped styles for /cv — clean, minimal, single column, one dark accent.
+   Deliberately print-sober: flat background (no glass on the page itself),
+   glass only on the functional action bar. Works in both site themes. */
+
+.page {
+  min-height: 100vh;
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  padding: 48px 20px 80px;
+}
+
+.sheet {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* Functional action bar — the one glass element on this page */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  margin-bottom: 28px;
+  border-radius: var(--radius-inner);
+  background: var(--glass-panel-bg);
+  border: 1px solid var(--glass-panel-border);
+  box-shadow: var(--glass-bevel), var(--glass-shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.backLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.backLink:hover {
+  color: var(--accent);
+}
+
+.downloadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: 11px 22px;
+  border-radius: var(--radius-pill);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.downloadBtn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* CV document */
+.doc {
+  background: transparent;
+}
+
+.name {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.headline {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
+.contact {
+  margin-top: 10px;
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.contact a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.contact a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.headerRule {
+  border: none;
+  border-top: 2.5px solid var(--accent);
+  margin: 18px 0 6px;
+}
+
+.section {
+  margin-top: 26px;
+}
+
+.sectionTitle {
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid var(--glass-panel-border);
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+.summary {
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-size: 1rem;
+}
+
+.skillRow {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 8px 16px;
+  padding: 3px 0;
+  line-height: 1.55;
+}
+
+.skillLabel {
+  font-weight: 700;
+}
+
+.skillList {
+  color: var(--text-secondary);
+}
+
+.entry {
+  margin-bottom: 18px;
+}
+
+.entry:last-child {
+  margin-bottom: 0;
+}
+
+.entryHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.entryTitle {
+  font-size: 1.06rem;
+  font-weight: 700;
+}
+
+.entryPeriod {
+  color: var(--text-tertiary);
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.entrySub {
+  color: var(--text-tertiary);
+  font-size: 0.94rem;
+  margin-top: 2px;
+}
+
+.stack {
+  color: var(--text-tertiary);
+  font-size: 0.94rem;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.stack a {
+  color: var(--accent);
+  font-style: normal;
+  text-decoration: none;
+}
+
+.stack a:hover {
+  text-decoration: underline;
+}
+
+.bullets {
+  margin-top: 6px;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.bullets li {
+  margin-bottom: 4px;
+}
+
+.detail {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+.languages {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 28px 14px 56px;
+  }
+
+  .name {
+    font-size: 1.9rem;
+  }
+
+  .skillRow {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 5px 0;
+  }
+
+  .entryPeriod {
+    white-space: normal;
+  }
+}
+
+@media print {
+  .actions {
+    display: none;
+  }
+
+  .page {
+    padding: 0;
+  }
+}
